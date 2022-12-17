@@ -37,7 +37,16 @@ const Home = () => {
     }
   };
 
-  const job = jobs.map(j => <li key={jobs[j]}>{j.role}</li>) 
+  const job = jobs.map(j => (
+    <tr key={jobs[j]}>
+      <td>{j.role}</td>
+      <td>{j.summary}</td>
+      <td>{j.job_date}</td>
+      <td>
+        <a href={j.url} target="_blank" rel="noreferrer"><button>Visit Job</button></a>
+      </td>
+    </tr>
+  )) 
   return (
     <>
       <Head>
@@ -48,6 +57,7 @@ const Home = () => {
       </Head>
       <main className={styles.main}>
         <h2>Kejani Garage Jobs Scrapper</h2>
+        <a href="https://www.freecodecamp.org/" target="_blank" rel="noreferrer">freeCodeCamp</a>
         <form onSubmit={handleSubmit}>
           <label>
             Role:
@@ -58,10 +68,45 @@ const Home = () => {
               onChange={handleChange}
             />
           </label>
+          <label>
+            Speciality:
+            <input
+              type='text'
+              name='description'
+              value=''
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Filter Out:
+            <input
+              type='text'
+              name='description'
+              value=''
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Before/After this date:
+            <input
+              type='text'
+              name='description'
+              value=''
+              onChange={handleChange}
+            />
+          </label>
           <br />
           <button type="submit">Submit</button>
         </form>
-        <ul>{job}</ul>
+        <table>
+          <tr>
+            <th>Role</th>
+            <th>Summary</th>
+            <th>Date</th>
+            <th>{}</th>
+          </tr>
+          {job}
+        </table>
       </main>
     </>
   )
