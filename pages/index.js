@@ -57,7 +57,6 @@ const Home = () => {
       </Head>
       <main className={styles.main}>
         <h2>Kejani Garage Jobs Scrapper</h2>
-        <a href="https://www.freecodecamp.org/" target="_blank" rel="noreferrer">freeCodeCamp</a>
         <form onSubmit={handleSubmit}>
           <label>
             Role:
