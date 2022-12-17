@@ -1,11 +1,43 @@
+import React, { useState } from 'react';
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
+import axios from 'axios'
 import styles from '../styles/Home.module.css'
+import { Axios } from 'axios';
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+
+const Home = () => {
+  const [modifiedData, setModifiedData] = useState({
+    ro: '',
+    spec: '',
+    fil: '',
+    afte: ''
+  });
+
+  const [jobs, setJobs] = useState([])
+
+  const handleChange = ({ target: { name, value } }) => {
+    setModifiedData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/api/v1/search', {
+        ...modifiedData
+      });
+      setJobs(response.data)
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const job = jobs.map(j => <li key={jobs[j]}>{j.role}</li>) 
   return (
     <>
       <Head>
@@ -15,12 +47,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Kejani Garage Jobs Scrapper
-          </p>
-        </div>
+        <h2>Kejani Garage Jobs Scrapper</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Role:
+            <input
+              type='text'
+              name='description'
+              value=''
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+        <ul>{job}</ul>
       </main>
     </>
   )
-}
+  }
+
+export default Home;
