@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon, ArrowDownTrayIcon } from '@heroicons/react/20/solid'
+import { Dialog, Disclosure, Menu, Transition, RadioGroup } from '@headlessui/react'
+import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon, ArrowDownTrayIcon, ArrowTopRightOnSquareIcon, CalendarIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, BellIcon, XMarkIcon, StopIcon } from '@heroicons/react/24/outline'
 
 import axios from 'axios'
 
@@ -10,6 +10,13 @@ import './App.css'
 const sortOptions = [
   { name: 'Newest', href: '#', current: false },
   { name: 'Oldest', href: '#', current: false },
+]
+
+const navigation = [
+  { name: 'Jobs', href: '#', current: true },
+  { name: 'Employers', href: '#', current: false },
+  // { name: 'Pricing', href: '#', current: false },
+    { name: 'FAQs', href: '#', current: false },
 ]
 
 const filters = [
@@ -46,7 +53,7 @@ const filters = [
   },
     {
     id: 'filter',
-    name: 'Dont Include',
+    name: 'Filter Out',
     options: [
       { value: 'senior', label: 'Senior', checked: false },
       { value: 'junior', label: 'Junior', checked: false },
@@ -57,11 +64,53 @@ const filters = [
   },
 ]
 
+const plans = [
+  {
+    name: 'Startup',
+    ram: '12GB',
+    cpus: '6 CPUs',
+    disk: '160 GB SSD disk',
+  },
+  {
+    name: 'Business',
+    ram: '16GB',
+    cpus: '8 CPUs',
+    disk: '512 GB SSD disk',
+  },
+  {
+    name: 'Enterprise',
+    ram: '32GB',
+    cpus: '12 CPUs',
+    disk: '1024 GB SSD disk',
+  },
+    {
+    name: 'Startup',
+    ram: '12GB',
+    cpus: '6 CPUs',
+    disk: '160 GB SSD disk',
+  },
+  {
+    name: 'Business',
+    ram: '16GB',
+    cpus: '8 CPUs',
+    disk: '512 GB SSD disk',
+  },
+  {
+    name: 'Enterprise',
+    ram: '32GB',
+    cpus: '12 CPUs',
+    disk: '1024 GB SSD disk',
+  },
+]
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 function App() {
+
+  const [selected, setSelected] = useState(plans[0])
+
   const [modifiedData, setModifiedData] = useState({
     roles: '',
     speciality: 'react',
@@ -108,70 +157,133 @@ function App() {
 
   return (
     <Fragment>
-      <nav className="bg-gray-800">
-  <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div className="relative flex h-16 items-center justify-between">
-      <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <button type="button" className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-          <span className="sr-only">Open main menu</span>
-          <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <svg className="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div className="hidden sm:ml-6 sm:block">
-          <div className="flex space-x-4">
-            <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Job Seekers</a>
+    <Disclosure as="nav" className="bg-gray-800">
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center bg-white text-gray-800 px-2 rounded-full">
+                  KG
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'px-3 py-2 rounded-md text-sm font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <button
+                  type="button"
+                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                >
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
 
-            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Hire Jobers</a>
-
-            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
-
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt=""
+                      />
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            Your Profile
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            Settings
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            Sign out
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button type="button" className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <span className="sr-only">View notifications</span>
-          <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-          </svg>
-        </button>
 
-        <div className="relative ml-3">
-          <div>
-            <button type="button" className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span className="sr-only">Open user menu</span>
-              <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-            </button>
-          </div>
-
-          <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</a>
-          </div>
-        </div>
-      </div> */}
-    </div>
-  </div>
-
-  <div className="sm:hidden" id="mobile-menu">
-    <div className="space-y-1 px-2 pt-2 pb-3">
-      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-    </div>
-  </div>
-</nav>
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 px-2 pt-2 pb-3">
+              {navigation.map((item) => (
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className={classNames(
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block px-3 py-2 rounded-md text-base font-medium'
+                  )}
+                  aria-current={item.current ? 'page' : undefined}
+                >
+                  {item.name}
+                </Disclosure.Button>
+              ))}
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
 <main>
   <div className="bg-white">
       <div>
@@ -261,13 +373,24 @@ function App() {
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
+                                                              <Menu as="div" className="relative inline-block text-left">
+                        <div className="shrink-0 text-gray-800">
+                        <Menu.Button className="inline-flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          View
+                          <ArrowTopRightOnSquareIcon
+                            className="ml-2 -mr-1 h-5 w-5 text-white"
+                            aria-hidden="true"
+                          />
+                        </Menu.Button>
+                        </div>
+                        </Menu>
             </div>
           </Dialog>
         </Transition.Root>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Discover Remote Jobs Opportunies</h1>
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Discover Remote Jobs</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -379,12 +502,115 @@ function App() {
                     )}
                   </Disclosure>
                 ))}
+                    <Menu as="div" className="relative text-left mt-4">
+                        <div className="shrink-0 text-gray-800 text-center">
+                        <Menu.Button className="inline-flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          Search
+                        </Menu.Button>
+                        </div>
+                        </Menu>
               </form>
 
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full" />
+                <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full">
+                  {/* <table className="table-auto">
+  <tbody>
+    <tr>
+      <td><input type="checkbox" className="appearance-none checked:bg-blue-500 ..." /></td>
+      <td>Role</td>
+      <td>Summary</td>
+      <td>Job Date</td>
+      <td><a><button>Visit</button></a></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" className="appearance-none checked:bg-blue-500 ..." /></td>
+      <td>Role</td>
+      <td>Summary</td>
+      <td>Job Date</td>
+      <td><a><button>Visit</button></a></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" className="appearance-none checked:bg-blue-500 ..." /></td>
+      <td>Role</td>
+      <td>Summary</td>
+      <td>Job date</td>
+      <td><a><button>Visit</button></a></td>
+    </tr>
+  </tbody>
+</table> */}
+
+        <RadioGroup value={selected} onChange={setSelected}>
+          <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
+          <div className="space-y-2 my-3">
+            {plans.map((plan) => (
+              <RadioGroup.Option
+                key={plan.name}
+                value={plan}
+                className={({ checked }) =>
+                  `${
+                    'bg-white bg-opacity-75 text-gray-800'
+                  }
+                  relative flex cursor-pointer rounded-lg mx-3 px-5 py-4 shadow-lg shadow-black-500/40 hover:shadow-gray-800/40`
+                }
+              >
+                {() => (
+                  <>
+                    <div className="w-full items-center grid grid-cols-10">
+                      
+                      <div className="shrink-0 text-gray-800">
+                        <StopIcon className="block h-6 w-6" aria-hidden="true" />
+                      </div>
+                      <div className="items-left col-span-7">
+                        <div className="text-sm">
+                          <RadioGroup.Label
+                            as="p"
+                            className={`font-medium flex ${
+                              'text-gray-800'
+                            }`}
+                          >
+                          <span><CalendarIcon className="mr-1 h-5 w-5 text-gray-800"
+                           aria-hidden="true" /></span>
+                            {' '}
+                            <span>
+                              {'Job Dates'}
+                            </span>
+                            {' '}
+                            <span className='mr-1.5 ml-1.5' aria-hidden="true">&middot;</span>
+                            {'Role'}
+                          </RadioGroup.Label>
+                          <RadioGroup.Description
+                            as="span"
+                            className={`inline ${
+                              'text-gray-800'
+                            }`}
+                          >
+                            <span>
+                              {'Summary'}
+                            </span>
+                          </RadioGroup.Description>
+                        </div>
+                      </div>
+                            <Menu as="div" className="relative inline-block text-left">
+                        <div className="shrink-0 text-gray-800">
+                        <Menu.Button className="inline-flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          View
+                          <ArrowTopRightOnSquareIcon
+                            className="ml-2 -mr-1 h-5 w-5 text-white"
+                            aria-hidden="true"
+                          />
+                        </Menu.Button>
+                        </div>
+                        </Menu>
+                    </div>
+                  </>
+                )}
+              </RadioGroup.Option>
+            ))}
+          </div>
+        </RadioGroup>
+                </div>
                 {/* /End replace */}
               </div>
             </div>
