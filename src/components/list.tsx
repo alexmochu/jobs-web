@@ -2,7 +2,7 @@ import { Menu, RadioGroup } from '@headlessui/react'
 import { ArrowTopRightOnSquareIcon, CalendarIcon } from '@heroicons/react/20/solid'
 import { StopIcon } from '@heroicons/react/24/outline'
 
-const List = ({ plans, selected, setSelected }) => {
+const List = ({ plans, selected, setSelected, jobs}) => {
   return (
     <RadioGroup value={selected} onChange={setSelected}>
       <RadioGroup.Label className='sr-only'>Server size</RadioGroup.Label>

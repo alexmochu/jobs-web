@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 import axios from 'axios'
 
@@ -25,6 +25,7 @@ function App() {
 
   const [jobs, setJobs] = useState([])
 
+
   const handleChange = ({ target: { name, value } }) => {
     setModifiedData((prev) => ({
       ...prev,
@@ -32,20 +33,24 @@ function App() {
     }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async () => {
 
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/v1/search', {
         ...modifiedData,
       })
       setJobs(response.data)
-      console.log(response)
+      console.log(modifiedData)
     } catch (error) {
       console.log(error)
     }
   }
 
+  useEffect(() => {
+    // handleSubmit()
+  },[])
+
+  console.log(jobs)
   const job = jobs.map((j) => (
     <tr key={jobs[j]}>
       <td>{j.role}</td>
@@ -91,7 +96,7 @@ function App() {
                   <div className='lg:col-span-3'>
                     {/* Replace with your content */}
                     <div className='h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full'>
-                      <List plans={plans} selected={selected} setSelected={setSelected} />
+                      <List plans={plans} selected={selected} setSelected={setSelected} jobs={jobs} />
                     </div>
                     {/* /End replace */}
                   </div>
