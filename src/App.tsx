@@ -94,7 +94,6 @@ function App() {
                   <Form filters={filters} />
                   {/* Product grid */}
                   <div className='lg:col-span-3'>
-                    {/* Replace with your content */}
                     <div className='h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full'>
                       <List plans={plans} selected={selected} setSelected={setSelected} jobs={jobs} />
                     </div>
