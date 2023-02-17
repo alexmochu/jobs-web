@@ -4,10 +4,10 @@ export const sortOptions = [
 ]
 
 export const navigation = [
-  { name: 'Jobs', href: '#', current: true },
-  { name: 'Employers', href: '#', current: false },
-  // { name: 'Pricing', href: '#', current: false },
-  { name: 'FAQs', href: '#', current: false },
+  { name: 'Jobs', href: '/', current: true },
+  { name: 'Employers', href: 'dashboard/employers', current: false },
+  { name: 'Pricing', href: 'pricing', current: false },
+  { name: 'FAQs', href: 'faqs', current: false },
 ]
 
 export const filters = [
