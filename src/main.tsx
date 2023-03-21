@@ -13,7 +13,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Root, { loader as rootLoader, action as rootAction } from './routes/root';
+import Root, { loader as rootLoader } from './routes/root';
 import ErrorPage from './error-page';
 import Contact, {
   loader as contactLoader,
@@ -27,7 +27,7 @@ import EditContact, {
 import Index from './routes/index.jsx'
 import Settings from './routes/settings.jsx'
 import Profile from './routes/profile.jsx'
-import Login from './routes/login.jsx'
+import Login, { loader as loginLoader, action as loginAction } from './routes/login.jsx'
 import SignUp from './routes/signup.jsx'
 import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
@@ -37,7 +37,7 @@ import ForgotPassword from './routes/forgot-password.jsx'
 import ProtectedRoute from './routes/protectedRoute'
 import { navigation as Navs}  from './constants'
 import Dashboard from './routes/dashboard.jsx'
-import Jobs from './routes/jobs.jsx'
+import Jobs, { loader as jobsAction } from './routes/jobs.jsx'
 
 
 import { action as destroyAction } from './routes/destroy'
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     loader: rootLoader,
-    action: rootAction,
+    // action: rootAction,
     children: [
     {
     index: true,
@@ -58,73 +58,55 @@ const router = createBrowserRouter([
     path: '/jobs',
     element: <Jobs />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
   {
     path: '/login',
     element: <Login />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
+    loader: loginLoader,
+    action: loginAction,
   },
   {
     path: 'employers',
     element: <Employers />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
   {
     path: 'profile',
     element: <ProtectedRoute><Profile /> </ProtectedRoute>,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
    {
     path: 'pricing',
     element: <Pricing />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
   {
     path: 'faqs',
     element: <FaqS />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
     {
     path: 'dashboard',
     element: <ProtectedRoute><Dashboard /> </ProtectedRoute>,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
   {
     path: 'signup',
     element: <SignUp />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
 
     {
     path: 'forgot-password',
     element: <ForgotPassword />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
  
   {
     path: 'settings',
     element: <ProtectedRoute><Settings /> </ProtectedRoute>,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
   },
 ]
   },

@@ -1,23 +1,18 @@
-import { useEffect, useState, Fragment } from 'react'
-import { Outlet, useLoaderData, useSubmit, redirect, useNavigation } from 'react-router-dom';
-import { getContacts, createContact } from '../contacts';
+import { useState, Fragment } from 'react'
+import { Outlet, useLoaderData } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { navigation as Navs}  from '../constants'
+import api from '../api'
 
-export async function loader({ request }) {
-  const url = new URL(request.url)
-  const q = url.searchParams.get('q')
-  const contacts = await getContacts(q);
-  return { contacts, q };
-}
-
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+export async function loader(){
+  const req = await api.home.landingPage()
+  return req
 }
 
 export default function Root() {
-  const [auth, setAuth] = useState(!true)
+  const landingPage = useLoaderData()
+  console.log(landingPage)
+  const [auth, setAuth] = useState(true)
   return (
     <>
     <Fragment>

@@ -1,15 +1,11 @@
 import { useEffect, useState, Fragment } from 'react'
-import { Outlet, Link, useLoaderData, useSubmit, Form, redirect, NavLink, useNavigation } from 'react-router-dom';
-import { getContacts, createContact } from '../contacts';
-import NavBar from '../components/navBar';
-import { navigation as Navs}  from '../constants'
+import { Form, redirect, useNavigation } from 'react-router-dom';
+import { getContacts } from '../contacts';
+import api from '../api'
 
 // import LoginGithub from 'react-login-github';
-import LoginGithub from 'react-login-github';
 import axios from 'axios';
-import cors from 'cors';
 
-const clientId = 'f4cdea3da9b80d0c0b78';
 // client secret kejani jobs secret = 17c99cdfe149d1ce11a936276e24ee5799df5a15
 export async function loader({ request }) {
   const url = new URL(request.url)
@@ -18,9 +14,11 @@ export async function loader({ request }) {
   return { contacts, q };
 }
 
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+export async function action({ request }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+  await api.user.login(updates);
+  return redirect('/dashboard')
 }
 
 const url = 'http://127.0.0.1:5000'
@@ -35,45 +33,6 @@ export default function Login() {
 
     const [message, setMessage] = useState('');
     const [token, setToken] = useState(localStorage.getItem('header-access-token'));
-    // const { contacts, q } = useLoaderData();
-    const navigation = useNavigation();
-    // const [query, setQuery] = useState(q)
-    const submit = useSubmit()
-
-      const searching =
-    navigation.location &&
-    new URLSearchParams(navigation.location.search).has(
-      'q'
-    );
-  
-  // UNCOMMENT THE 1ST USEEFFECT
-  //     useEffect(() => {
-  //   document.getElementById('q').value = q;
-  // }, [q]);
-      // useEffect(() => {
-      //   setQuery(q)
-      // }, [q]);
-
-  const handleLoginSuccess = async (response) => {
-    const token = response.code;
-    localStorage.setItem('header-access-token', token);
-    setToken(token);
-    const res = await axios.get
-    (`${url}/login/github`, {
-      withCredentials: false,
-      headers: { 
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-
-      }
-    });
-    console.log('we made it', res)
-    setMessage(response.data.message);
-    window.opener.postMessage({ type: 'login-success', data: { token } }, window.origin);
-    window.close();
-  };
 
   const handleAuthMessage = (event) => {
   if (event.origin !== `${url}`) return;
@@ -88,27 +47,7 @@ useEffect(() => {
   return () => window.removeEventListener('message', handleAuthMessage);
 }, []);
 
-  const handleLoginFailure = (response) => {
-    console.error(response);
-  };
 
-    const handleLogin = async () => {
-    console.log('start')
-    await axios.get(`${url}/login`, {
-      withCredentials: false,
-      headers: { 
-        'Content-Type': 'application/json',
-        'header-access-token': token,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-
-      }
-    });
-    console.log('stop')
-    localStorage.setItem('header-access-token')
-    setToken(null);
-    setMessage('');
-  };
 
   const handleLogout = async () => {
     console.log('start')
@@ -143,33 +82,30 @@ useEffect(() => {
         ) : (
         <>
           <h1 className='text-4xl font-bold tracking-tight text-gray-900'>Login</h1>        
-          <Form method='post'>
-          <label className="block">
-            <span className="block text-sm font-medium text-slate-700">Dont have an account? <Link to='/signup'>Register</Link></span>
-          </label>
-          <label className="block">
-            <span className="block text-sm font-medium text-slate-700">Username</span>
-            <input type="text" value="tboneee" disabled className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-              focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-              disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-              invalid:border-pink-500 invalid:text-pink-600
-              focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-            "/>
-          </label>
-          <label className="block">
-            <span className="block text-sm font-medium text-slate-700">Password</span>
-            <input type="text" value="tboneee" disabled className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-              focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-              disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-              invalid:border-pink-500 invalid:text-pink-600
-              focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-            "/>
-          </label>
-          <label className="block">
-            <button type='submit' className="block text-sm font-medium text-slate-700">Login</button>
-            <Link to='/forgot-password'>Forgot password?</Link>
-          </label>
-        </Form>
+          <Form method="post" id="login-form">
+            <p>
+              <span>Username</span>
+              <input
+                placeholder="Username"
+                aria-label="Username"
+                type="username"
+                name="username"
+              />
+            </p>
+            <p>
+              <span>Password</span>
+              <input
+                placeholder="Password"
+                aria-label="Password"
+                type="password"
+                name="password"
+              />
+            </p>
+            <p>
+              <button type="submit">Save</button>
+              <button type="button">Cancel</button>
+            </p>
+          </Form>
           {/* <LoginGithub
             clientId={clientId}
             onSuccess={handleLoginSuccess}
