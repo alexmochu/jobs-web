@@ -1,18 +1,18 @@
 import { Fragment, useEffect, useState } from 'react'
 
 import axios from 'axios'
+import cors from 'cors'
 
-import './App.css'
 
-import List from './components/list'
-import Form from './components/form'
-import MobileForm from './components/mobileForm'
-import Header from './components/header'
-import NavBar from './components/navBar'
+import List from '../components/list'
+import Form from '../components/form'
+import MobileForm from '../components/mobileForm'
+import Header from '../components/header'
+import NavBar from '../components/navBar'
 
-import { plans, sortOptions, navigation, filters } from './constants'
+import { plans, sortOptions, navigation, filters } from '../constants'
 
-function App() {
+function Jobs() {
   const [selected, setSelected] = useState(plans[0])
 
   const [modifiedData, setModifiedData] = useState({
@@ -68,7 +68,6 @@ function App() {
 
   return (
     <Fragment>
-      <NavBar navigation={navigation} />
       <main>
         <div className='bg-white'>
           <div>
@@ -109,4 +108,4 @@ function App() {
   )
 }
 
-export default App
+export default Jobs

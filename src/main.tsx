@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import App from './routes/App'
 import './index.css'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -9,6 +9,9 @@ const queryClient = new QueryClient()
 import {
   createBrowserRouter,
   RouterProvider,
+  createRoutesFromElements,
+  Routes,
+  Route
 } from 'react-router-dom';
 import Root, { loader as rootLoader, action as rootAction } from './routes/root';
 import ErrorPage from './error-page';
@@ -30,6 +33,11 @@ import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
 import Employers from './routes/employers'
 import NavBar from './components/navBar'
+import ForgotPassword from './routes/forgot-password.jsx'
+import ProtectedRoute from './routes/protectedRoute'
+import { navigation as Navs}  from './constants'
+import Dashboard from './routes/dashboard.jsx'
+import Jobs from './routes/jobs.jsx'
 
 
 import { action as destroyAction } from './routes/destroy'
@@ -37,76 +45,97 @@ import { action as destroyAction } from './routes/destroy'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
-  },
-  {
-    path: 'login',
-    element: <Login />
-  },
-  {
-    path: 'signup',
-    element: <SignUp />
-  },
-    {
-    path: 'pricing',
-    element: <Pricing />
-  },
-  {
-    path: 'faqs',
-    element: <FaqS />
-  },
-  {
-    path: 'dashboard',
     element: <Root />,
     errorElement: <ErrorPage />,
     loader: rootLoader,
     action: rootAction,
     children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-      {
-        index: true,
-        element: <Index />
-      },{
-        path: 'settings',
-        element: <Settings />
-      },
-      {
-        path: 'profile',
-        element: <Profile />
-      },
-      {
-        path: 'employers',
-        element: <Employers />
-      },
-      {
-        path: 'contacts/:contactId',
-        element: <Contact />,
-        loader: contactLoader,
-        action: contactAction,
-      },
-      {
-        path: 'contacts/:contactId/edit',
-        element: <EditContact />,
-        loader: contactLoader,
-        action: editAction,
-      },
-            {
-        path: 'contacts/:contactId/destroy',
-        action: destroyAction,
-        errorElement: <div>Oops! There was an error.</div>,
-      }
-        ]
-      }
-    ],
+    {
+    index: true,
+    element: <App />
   },
+    {
+    path: '/jobs',
+    element: <Jobs />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+  {
+    path: 'employers',
+    element: <Employers />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+  {
+    path: 'profile',
+    element: <ProtectedRoute><Profile /> </ProtectedRoute>,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+   {
+    path: 'pricing',
+    element: <Pricing />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+  {
+    path: 'faqs',
+    element: <FaqS />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+    {
+    path: 'dashboard',
+    element: <ProtectedRoute><Dashboard /> </ProtectedRoute>,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+  {
+    path: 'signup',
+    element: <SignUp />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+
+    {
+    path: 'forgot-password',
+    element: <ForgotPassword />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+ 
+  {
+    path: 'settings',
+    element: <ProtectedRoute><Settings /> </ProtectedRoute>,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+  },
+]
+  },
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <NavBar navigation={navigation} /> */}
+      {/* <NavBar navigation={Navs} /> */}
       <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>,
