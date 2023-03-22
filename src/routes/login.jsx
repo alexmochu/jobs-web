@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from 'react'
-import { Form, redirect, useNavigation } from 'react-router-dom';
+import { Form, redirect, useNavigation, Link } from 'react-router-dom';
 import { getContacts } from '../contacts';
 import api from '../api'
 
@@ -81,7 +81,10 @@ useEffect(() => {
         </>
         ) : (
         <>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900'>Login</h1>        
+          <label className="block">
+            <button type='submit' className="block text-sm font-medium text-slate-700">Login</button>
+            <span className="block text-sm font-medium text-slate-700">Dont have an account? <Link to='/signup'>Register</Link></span>
+          </label>       
           <Form method="post" id="login-form">
             <p>
               <span>Username</span>
@@ -105,6 +108,9 @@ useEffect(() => {
               <button type="submit">Save</button>
               <button type="button">Cancel</button>
             </p>
+            <label className="block">
+              <span className="block text-sm font-medium text-slate-700">Cant rememeber password? <Link to='/forgot-password'>Recover it.</Link></span>
+            </label> 
           </Form>
           {/* <LoginGithub
             clientId={clientId}

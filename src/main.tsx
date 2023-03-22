@@ -28,7 +28,7 @@ import Index from './routes/index.jsx'
 import Settings from './routes/settings.jsx'
 import Profile from './routes/profile.jsx'
 import Login, { loader as loginLoader, action as loginAction } from './routes/login.jsx'
-import SignUp from './routes/signup.jsx'
+import SignUp, { action as signupAction } from './routes/signup.jsx'
 import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
 import Employers from './routes/employers'
@@ -66,21 +66,21 @@ const router = createBrowserRouter([
     loader: loginLoader,
     action: loginAction,
   },
-  {
-    path: 'employers',
-    element: <Employers />,
-    errorElement: <ErrorPage />,
-  },
+  // {
+  //   path: 'employers',
+  //   element: <Employers />,
+  //   errorElement: <ErrorPage />,
+  // },
   {
     path: 'profile',
     element: <ProtectedRoute><Profile /> </ProtectedRoute>,
     errorElement: <ErrorPage />,
   },
-   {
-    path: 'pricing',
-    element: <Pricing />,
-    errorElement: <ErrorPage />,
-  },
+  //  {
+  //   path: 'pricing',
+  //   element: <Pricing />,
+  //   errorElement: <ErrorPage />,
+  // },
   {
     path: 'faqs',
     element: <FaqS />,
@@ -95,6 +95,7 @@ const router = createBrowserRouter([
     path: 'signup',
     element: <SignUp />,
     errorElement: <ErrorPage />,
+    action: signupAction
   },
 
     {

@@ -7,7 +7,7 @@ export default {
   user: {
     login: (credentials) => client.post('/login', { credentials }).then((res) => res.data.user),
     logout: () => client.post('/logout').then((res) => res.data.user),
-    signup: (user) => client.post('/signup', { user }).then((res) => res.data.user),
+    signup: (user) => client.post('/register', { user }).then((res) => res.data.user),
     forgotPassword: (user) =>
       client.post('/forgot-password', { user }).then((res) => res.data.user),
   },

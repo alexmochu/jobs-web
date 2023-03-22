@@ -5,8 +5,8 @@ export const sortOptions = [
 
 export const navigation = [
   { name: 'Jobs', href: '/jobs', current: false },
-  { name: 'Employers', href: 'employers', current: false },
-  { name: 'Pricing', href: 'pricing', current: false },
+  // { name: 'Employers', href: 'employers', current: false },
+  // { name: 'Pricing', href: 'pricing', current: false },
   { name: 'FAQs', href: 'faqs', current: false },
 ]
 

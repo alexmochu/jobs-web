@@ -1,5 +1,13 @@
 import { Fragment } from 'react'
-import { Link, Form } from 'react-router-dom';
+import { Link, Form, redirect} from 'react-router-dom';
+import api from '../api'
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+  await api.user.signup(updates);
+  return redirect('/login')
+}
 
 export default function SignUp() {
   return (
@@ -13,10 +21,10 @@ export default function SignUp() {
                 <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
                  Signup
                 </h1>
-                <Form method='post'>
+                <Form method='post' id='signup-form'>
                   <label className="block">
                     <span className="block text-sm font-medium text-slate-700">Email</span>
-                    <input type="text" value="tboneee" disabled className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    <input placeholder="Email" aria-label='Email Address' type="email" name="email" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                       invalid:border-pink-500 invalid:text-pink-600
@@ -25,7 +33,7 @@ export default function SignUp() {
                   </label>
                   <label className="block">
                     <span className="block text-sm font-medium text-slate-700">Username</span>
-                    <input type="text" value="tboneee" disabled className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    <input placeholder="Username" aria-label='Username' type="username" name="username" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                       invalid:border-pink-500 invalid:text-pink-600
@@ -34,7 +42,7 @@ export default function SignUp() {
                   </label>
                   <label className="block">
                     <span className="block text-sm font-medium text-slate-700">Password</span>
-                    <input type="text" value="tboneee" disabled className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    <input placeholder='Password' aria-label='Password' type="password" name="password" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                       invalid:border-pink-500 invalid:text-pink-600
