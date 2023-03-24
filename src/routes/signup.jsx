@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Link, Form, redirect} from 'react-router-dom';
-import api from '../api'
+import api from '../api/api'
 
 export async function action({ request }) {
   const formData = await request.formData();

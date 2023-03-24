@@ -2,17 +2,17 @@ import { useState, Fragment } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { navigation as Navs}  from '../constants'
-import api from '../api'
+import Queries from '../api/queries'
 
 export async function loader(){
-  const req = await api.home.landingPage()
-  return req
+  const response = await Queries.landingPage()
+  return response
 }
 
 export default function Root() {
   const landingPage = useLoaderData()
   console.log(landingPage)
-  const [auth, setAuth] = useState(true)
+  const [auth, setAuth] = useState(!true)
   return (
     <>
     <Fragment>

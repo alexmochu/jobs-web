@@ -1,90 +1,42 @@
 import { useEffect, useState, Fragment } from 'react'
-import { Form, redirect, useNavigation, Link } from 'react-router-dom';
+import { Form, redirect, useNavigate, Link, useLoaderData } from 'react-router-dom';
 import { getContacts } from '../contacts';
-import api from '../api'
-
-// import LoginGithub from 'react-login-github';
-import axios from 'axios';
-
-// client secret kejani jobs secret = 17c99cdfe149d1ce11a936276e24ee5799df5a15
-export async function loader({ request }) {
-  const url = new URL(request.url)
-  const q = url.searchParams.get('q')
-  const contacts = await getContacts(q);
-  return { contacts, q };
-}
+import Queries from '../api/queries'
+import setAuthToken from '../utilities/setAuthToken';
 
 export async function action({ request }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  await api.user.login(updates);
+  await Queries.login(updates)
   return redirect('/dashboard')
 }
 
-const url = 'http://127.0.0.1:5000'
-
-export const client = axios.create({
-    baseURL: url
-})
-
 export default function Login() {
-    // Enable CORS for all requests
-    axios.defaults.withCredentials = true;
+  const [userState, setUserState] = useState({
+      username: '',
+      password: ''
+  })
 
-    const [message, setMessage] = useState('');
-    const [token, setToken] = useState(localStorage.getItem('header-access-token'));
+  const onChange = e =>
+    setUserState(
+      { ...userState, [e.target.name]: e.target.value }
+    );
 
-  const handleAuthMessage = (event) => {
-  if (event.origin !== `${url}`) return;
-  if (event.data.type === 'login-success') {
-    const { token } = event.data.data;
-    setToken(token);
-  }
-};
-
-useEffect(() => {
-  window.addEventListener('message', handleAuthMessage);
-  return () => window.removeEventListener('message', handleAuthMessage);
-}, []);
-
-
-
-  const handleLogout = async () => {
-    console.log('start')
-    let headerAccessToken = ''
-    headerAccessToken = localStorage.getItem('header-access-token');
-    await axios.get(`${url}/logout`, {
-      withCredentials: false,
-      headers: { 
-        'Content-Type': 'application/json',
-        'header-access-token': headerAccessToken,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-
-      }
-    });
-    console.log('stop')
-    localStorage.removeItem('header-access-token');
-    setToken(null);
-    setMessage('');
-  };
-  console.log('token', token)
   return (
     <Fragment>
-      {/* <NavBar navigation={Navs} /> */}
       <div>
-        {token ? (
+        {/* {token ? (
         <>
           <p>You are logged in.</p>
           <p>The message: {message}</p>
           <button onClick={handleLogout}>Login out</button>
         </>
-        ) : (
+        ) : ( */}
         <>
           <label className="block">
             <button type='submit' className="block text-sm font-medium text-slate-700">Login</button>
             <span className="block text-sm font-medium text-slate-700">Dont have an account? <Link to='/signup'>Register</Link></span>
-          </label>       
+          </label>
           <Form method="post" id="login-form">
             <p>
               <span>Username</span>
@@ -93,6 +45,8 @@ useEffect(() => {
                 aria-label="Username"
                 type="username"
                 name="username"
+                value={userState.username}
+                onChange={onChange}
               />
             </p>
             <p>
@@ -102,6 +56,8 @@ useEffect(() => {
                 aria-label="Password"
                 type="password"
                 name="password"
+                value={userState.password}
+                onChange={onChange}
               />
             </p>
             <p>
@@ -118,9 +74,9 @@ useEffect(() => {
             onFailure={handleLoginFailure}
             redirectUrl={'http://localhost:5173/login/github/authorized'}
           /> */}
-          {message && <p>{message}</p>}
+          {/* {message && <p>{message}</p>} */}
         </>
-        )}
+        {/* )} */}
       </div>
     </Fragment>
 

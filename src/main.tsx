@@ -27,7 +27,7 @@ import EditContact, {
 import Index from './routes/index.jsx'
 import Settings from './routes/settings.jsx'
 import Profile from './routes/profile.jsx'
-import Login, { loader as loginLoader, action as loginAction } from './routes/login.jsx'
+import Login, { action as loginAction } from './routes/login.jsx'
 import SignUp, { action as signupAction } from './routes/signup.jsx'
 import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
@@ -63,7 +63,6 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
     errorElement: <ErrorPage />,
-    loader: loginLoader,
     action: loginAction,
   },
   // {
