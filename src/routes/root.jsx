@@ -4,6 +4,8 @@ import NavBar from '../components/navBar';
 import { navigation as Navs}  from '../constants'
 import Queries from '../api/queries'
 import { userState } from '../main'
+import AppHeader from '../landingpage/AppHeader';
+import AppFooter from '../landingpage/AppFooter';
 
 export async function loader(){
   const response = await Queries.landingPage()
@@ -15,8 +17,9 @@ export default function Root() {
   const { value } = userState()
   const isAuthenticated = value.isAuthenticated
   return (
-    <Fragment>
-      <NavBar navigation={Navs} auth={isAuthenticated}/>
+    <body className='bg-white dark:bg-gray-900'>
+      {/* <NavBar navigation={Navs} auth={isAuthenticated}/> */}
+      <AppHeader />
       <main>
         <div className='bg-white'>
               <div id="detail">
@@ -24,6 +27,7 @@ export default function Root() {
               </div>
         </div>
       </main>
-    </Fragment>
+      <AppFooter />
+    </body>
   );
 }
