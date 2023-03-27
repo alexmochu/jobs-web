@@ -6,7 +6,7 @@ import Queries from '../api/queries.js'
 
 import { classNames } from './common'
 
-const NavBar = ({ navigation, auth, setAuth }) => {
+const NavBar = ({ navigation, auth }) => {
   const navigate = useNavigate()
   const onLogout = async () => {
     await Queries.logout()
@@ -60,7 +60,7 @@ const NavBar = ({ navigation, auth, setAuth }) => {
                 </div>
               </div>
               <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                {auth ? null :
+                {!auth ? null :
                 <button
                   type='button'
                   className='rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
@@ -70,7 +70,7 @@ const NavBar = ({ navigation, auth, setAuth }) => {
                </button>}
 
                 {/* Profile dropdown */}
-                {auth ? null :
+                {!auth ? null :
                 <Menu as='div' className='relative ml-3'>
                   <div>
                     <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
@@ -148,7 +148,7 @@ const NavBar = ({ navigation, auth, setAuth }) => {
                     </Menu.Items>
                   </Transition>
                 </Menu>}
-                {!auth ? null :
+                {auth ? null :
                                 <div className='hidden sm:ml-6 sm:block'>
                   <div className='flex space-x-4'>
                       <Link
@@ -164,6 +164,20 @@ const NavBar = ({ navigation, auth, setAuth }) => {
                         aria-current={'page'}
                       >
                         Login
+                      </Link>
+                      <Link
+                        key={'register'}
+                        to={'signup'}
+                        className={classNames(
+                          // eslint-disable-next-line no-constant-condition
+                          true
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'px-3 py-2 rounded-md text-sm font-medium',
+                        )}
+                        aria-current={'page'}
+                      >
+                        Register
                       </Link>
                   </div>
                 </div>}

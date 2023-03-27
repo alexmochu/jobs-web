@@ -3,6 +3,7 @@ import { Outlet, useLoaderData } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { navigation as Navs}  from '../constants'
 import Queries from '../api/queries'
+import { userState } from '../main'
 
 export async function loader(){
   const response = await Queries.landingPage()
@@ -11,12 +12,11 @@ export async function loader(){
 
 export default function Root() {
   const landingPage = useLoaderData()
-  console.log(landingPage)
-  const [auth, setAuth] = useState(!true)
+  const { value } = userState()
+  const isAuthenticated = value.isAuthenticated
   return (
-    <>
     <Fragment>
-      <NavBar navigation={Navs} auth={auth} setAuth={setAuth}/>
+      <NavBar navigation={Navs} auth={isAuthenticated}/>
       <main>
         <div className='bg-white'>
               <div id="detail">
@@ -25,6 +25,5 @@ export default function Root() {
         </div>
       </main>
     </Fragment>
-    </>
   );
 }

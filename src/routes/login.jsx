@@ -1,26 +1,35 @@
 import { useEffect, useState, Fragment } from 'react'
-import { Form, redirect, useNavigate, Link, useLoaderData } from 'react-router-dom';
+import { Form, redirect, useNavigate, Link, useLoaderData, Navigate } from 'react-router-dom';
 import { getContacts } from '../contacts';
 import Queries from '../api/queries'
 import setAuthToken from '../utilities/setAuthToken';
+import { userState } from '../main'
 
-export async function action({ request }) {
-  const formData = await request.formData();
-  const updates = Object.fromEntries(formData);
-  await Queries.login(updates)
-  return redirect('/dashboard')
-}
+// export async function action({ request }) {
+//   const formData = await request.formData();
+//   const updates = Object.fromEntries(formData);
+//   await Queries.login(updates)
+//   return redirect('/dashboard')
+// }
 
 export default function Login() {
-  const [userState, setUserState] = useState({
+  const { value, setValue } = userState()
+  const [state, setUserState] = useState({
       username: '',
       password: ''
   })
-
   const onChange = e =>
     setUserState(
-      { ...userState, [e.target.name]: e.target.value }
+      { ...state, [e.target.name]: e.target.value }
     );
+   
+  const navigate = useNavigate()
+  const onLogin = async () => {
+    const user = JSON.parse(localStorage.getItem('store'))
+    await Queries.login(state)
+    await setValue({...user, isAuthenticated: true})
+    return navigate('/dashboard')
+  }
 
   return (
     <Fragment>
@@ -61,7 +70,7 @@ export default function Login() {
               />
             </p>
             <p>
-              <button type="submit">Save</button>
+              <button type="button" onClick={onLogin}>Save</button>
               <button type="button">Cancel</button>
             </p>
             <label className="block">

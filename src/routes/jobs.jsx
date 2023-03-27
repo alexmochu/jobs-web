@@ -40,7 +40,6 @@ function Jobs() {
         ...modifiedData,
       })
       setJobs(response.data)
-      console.log(modifiedData)
     } catch (error) {
       console.log(error)
     }
@@ -50,7 +49,6 @@ function Jobs() {
     // handleSubmit()
   },[])
 
-  console.log(jobs)
   const job = jobs.map((j) => (
     <tr key={jobs[j]}>
       <td>{j.role}</td>

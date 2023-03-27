@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext, createContext, useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './routes/App'
 import './index.css'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -13,112 +12,76 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Root, { loader as rootLoader } from './routes/root';
-import ErrorPage from './error-page';
-import Contact, {
-  loader as contactLoader,
-  action as contactAction,
-} from './routes/contact';
-import EditContact, {
-  action as editAction,
-} from './routes/edit';
 
+import router from './router.jsx'
 
-import Index from './routes/index.jsx'
-import Settings from './routes/settings.jsx'
-import Profile from './routes/profile.jsx'
-import Login, { action as loginAction } from './routes/login.jsx'
-import SignUp, { action as signupAction } from './routes/signup.jsx'
-import Pricing from './routes/pricing'
-import FaqS from './routes/faqs.jsx'
-import Employers from './routes/employers'
-import NavBar from './components/navBar'
-import ForgotPassword from './routes/forgot-password.jsx'
-import ProtectedRoute from './routes/protectedRoute'
-import { navigation as Navs}  from './constants'
-import Dashboard from './routes/dashboard.jsx'
-import Jobs, { loader as jobsAction } from './routes/jobs.jsx'
+const initialState = {
+  user:{
+    name:'alexmochu',
+  },
+  isAuthenticated: false
+}
 
+const useLocalStorage = (state) => {
+  const [storedValue, setStoredValue] = useState(
+      state
+    );
+  
+  if(!localStorage.getItem('store')){
+    localStorage.setItem('store', JSON.stringify(state))
+  }
 
-import { action as destroyAction } from './routes/destroy'
+  const setValue = async (value) => {
+    const current = localStorage.getItem('store')
+    try {
+    // Allow value to be a function so we have same API as useState
+      // const valueToStore =
+      // value instanceof Function ? value(storedValue) : {...storedValue};
+      // Save to local storage
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-    // action: rootAction,
-    children: [
-    {
-    index: true,
-    element: <App />
-  },
-    {
-    path: '/jobs',
-    element: <Jobs />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <ErrorPage />,
-    action: loginAction,
-  },
-  // {
-  //   path: 'employers',
-  //   element: <Employers />,
-  //   errorElement: <ErrorPage />,
-  // },
-  {
-    path: 'profile',
-    element: <ProtectedRoute><Profile /> </ProtectedRoute>,
-    errorElement: <ErrorPage />,
-  },
-  //  {
-  //   path: 'pricing',
-  //   element: <Pricing />,
-  //   errorElement: <ErrorPage />,
-  // },
-  {
-    path: 'faqs',
-    element: <FaqS />,
-    errorElement: <ErrorPage />,
-  },
-    {
-    path: 'dashboard',
-    element: <ProtectedRoute><Dashboard /> </ProtectedRoute>,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: 'signup',
-    element: <SignUp />,
-    errorElement: <ErrorPage />,
-    action: signupAction
-  },
+      localStorage.setItem('store', JSON.stringify(value));
+      // Save state
+      setStoredValue(value);
+    } catch (error) {
+      // A more advanced implementation would handle the error case
+      console.log(error);
+    }
+  };
+  
+  return [storedValue, setValue]
+}
 
-    {
-    path: 'forgot-password',
-    element: <ForgotPassword />,
-    errorElement: <ErrorPage />,
-  },
- 
-  {
-    path: 'settings',
-    element: <ProtectedRoute><Settings /> </ProtectedRoute>,
-    errorElement: <ErrorPage />,
-  },
-]
-  },
+const CurrentUserState = createContext(initialState)
 
+const App = () => {  
+  const [user, setUser] = useState(initialState)
+  const [value, setValue] = useLocalStorage(initialState);
 
-]);
+  useEffect(() => {
+    // localStorage.setItem('stote', JSON.stringify(initialState))
+    setUser(value)
+  }, [value])
+  return(
+    <CurrentUserState.Provider
+      value={{
+        value,
+        setValue
+      }}>
+      <QueryClientProvider client={queryClient}>
+        {/* <NavBar navigation={Navs} /> */}
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </CurrentUserState.Provider>
+  )
+}
+
+export function userState() {
+  return useContext(CurrentUserState);
+}
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      {/* <NavBar navigation={Navs} /> */}
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>,
 )
