@@ -5,7 +5,6 @@ import { navigation as Navs}  from '../constants'
 import Queries from '../api/queries'
 import { userState } from '../main'
 import AppHeader from '../landingpage/AppHeader';
-import AppFooter from '../landingpage/AppFooter';
 
 export async function loader(){
   const response = await Queries.landingPage()
@@ -21,13 +20,8 @@ export default function Root() {
       {/* <NavBar navigation={Navs} auth={isAuthenticated}/> */}
       <AppHeader />
       <main>
-        <div className='bg-white'>
-              <div id="detail">
-                <Outlet />
-              </div>
-        </div>
+        <Outlet />
       </main>
-      <AppFooter />
     </body>
   );
 }

@@ -6,6 +6,7 @@ import Stats from '../landingpage/Stats.jsx'
 import Testimonials from '../landingpage/Testimonials.jsx'
 import CallToAction from '../landingpage/CallToAction.jsx'
 import Blog from '../landingpage/Blog.jsx'
+import AppFooter from '../landingpage/AppFooter';
 
 const App = () => {
 
@@ -16,14 +17,13 @@ const App = () => {
 
   return (
     <Fragment>
-      <main className="space-y-40 mb-40">
         <HeroSection/>
         <Features/>
         <Stats/>
         <Testimonials/>
         <CallToAction/>
         <Blog/>
-      </main>
+        <AppFooter/>
     </Fragment>
   );
 };
