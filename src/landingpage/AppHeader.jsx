@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom'
+
 const AppHeader = () => (
 
 <header>
-    <nav className="z-10 w-full absolute">
+    <nav className="z-10 w-full relative">
         <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
             <div className="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative">
                 <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav" className="hidden peer" />
                 <div className="relative z-19 w-full flex justify-between lg:w-max md:px-0">
-                    <a href="#home" aria-label="logo" className="flex space-x-2 items-center">
+                    <Link to='/' aria-label="logo" className="flex space-x-2 items-center">
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">KG</span>
-                    </a>
+                    </Link>
                     
                     <div className="relative flex items-center lg:hidden max-h-10">
                         <label role="button" htmlFor="toggle_nav" aria-label="humburger" id="hamburger" className="relative  p-6 -mr-6">
@@ -26,27 +28,27 @@ const AppHeader = () => (
                     <div className="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0">
                         <ul className="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
                             <li>
-                                <a href="#features" className="block md:px-4 transition hover:text-primary">
+                                <Link to='/jobs' className="block md:px-4 transition hover:text-primary">
                                     <span>Jobs</span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#solution" className="block md:px-4 transition hover:text-primary">
+                                <Link to='/FAQs' className="block md:px-4 transition hover:text-primary">
                                     <span>FAQs</span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
 
-                    <div className="mt-12 lg:mt-0">
-                        <a
-                            href="#"
+                    <div className="mt-12 lg:mt-0 bg-indigo-500 rounded-3xl border">
+                        <Link
+                            to='/login'
                             className="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
                             >
                             <span className="relative text-sm font-semibold text-white"
                                 >Get Started</span
                             >
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

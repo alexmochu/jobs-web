@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const AppFooter = () => (
 <footer className="py-20 md:py-40">
     <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
@@ -7,15 +9,15 @@ const AppFooter = () => (
             className="flex w-full justify-center space-x-12 text-gray-600 dark:text-gray-300 sm:w-7/12 md:justify-start"
           >
             <ul className="list-inside list-disc space-y-8">
-              <li><a href="#" className="transition hover:text-primary">Home</a></li>
+              <li><Link to='/' className="transition hover:text-primary">Home</Link></li>
   
-              <li><a href="#" className="transition hover:text-primary">Jobs</a></li>
-              <li><a href="#" className="transition hover:text-primary">FAQs</a></li>
+              <li><Link to='/jobs' className="transition hover:text-primary">Jobs</Link></li>
+              <li><Link to='/FAQs' className="transition hover:text-primary">FAQs</Link></li>
             </ul>
   
             <ul role="list" className="space-y-8">
               <li>
-                <a href="#" className="flex items-center space-x-3 transition hover:text-primary">
+                <a href="https://github.com/Kejani-Garage" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -30,7 +32,7 @@ const AppFooter = () => (
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center space-x-3 transition hover:text-primary">
+                <a href="https://twitter.com/KejaniG" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -45,7 +47,7 @@ const AppFooter = () => (
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center space-x-3 transition hover:text-primary">
+                <a href="https://facebook.com/Kejani-Garage-107910814219468" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -68,12 +70,12 @@ const AppFooter = () => (
               >Bringing Ideas to Life</span
             >  
             <span className="flex justify-between text-gray-600 dark:text-white">
-              <a href="#" className="font-medium">Terms of Use </a>
-              <a href="#" className="font-medium"> Privacy Policy</a>
+              <a href="https://kejanigarage.com/terms-conditions" target='_blank' className="font-medium" rel="noreferrer">Terms of Use </a>
+              <a href="https://kejanigarage.com/privacy-policy" target='_blank' className="font-medium" rel="noreferrer"> Privacy Policy</a>
             </span>
   
             <span className="block text-gray-500 dark:text-gray-400"
-              >Need help? <a href="#" className="font-semibold text-gray-600 dark:text-white"> Contact Us</a></span
+              >Need help? <a href="https://kejanigarage.com/contact-us" target='_blank' className="font-semibold text-gray-600 dark:text-white" rel="noreferrer"> Contact Us</a></span
             >
           </div>
         </div>
