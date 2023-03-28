@@ -33,12 +33,6 @@ const Features = () => (
             <p className="text-gray-600 dark:text-gray-300">
 Sign up fo an account            </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-              <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd" />
-            </svg>                
-          </a>
         </div>
       </div>
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
@@ -61,12 +55,6 @@ Sign up fo an account            </p>
               Upload your resume
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-              <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd" />
-            </svg>                
-          </a>
         </div>
       </div>
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
@@ -88,12 +76,6 @@ Sign up fo an account            </p>
             <p className="text-gray-600 dark:text-gray-300">
 Get customized job recommendations and application tips.            </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-              <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd" />
-            </svg>                
-          </a>
         </div>
       </div>
       <div
@@ -119,12 +101,6 @@ Get customized job recommendations and application tips.            </p>
             <p className="text-gray-600 dark:text-gray-300">
 Prepare for interviews with our AI-powered tools.            </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-              <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd" />
-            </svg>                
-          </a>
         </div>
       </div>
     </div>
