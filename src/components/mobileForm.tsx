@@ -43,7 +43,7 @@ const MobileForm = ({ mobileFiltersOpen, setMobileFiltersOpen, filters }) => {
               </div>
 
               {/* Filters */}
-              <form className='mt-4 border-t border-gray-200'>
+              <form className='m-4 border-t border-gray-200'>
                 {filters.map((section) => (
                   <Disclosure
                     as='div'

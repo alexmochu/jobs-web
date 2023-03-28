@@ -66,10 +66,22 @@ function Jobs() {
 
   return (
     <Fragment>
-      <main>
-        <div className='bg-white'>
-          <div>
-            {/* Mobile filter dialog */}
+
+ <div className="relative" id="home">
+    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
+<div className="blur-[106px] h-32 bg-gradient-to-br from-cyan-800 to-purple-800 dark:from-blue-700"></div>
+        <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-800 to-sky-600 dark:to-indigo-600"></div>
+    </div>
+    <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+        <div className="relative pt-20 ml-auto">
+            <div className="text-center mx-auto">
+          <label className="block">
+            <h1 className='text-4xl font-bold tracking-tight text-gray-900'>Discover remote jobs</h1>
+          </label>
+                <div className="flex flex-wrap justify-center gap-y-4 gap-x-6">
+
+
+
             <MobileForm
               filters={filters}
               mobileFiltersOpen={mobileFiltersOpen}
@@ -77,9 +89,6 @@ function Jobs() {
             />
             <main className='mx-auto sm:px-6 lg:px-8'>
               <div className='flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6'>
-                <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-                  Discover Remote Jobs
-                </h1>
                 <Header sortOptions={sortOptions} setMobileFiltersOpen={setMobileFiltersOpen} />
               </div>
               <section aria-labelledby='products-heading' className='pt-6 pb-24'>
@@ -99,9 +108,14 @@ function Jobs() {
                 </div>
               </section>
             </main>
-          </div>
+
+
+                </div>
+            </div>
         </div>
-      </main>
+    </div>
+</div>
+
     </Fragment>
   )
 }
