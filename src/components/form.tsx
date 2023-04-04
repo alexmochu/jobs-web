@@ -10,7 +10,7 @@ const Form = ({ filters }) => {
           {({ open }) => (
             <>
               <h3 className='-my-3 flow-root'>
-                <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500 rounded-lg'>
+                <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500 rounded-lg shadow-lg shadow-black-500/40 hover:shadow-gray-800/40'>
                   <span className='ml-2 font-medium text-gray-900'>{section.name}</span>
                   <span className='ml-6 flex items-center mr-2'>
                     {open ? (
