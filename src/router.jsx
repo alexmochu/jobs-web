@@ -59,16 +59,11 @@ const router = createBrowserRouter([
   //   element: <Employers />,
   //   errorElement: <ErrorPage />,
   // },
-  {
-    path: 'profile',
-    element: <ProtectedRoute><Profile /> </ProtectedRoute>,
+   {
+    path: 'pricing',
+    element: <Pricing />,
     errorElement: <ErrorPage />,
   },
-  //  {
-  //   path: 'pricing',
-  //   element: <Pricing />,
-  //   errorElement: <ErrorPage />,
-  // },
   {
     path: 'faqs',
     element: <FaqS />,
@@ -76,8 +71,23 @@ const router = createBrowserRouter([
   },
     {
     path: 'dashboard',
-    element: <ProtectedRoute><Dashboard /> </ProtectedRoute>,
-    errorElement: <ErrorPage />,
+    children: [
+        {
+          index: true,
+          element: <ProtectedRoute><Dashboard /> </ProtectedRoute>,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: 'profile',
+          element: <ProtectedRoute><Profile /> </ProtectedRoute>,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: 'settings',
+          element: <ProtectedRoute><Settings /> </ProtectedRoute>,
+          errorElement: <ErrorPage />,
+        },
+    ]
   },
   {
     path: 'signup',
@@ -89,12 +99,6 @@ const router = createBrowserRouter([
     {
     path: 'forgot-password',
     element: <ForgotPassword />,
-    errorElement: <ErrorPage />,
-  },
- 
-  {
-    path: 'settings',
-    element: <ProtectedRoute><Settings /> </ProtectedRoute>,
     errorElement: <ErrorPage />,
   },
 ]
