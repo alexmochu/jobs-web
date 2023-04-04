@@ -10,9 +10,9 @@ const Form = ({ filters }) => {
           {({ open }) => (
             <>
               <h3 className='-my-3 flow-root'>
-                <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500'>
-                  <span className='font-medium text-gray-900'>{section.name}</span>
-                  <span className='ml-6 flex items-center'>
+                <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500 rounded-lg'>
+                  <span className='ml-2 font-medium text-gray-900'>{section.name}</span>
+                  <span className='ml-6 flex items-center mr-2'>
                     {open ? (
                       <MinusIcon className='h-5 w-5' aria-hidden='true' />
                     ) : (
