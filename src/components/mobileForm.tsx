@@ -93,17 +93,6 @@ const MobileForm = ({ mobileFiltersOpen, setMobileFiltersOpen, filters }) => {
               </form>
             </Dialog.Panel>
           </Transition.Child>
-          <Menu as='div' className='relative inline-block text-left'>
-            <div className='shrink-0 text-gray-800'>
-              <Menu.Button className='inline-flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
-                View
-                <ArrowTopRightOnSquareIcon
-                  className='ml-2 -mr-1 h-5 w-5 text-white'
-                  aria-hidden='true'
-                />
-              </Menu.Button>
-            </div>
-          </Menu>
         </div>
       </Dialog>
     </Transition.Root>
