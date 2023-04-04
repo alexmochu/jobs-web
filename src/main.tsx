@@ -58,7 +58,7 @@ const App = () => {
   const [value, setValue] = useLocalStorage(initialState);
 
   useEffect(() => {
-    // localStorage.setItem('stote', JSON.stringify(initialState))
+    localStorage.setItem('stote', JSON.stringify(initialState))
     setUser(value)
   }, [value])
   return(

@@ -7,13 +7,9 @@ import Testimonials from '../landingpage/Testimonials.jsx'
 import CallToAction from '../landingpage/CallToAction.jsx'
 import Blog from '../landingpage/Blog.jsx'
 import AppFooter from '../landingpage/AppFooter';
+import { userState } from '../main'
 
 const App = () => {
-
-  // eslint-disable-next-line no-constant-condition
-  if (!true) {
-    return <Navigate to="/dashboard" />;
-  }
 
   return (
     <Fragment>

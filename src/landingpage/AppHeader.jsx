@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
+import { userState } from '../main'
 
-const AppHeader = () => (
+const AppHeader = () => {
+  const { value, setValue } = userState()
 
+  const isAuthenticated = value.isAuthenticated
+return (
 <header>
     <nav className="z-10 w-full relative">
         <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
@@ -33,6 +37,11 @@ const AppHeader = () => (
                                 </Link>
                             </li>
                             <li>
+                                <Link to='/pricing' className="block md:px-4 transition hover:text-primary">
+                                    <span>Pricing</span>
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to='/FAQs' className="block md:px-4 transition hover:text-primary">
                                     <span>FAQs</span>
                                 </Link>
@@ -42,12 +51,12 @@ const AppHeader = () => (
 
                     <div className="mt-12 lg:mt-0 bg-indigo-500 rounded-3xl border">
                         <Link
-                            to='/login'
+                            to={isAuthenticated ? '/dashboard' : '/login' }
                             className="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
                             >
-                            <span className="relative text-sm font-semibold text-white"
-                                >Get Started</span
-                            >
+                            <span className="relative text-sm font-semibold text-white">
+                               {isAuthenticated ? 'Dashboard' : 'Get Started' }
+                            </span>
                         </Link>
                     </div>
                 </div>
@@ -55,7 +64,7 @@ const AppHeader = () => (
         </div>
     </nav>
 </header>
-)
+)}
 
 export default AppHeader
 {/* <style>
