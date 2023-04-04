@@ -31,6 +31,11 @@ export default function Login() {
     return navigate('/dashboard')
   }
 
+  const isAuthenticated = value.isAuthenticated
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
+
   return (
     <Fragment>
           {/* <LoginGithub
@@ -45,7 +50,7 @@ export default function Login() {
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-800 to-sky-600 dark:to-indigo-600"></div>
     </div>
     <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-        <div className="relative pt-36 ml-auto">
+        <div className="relative mt-20 ml-auto">
             <div className="lg:w-2/3 text-center mx-auto">
           <label className="block">
             <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>Login</h1>

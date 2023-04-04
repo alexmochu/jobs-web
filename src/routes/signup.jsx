@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
-import { Link, Form, redirect} from 'react-router-dom';
+import { Link, Form, redirect, Navigate} from 'react-router-dom';
 import api from '../api/api'
+import { userState } from '../main'
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -10,6 +11,13 @@ export async function action({ request }) {
 }
 
 export default function SignUp() {
+  const { value, setValue } = userState()
+
+  const isAuthenticated = value.isAuthenticated
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
+
   return (
     <Fragment>
       <main>
@@ -19,7 +27,7 @@ export default function SignUp() {
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-800 to-sky-600 dark:to-indigo-600"></div>
     </div>
     <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-        <div className="relative pt-36 ml-auto">
+        <div className="relative mt-20 ml-auto">
             <div className="lg:w-2/3 text-center mx-auto">
           <label className="block">
                 <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
