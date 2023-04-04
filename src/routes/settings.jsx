@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 
 export default function Settings() {
   return (
-    <>
     <Fragment>
       <main>
         <div className='bg-white'>
@@ -18,6 +17,5 @@ export default function Settings() {
         </div>
       </main>
     </Fragment>
-    </>
   );
 }
