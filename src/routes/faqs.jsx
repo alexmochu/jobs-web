@@ -8,15 +8,15 @@ export default function FaqS() {
 <div className="blur-[106px] h-32 bg-gradient-to-br from-cyan-800 to-purple-800 dark:from-blue-700"></div>
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-800 to-sky-600 dark:to-indigo-600"></div>
     </div>
-    <div className="max-w-7xl mx-auto px-6 pt-20 md:px-12 xl:px-6">
+    <div className="max-w-7xl mx-auto px-6 mt-10 md:px-12 xl:px-6">
         <div className="relative ml-auto">
-            <div className="lg:w-2/3 text-center mx-auto">
-          <label className="block">
+            <div className="lg:w-2/3 mx-auto">
+          <label className="block text-center">
             <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>Frequently Asked Questions</h1>
           </label>
   
 
-  <div className="py-4 px-2 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+  <div className="py-4 px-2 mx-auto max-w-screen-xl sm:py-7 lg:px-6">
       <div className="grid pt-8 text-left md:gap-16 dark:border-gray-700 md:grid-cols-2">
           <div>
               <div className="mb-10">
