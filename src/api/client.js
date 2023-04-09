@@ -2,7 +2,7 @@ import axios from 'axios'
 // localhost --> http://127.0.0.1:5000/
 // production --> https://jobs.kejanigarage.com/
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000/'
+const baseURL = import.meta.env.VITE_API_BASE_URL
 
 var axiosInstance = axios.create({
   baseURL,
