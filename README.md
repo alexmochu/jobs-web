@@ -1,6 +1,6 @@
 # Kejani Jobs
 
-> React/TypeScript front-end for [Kjeani Jobs](#) Python/Flask API.
+> React/TypeScript front-end for [Kejani Jobs](#) Python/Flask API.
 
 [View the app hosted on AWS Amplify](https://jobs.kejanigarage.com/)
 
