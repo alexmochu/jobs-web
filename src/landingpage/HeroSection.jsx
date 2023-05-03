@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 
 const HeroSection = () => (
 <div className="relative" id="home">
-    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
+    {/* <div aria-hidden="true" className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
 <div className="blur-[106px] h-32 bg-gradient-to-br from-cyan-800 to-purple-800 dark:from-blue-700"></div>
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-800 to-sky-600 dark:to-indigo-600"></div>
-    </div>
-    <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6 pb-20">
+    </div> */}
+    <div className="max-w-7xl pt-20 mx-auto px-6 md:px-12 xl:px-6 pb-20">
         <div className="relative mt-20 ml-auto">
             <div className="lg:w-2/3 text-center mx-auto">
                 <h1 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">Find Your Dream Job with Our <span className="text-primary dark:text-white"> AI-Powered</span> Solutions</h1>
