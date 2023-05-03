@@ -7,7 +7,8 @@ const AppHeader = () => {
   const isAuthenticated = value.isAuthenticated
 return (
 <header>
-    <nav className="z-10 w-full relative">
+<nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    {/* <nav className="z-10 w-full relative"> */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
             <div className="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative">
                 <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav" className="hidden peer" />
