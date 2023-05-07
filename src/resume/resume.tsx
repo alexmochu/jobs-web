@@ -1,5 +1,6 @@
 import { ContactInfo, Education, Skills, Summary, WorkExperience } from './components/sections';
 import { useDocumentTitle } from '../hooks';
+import './index.css'
 
 function Resume() {
   useDocumentTitle();
