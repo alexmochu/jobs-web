@@ -93,3 +93,27 @@ export const plans = [
     disk: '1024 GB SSD disk',
   },
 ]
+
+export const pricing = [
+  {
+    id: 1,
+    package: 'Free',
+    fee: 0,
+    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    yearFee: 0
+  },
+  {
+    id: 2,
+    package: 'Standard',
+    fee: 24,
+    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    yearFee: 240
+  },
+  {
+    id: 3,
+    package: 'Pro',
+    fee: 48,
+    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    yearFee: 480
+  }
+]
