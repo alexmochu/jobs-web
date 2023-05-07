@@ -8,14 +8,14 @@ export const Education = () => {
     <SectionWrapper title="Education">
       <ul className="ml-2">
         {config.education.map((education, i) => (
-          <li key={education.school} className={i % 2 ? `mt-1` : `mt-half`}>
+          <li key={education.school} className={i % 2 ? `mt-1 exp-list` : `mt-half exp-list`}>
             <div className="flex">
               <h3>
                 {education.school} - {education.location}
               </h3>
               <span className="ml-auto text-muted">{education.date}</span>
             </div>
-            <h4>
+            <h4 className='italic'>
               {education.degree}, {education.major}
             </h4>
           </li>
