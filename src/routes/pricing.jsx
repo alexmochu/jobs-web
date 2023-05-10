@@ -18,7 +18,7 @@ export default function Pricing() {
                     <button className="inline-block p-4 border-b-2 rounded-t-lg bg-indigo-500 text-white w-[8rem]" type="button" role="tab" aria-controls="monthly" aria-selected="false">Monthly</button>
                 </li>
                 <li className="mr-2" role="presentation">
-                    <button className="w-[8rem] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-controls="yearly" aria-selected="false">Yearly</button>
+                    <button className="w-[8rem] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-controls="yearly" aria-selected="false">Yearly<span>-12%</span></button>
                 </li>
             </ul>
         </div>
