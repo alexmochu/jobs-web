@@ -99,21 +99,21 @@ export const pricing = [
     id: 1,
     package: 'Free',
     fee: 0,
-    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    list: ['Job Search Engine (9Searches/M)','Job Tracker(9Jobs/M)','Resume Builder','Cover Letter Builder', '1 Resume (Template)', '1 Cover Letter (Template)'],
     yearFee: 0
   },
   {
     id: 2,
     package: 'Standard',
     fee: 24,
-    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    list: ['Job Search Engine (49Searches/M)','Job Tracker(49Jobs/M)','AI powered Resume Builder','AI powered Cover Letter Builder', '10+ Resume (Templates)', '10+ Cover Letter (Templates)', 'AI powered Job application question and answer'],
     yearFee: 240
   },
   {
     id: 3,
     package: 'Pro',
     fee: 48,
-    list: ['Job Search Engine','Job Tracker','AI powered Resume Builder','AI powered Cover Letter Builder','AI powered Job application question and answer'],
+    list: ['Job Search Engine(Unlimited)','Job Tracker(Unlimited)','AI powered Resume Builder','AI powered Cover Letter Builder', 'Unlimited Resume (Templates)', 'Unlimited Cover Letter (Templates)', 'AI powered Job application question and answer'],
     yearFee: 480
   }
 ]
