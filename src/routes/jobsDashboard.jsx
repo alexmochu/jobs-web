@@ -5,7 +5,7 @@ import Tracker from '../tracker/tracker'
 export default function JobsDashboard() {
   const [tabState, setTabState] = useState('search')
   return (
-    <div className="mb-4 rounded h-full border border-gray-200 pl-5 pr-5 dark:bg-gray-800">
+    <div className="pl-5 pr-5 dark:bg-gray-800">
          {/* <h1>Jobs</h1> */}
         <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
