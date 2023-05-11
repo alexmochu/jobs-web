@@ -38,7 +38,7 @@ return (
                             lg:relative lg:scale-100 lg:peer-checked:translate-y-0 lg:translate-y-0 lg:flex lg:flex-row lg:items-center lg:gap-0 lg:p-0 lg:bg-transparent lg:w-7/12 lg:visible lg:opacity-100 lg:border-none
                             peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none 
                             dark:shadow-none dark:bg-gray-800 dark:border-gray-700">
-                   
+                  {!isAuthenticated ?
                     <div className="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0">
                         <ul className="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
                             <li>
@@ -57,7 +57,7 @@ return (
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </div>: null}
                     {!isAuthenticated ? 
                     <div className="mt-12 lg:mt-0 bg-indigo-500 rounded-3xl border">
                         <Link
@@ -69,6 +69,7 @@ return (
                             </span>
                         </Link>
                     </div>: null}
+                    {isAuthenticated ?
                     <Menu as='div' className='relative ml-3'>
                   <div>
                     <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
@@ -145,7 +146,7 @@ return (
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
-                </Menu>
+                </Menu>: null}
                 </div>
             </div>
         </div>
