@@ -11,7 +11,7 @@ export async function action({ request }) {
 }
 
 export default function SignUp() {
-  const { value, setValue } = userState()
+  const { value } = userState()
 
   const isAuthenticated = value.isAuthenticated
   if (isAuthenticated) {

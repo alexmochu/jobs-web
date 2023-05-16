@@ -6,14 +6,14 @@ import { classNames } from '../components/common'
 import Queries from '../api/queries'
 
 const AppHeader = () => {
-  const { value, setValue } = userState()
+  const { user } = userState()
     const navigate = useNavigate()
   const onLogout = async () => {
     await Queries.logout()
     return navigate('/login')
   }
 
-  const isAuthenticated = value.isAuthenticated
+  const isAuthenticated = user.isAuthenticated
 return (
 <header>
 <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">

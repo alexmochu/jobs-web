@@ -13,7 +13,8 @@ import { userState } from '../main'
 // }
 
 export default function Login() {
-  const { value, setValue } = userState()
+  const { user, setUser } = userState()
+  // console.log('user', user)
   const [state, setUserState] = useState({
       username: '',
       password: ''
@@ -27,11 +28,11 @@ export default function Login() {
   const onLogin = async () => {
     const user = JSON.parse(localStorage.getItem('store'))
     await Queries.login(state)
-    await setValue({...user, isAuthenticated: true})
+    await setUser({...user, isAuthenticated: true})
     return navigate('/dashboard')
   }
 
-  const isAuthenticated = value.isAuthenticated
+  const isAuthenticated = user.isAuthenticated
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
   }
