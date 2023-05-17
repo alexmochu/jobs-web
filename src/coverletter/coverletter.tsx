@@ -2,13 +2,13 @@ import { ContactInfo, Summary } from './components/sections';
 import { useDocumentTitle } from '../hooks';
 import './index.css'
 
-function CoverLetter() {
+function CoverLetter({state}) {
   useDocumentTitle();
 
   return (
     <div className="paper inline mx-auto p-3">
-      <ContactInfo />
-      <Summary />
+      <ContactInfo state={state} />
+      <Summary state={state} />
     </div>
   );
 }

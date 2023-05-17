@@ -23,7 +23,6 @@ const CurrentUserState = createContext()
 const App = () => {  
   const [user, setUser] = useState(()=> {
     const state = localStorage.getItem('store')
-    console.log('state', state)
     if(state === null){
       return initialState
     } else if(!JSON.parse(state).isAuthenticated){

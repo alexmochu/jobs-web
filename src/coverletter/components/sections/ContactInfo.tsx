@@ -1,32 +1,27 @@
 import { useCallback } from 'react';
-import { useConfig } from '../../../hooks';
 
-export const ContactInfo = () => {
-  const config = useConfig();
-
+export const ContactInfo = ({state}) => {
+  const { fullName, title, email, onlineLink, otherLinks } = state
+ console.log('this is', state)
   const cleanLink = useCallback((link: string) => {
     return link.replace(/^https?:\/\//, '').replace(/^www\./, '');
   }, []);
 
   return (
     <div className="text-center">
-      <h1>{config.contactInfo.name}</h1>
-
-      <h2>{config.contactInfo.title}</h2>
-
-      <a href={`mailto:${config.contactInfo.email}`}>{config.contactInfo.email}</a>
-
-      {config.contactInfo.firstLink && (
+      <h1>{fullName}</h1>
+      <h2>{title}</h2>
+      <a href={`mailto:${email}`}>{email}</a>
+      {otherLinks && (
         <>
           <span className="mx-1">•</span>
-          <a href={config.contactInfo.firstLink}>{cleanLink(config.contactInfo.firstLink)}</a>
+          <a href={otherLinks}>{cleanLink(otherLinks)}</a>
         </>
       )}
-
-      {config.contactInfo.secondLink && (
+      {onlineLink && (
         <>
           <span className="mx-1">•</span>
-          <a href={config.contactInfo.secondLink}>{cleanLink(config.contactInfo.secondLink)}</a>
+          <a href={onlineLink}>{cleanLink(onlineLink)}</a>
         </>
       )}
     </div>
