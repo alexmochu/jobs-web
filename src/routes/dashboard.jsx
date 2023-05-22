@@ -43,7 +43,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="bg-gray-50 h-fit rounded-3xl border-2 px-10 py-10">
-        <div className="flex items-center justify-center mb-5 text-3xl font-bold">Question & Answer Room</div>
+        <div className="flex items-center justify-center mb-5 text-3xl font-bold">Question & Answer AI Assistant</div>
         <p className="text-lg">Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at? Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia. Vitae error, quaerat officia delectus voluptatibus explicabo quo pariatur impedit, at reprehenderit aliquam a ipsum quas voluptatem</p>
         <div className="flex items-center justify-center">
           <Link
