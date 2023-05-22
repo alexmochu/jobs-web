@@ -1,12 +1,10 @@
-import { useConfig } from '../../../hooks';
 import { SectionWrapper } from '../shared';
 
-export const Summary = () => {
-  const config = useConfig();
-
+export const Summary = ({personal}) => {
+  const { summary } = personal
   return (
     <SectionWrapper title="Summary">
-      <p>{config.summary}</p>
+      <p>{summary}</p>
     </SectionWrapper>
   );
 };
