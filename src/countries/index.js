@@ -1,4 +1,12 @@
-const countries = [
+/* eslint-disable camelcase */
+export const countries = [
+  {
+    alpha_2_code: 'WLD',
+    alpha_3_code: 'World',
+    country_code: '+000',
+    en_short_name: 'Worldwide',
+    nationality: 'Worldwide',
+  },
   {
     alpha_2_code: 'AF',
     alpha_3_code: 'AFG',
@@ -381,7 +389,7 @@ const countries = [
     alpha_2_code: 'CI',
     alpha_3_code: 'CIV',
     country_code: '+225',
-    en_short_name: "Côte d'Ivoire",
+    en_short_name: 'Côte d\'Ivoire',
     nationality: 'Ivorian',
   },
   {
@@ -822,7 +830,7 @@ const countries = [
     alpha_2_code: 'KP',
     alpha_3_code: 'PRK',
     country_code: '+850',
-    en_short_name: "Korea (Democratic People's Republic of)",
+    en_short_name: 'Korea (Democratic People\'s Republic of)',
     nationality: 'North Korean',
   },
   {
@@ -857,7 +865,7 @@ const countries = [
     alpha_2_code: 'LA',
     alpha_3_code: 'LAO',
     country_code: '+856',
-    en_short_name: "Lao People's Democratic Republic",
+    en_short_name: 'Lao People\'s Democratic Republic',
     nationality: 'Lao, Laotian',
   },
   {
@@ -1743,5 +1751,3 @@ const countries = [
     nationality: 'Zimbabwean',
   },
 ]
-
-module.exports = countries

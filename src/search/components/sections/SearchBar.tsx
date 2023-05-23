@@ -1,5 +1,5 @@
+import { countries } from './../../../countries'
 export const SearchBar = () => {
-
   return (
       <div className='flex w-full bg-white h-16 pt-2 px-4 rounded-2xl border-2'>
         <div className='w-[30%] pr-5'>
@@ -7,10 +7,9 @@ export const SearchBar = () => {
         </div>
         <div className='w-[30%] pr-5'>
             <select className='w-full border-none' name="locations" id="locations">
-                <option value="worldwide">Wordlwide</option>
-                <option value="kenya">Kenya</option>
-                <option value="uganda">Uganda</option>
-                <option value="germany">Germany</option>
+                {countries.map((item) => (
+                    <option key={item.country_code} value="country">{item.en_short_name}</option>
+                ))}
             </select>
         </div>
         <div className='w-[30%] pr-5'>
