@@ -1,28 +1,25 @@
-import { useConfig } from '../../../hooks';
 import { SectionWrapper } from '../shared';
 
-export const WorkExperience = () => {
-  const config = useConfig();
+export const WorkExperience = ({work}) => {
 
   return (
     <SectionWrapper title="Work Experience">
       <ul className="ml-2">
-        {config.workExperience.map((workExperience, i) => (
-          <li key={workExperience.company} className={i % 2 ? `mt-1 exp-list` : `mt-half exp-list`}>
+        {work.map((item, i) => (
+          <li key={item.employer} className={i % 2 ? `mt-1 exp-list` : `mt-half exp-list`}>
             <div className="flex">
               <h3>
-                {workExperience.company} - {workExperience.location}
+                {item.employer} - {item.city}
               </h3>
-              <span className="ml-auto text-muted">{workExperience.date}</span>
+              <span className="ml-auto text-muted">{item.startDate} - {item.endDate}</span>
             </div>
-            <h4 className='italic'>{workExperience.title}</h4>
-            <p>{workExperience.description}</p>
-            <ul className="ml-3">
+            <h4 className='italic'>{item.title}</h4>
+            <p>{item.description}</p>
+            {/* <ul className="ml-3">
               {workExperience.bulletPoints.map((bulletPoint) => (
                 <li className="list" key={bulletPoint}>{bulletPoint}</li>
               ))}
-              <li>ghghh</li>
-            </ul>
+            </ul> */}
           </li>
         ))}
       </ul>

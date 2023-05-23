@@ -1,13 +1,11 @@
-import { useConfig } from '../../../hooks';
 import { SectionWrapper } from '../shared';
 
-export const Skills = () => {
-  const config = useConfig();
+export const Skills = ({skills}) => {
 
   return (
     <SectionWrapper title="Skills">
-      {config.skills.map((skill) => (
-        <p className="inline-block">
+      {skills.map((skill) => (
+        <p className="inline-block" key={skill}>
           <span className="mx-1">•</span>
           <span>{skill}</span>
         </p>

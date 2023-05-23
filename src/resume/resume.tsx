@@ -2,20 +2,21 @@ import { ContactInfo, Education, Skills, Summary, WorkExperience } from './compo
 import { useDocumentTitle } from '../hooks';
 import './index.css'
 
-function Resume() {
+function Resume({personal, work, education, skills, links}) {
+  // const { personalInfo } = state
   useDocumentTitle();
 
   return (
     <div className="paper inline mx-auto p-3">
-      <ContactInfo />
+      <ContactInfo personal={personal} links={links} />
 
-      <Summary />
+      <Summary personal={personal} />
 
-      <WorkExperience />
+      <WorkExperience work={work}/>
 
-      <Education />
+      <Education education={education}/>
 
-      <Skills />
+      <Skills skills={skills}/>
     </div>
   );
 }

@@ -1,22 +1,20 @@
-import { useConfig } from '../../../hooks';
 import { SectionWrapper } from '../shared';
 
-export const Education = () => {
-  const config = useConfig();
-
+export const Education = ({education}) => {
   return (
     <SectionWrapper title="Education">
       <ul className="ml-2">
-        {config.education.map((education, i) => (
+        {education.map((education, i) => (
           <li key={education.school} className={i % 2 ? `mt-1 exp-list` : `mt-half exp-list`}>
             <div className="flex">
               <h3>
-                {education.school} - {education.location}
+                {education.school} - {education.city}
               </h3>
-              <span className="ml-auto text-muted">{education.date}</span>
+              <span className="ml-auto text-muted">{education.startDate} - {education.endDate}</span>
             </div>
             <h4 className='italic'>
-              {education.degree}, {education.major}
+              {education.degree}
+              {/* , {education.major} */}
             </h4>
           </li>
         ))}
