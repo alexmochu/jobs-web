@@ -1,0 +1,4 @@
+.select-no-outline:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

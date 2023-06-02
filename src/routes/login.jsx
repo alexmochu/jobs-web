@@ -14,7 +14,6 @@ import { userState } from '../main'
 
 export default function Login() {
   const { user, setUser } = userState()
-  // console.log('user', user)
   const [state, setUserState] = useState({
       username: '',
       password: ''
