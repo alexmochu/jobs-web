@@ -81,7 +81,7 @@ export default function CoverLetter() {
                <h3 className='font-bold text-2xl pb-5'>Letter Details</h3>
                <div>
                <p>3–4 paragraphs explaining why youre the perfect candidate for a specific job</p>
-               <input className='border-2 border-black rounded-lg w-full h-56 p-2' name='letterDetails' value={state.letterDetails} onChange={onChange} placeholder='Letter Details'/>
+               <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='letterDetails' value={state.letterDetails} onChange={onChange} placeholder='Letter Details' ></textarea>
                </div>
             </div>
          </div>

@@ -1,15 +1,43 @@
+import {
+  Document,
+  Page,
+  View,
+  StyleSheet,
+  PDFViewer,
+} from '@react-pdf/renderer';
 import { ContactInfo, Summary } from './components/sections';
 import { useDocumentTitle } from '../hooks';
 import './index.css'
+
+const styles = StyleSheet.create({
+  page: {
+    backgroundColor: 'white',
+    color: 'black',
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+  },
+  viewer: {
+    width: window.innerWidth, // the pdf viewer will take up all of the width and height
+    height: window.innerHeight,
+  },
+});
 
 function CoverLetter({state}) {
   useDocumentTitle();
 
   return (
-    <div className="paper inline mx-auto p-3">
-      <ContactInfo state={state} />
-      <Summary state={state} />
-    </div>
+    <PDFViewer style={styles.viewer}>
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <ContactInfo state={state} />
+            <Summary state={state} />
+          </View>
+        </Page>
+      </Document>
+    </PDFViewer>
   );
 }
 
