@@ -140,7 +140,7 @@ export default function Profile() {
                <h3 className='font-bold text-2xl pb-5'>Professional Summary</h3>
                <div>
                <p>Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities and skill</p>
-               <input className='border-2 border-black rounded-lg w-full h-56 p-2' name='summary' value={personalState.summary} onChange={onChange} placeholder='Job Title'/>
+               <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='summary' value={personalState.summary} onChange={onChange} placeholder='Job Title'></textarea>
                </div>
             </div>
             <div className="paper inline mx-auto p-3">
@@ -174,7 +174,7 @@ export default function Profile() {
                </div>
                <div>
                <p className='font-bold text-lg text-gray-600'>Description</p>
-               <input className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={workState[0].description} onChange={(e) => updateWorkInfo('description', e.target.value)} placeholder='Description'/>
+               <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={workState[0].description} onChange={(e) => updateWorkInfo('description', e.target.value)} placeholder='Description'></textarea>
                </div>
             </div>
             <div className="paper inline mx-auto p-3">
@@ -208,7 +208,7 @@ export default function Profile() {
                </div>
                <div>
                <p className='font-bold text-lg text-gray-600'>Description</p>
-               <input className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={educationState[0].description} onChange={(e) => updateEducationInfo('description', e.target.value)} placeholder='Description'/>
+               <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={educationState[0].description} onChange={(e) => updateEducationInfo('description', e.target.value)} placeholder='Description'></textarea>
                </div>
             </div>
             <div className="paper inline mx-auto p-3">

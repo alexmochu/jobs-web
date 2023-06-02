@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   summaryHeader: {
     fontFamily: 'RobotoBold',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 13,
     marginTop: 15
   },
   summaryText: {
