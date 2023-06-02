@@ -20,7 +20,7 @@ export default function QA() {
             <div className="paper inline mx-auto p-3">
                <h3 className='font-bold text-2xl pb-5'>Job Application Question</h3>
                <div>
-               <input className='border-2 border-black rounded-lg w-full h-28 pl-2' name='question' value={state.question} onChange={onChange} placeholder='Question'/>
+               <textarea className='border-2 border-black rounded-lg w-full h-28 pl-2' name='question' value={state.question} onChange={onChange} placeholder='Question'></textarea>
                </div>
             </div>
             <div className="paper inline mx-auto p-3">
