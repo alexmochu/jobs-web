@@ -1,19 +1,21 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Link, Form, redirect, Navigate} from 'react-router-dom';
 import api from '../api/api'
 import { userState } from '../main'
 
 export async function action({ request }) {
+  // const { user, setUser } = userState()
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   await api.user.signup(updates);
+  // await setUser({...user, isAuthenticated: false, showToast: true, toastMessage: 'You have signed up successfully. Please login!'})
   return redirect('/login')
 }
 
 export default function SignUp() {
-  const { value } = userState()
+  const { user } = userState()
 
-  const isAuthenticated = value.isAuthenticated
+  const isAuthenticated = user.isAuthenticated
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
   }
