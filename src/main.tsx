@@ -12,10 +12,10 @@ import {
 import router from './router.jsx'
 
 const initialState = {
-  user:{
-    name:'',
-  },
-  isAuthenticated: false
+  name:'',
+  isAuthenticated: false,
+  showToast: false,
+  toastMessage: ''
 }
 
 const CurrentUserState = createContext(initialState)
@@ -44,6 +44,7 @@ const App = () => {
       localStorage.setItem('store', JSON.stringify(user));
     }
   }, [user, user]);
+
 
   return(
     <CurrentUserState.Provider

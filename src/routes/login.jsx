@@ -27,7 +27,7 @@ export default function Login() {
   const onLogin = async () => {
     const user = JSON.parse(localStorage.getItem('store'))
     await Queries.login(state)
-    await setUser({...user, isAuthenticated: true})
+    await setUser({...user, isAuthenticated: true, showToast: true, toastMessage: 'You have logged in successfully.'})
     return navigate('/dashboard')
   }
 
