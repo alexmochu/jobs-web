@@ -7,10 +7,13 @@ import Queries from '../api/queries'
 import { featureFlag } from '../../config'
 
 const AppHeader = () => {
-  const { user } = userState()
-    const navigate = useNavigate()
+  const { user, setUser } = userState()
+    
+  const navigate = useNavigate()
+
   const onLogout = async () => {
     await Queries.logout()
+    await setUser({...user, isAuthenticated: false})
     return navigate('/login')
   }
 

@@ -18,7 +18,7 @@ const initialState = {
   isAuthenticated: false
 }
 
-const CurrentUserState = createContext()
+const CurrentUserState = createContext(initialState)
 
 const App = () => {  
   const [user, setUser] = useState(()=> {
