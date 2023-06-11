@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { userState } from '../main'
 import { classNames } from '../components/common'
 import Queries from '../api/queries'
+import { featureFlag } from '../../config'
 
 const AppHeader = () => {
   const { user } = userState()
@@ -14,6 +15,7 @@ const AppHeader = () => {
   }
 
   const isAuthenticated = user.isAuthenticated
+  const { pricing, publicJobs } = featureFlag
 return (
 <header>
 <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -41,16 +43,18 @@ return (
                   {!isAuthenticated ?
                     <div className="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0">
                         <ul className="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
+                          {publicJobs ?
                             <li>
                                 <Link to='/jobs' className="block md:px-4 transition hover:text-primary">
                                     <span>Jobs</span>
                                 </Link>
-                            </li>
+                            </li> : null}
+                            {pricing ?
                             <li>
                                 <Link to='/pricing' className="block md:px-4 transition hover:text-primary">
                                     <span>Pricing</span>
                                 </Link>
-                            </li>
+                            </li> : null}
                             <li>
                                 <Link to='/FAQs' className="block md:px-4 transition hover:text-primary">
                                     <span>FAQs</span>
