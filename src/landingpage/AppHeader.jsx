@@ -11,12 +11,6 @@ const AppHeader = () => {
     
   const navigate = useNavigate()
 
-  const onLogout = async () => {
-    await Queries.logout()
-    await setUser({...user, isAuthenticated: false, showToast: true, toastMessage: 'You have logged out successfully.'})
-    return navigate('/login')
-  }
-
   const { isAuthenticated } = user
   const { pricing, publicJobs } = featureFlag
 return (

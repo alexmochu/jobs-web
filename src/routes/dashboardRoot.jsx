@@ -2,11 +2,23 @@ import { Fragment, useState } from 'react'
 import { Link, redirect, useNavigate, Outlet } from 'react-router-dom'
 import Resume from '../resume/resume'
 import { featureFlag } from '../../config';
+import { userState } from '../main'
+import Queries from '../api/queries'
 
 export default function Dashboard() {
   const [isLogged, setIsLogged] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const { resume, qa } = featureFlag
+
+  const { user, setUser } = userState()
+    
+  const navigate = useNavigate()
+
+  const onLogout = async () => {
+    await Queries.logout()
+    await setUser({...user, isAuthenticated: false, showToast: true, toastMessage: 'You have logged out successfully.'})
+    return navigate('/login')
+  }
   return (
     <Fragment>
       {/* <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -89,9 +101,14 @@ export default function Dashboard() {
             to={'/dashboard'}
             aria-current={'page'}
             className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+            {/* <svg xmlns="http://www.w3.org/2000/svg"
+             className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
               <path d="M3 12h2c.35 0 .677-.084.964-.23l1.722-1.151a1 1 0 0 1 1.282.15L11 12h2c.35 0 .677.084.964.23l1.722 1.151a1 1 0 0 1 1.282-.15L19 12h2"></path>
               <path d="M3 6h18M3 18h18"></path>
+            </svg> */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+              <path d="M3 3h18v4H3zm0 10h18v8H3zm6-7h6M9 9h6M9 15h6"></path>
             </svg>
             {!isOpen ?<span className="ml-3">Dashboard</span> : null}
          </Link>
@@ -165,10 +182,8 @@ export default function Dashboard() {
               </svg>
                {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Settings</span>: null}
           </Link>
-          <Link
-              key={'cover-letter'}
-              to={'/dashboard/cover-letter'}
-              aria-current={'page'}
+          <div
+              onClick={() => onLogout()}
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
               <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
                 <path d="M12 2L2 12H10M22 12H12"></path>
@@ -176,7 +191,7 @@ export default function Dashboard() {
                 <path d="M8 8L4 12L8 16"></path>
               </svg>
                {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Logout</span>: null}
-          </Link>
+          </div>
           <div
             onClick={() => setIsOpen(true)}
               className={`fixed bottom-0 ${isOpen ? 'w-8 ml-0':'w-56 ml-1'}  pt-3 z-50 border-t border-gray-200 pb-4 flex items-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700`}>
