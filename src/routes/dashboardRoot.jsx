@@ -4,7 +4,8 @@ import Resume from '../resume/resume'
 import { featureFlag } from '../../config';
 
 export default function Dashboard() {
-  const [isOpen, setIsopen] = useState(true)
+  const [isLogged, setIsLogged] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const { resume, qa } = featureFlag
   return (
     <Fragment>
@@ -60,21 +61,24 @@ export default function Dashboard() {
   </div>
 </nav> */}
 
-<aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-3 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-   <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+<aside id="logo-sidebar" className={`fixed overflow-y top-0 left-0 z-40 ${isOpen ? 'w-16' :'w-64'} h-screen pt-3 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidebar">
+   <div className="h-full px-3 pb-4 overflow-y bg-white dark:bg-gray-800">
 
                 <div className="relative z-19 w-full flex justify-between lg:w-max md:px-0 mb-10">
-                  {!isOpen ?
-                  <div className="relative flex items-center lg:hidden max-h-10 mr-11 -ml-3">
+                  {isOpen ?
+                  <div
+                    onClick={() => setIsOpen(false)}
+                   className="relative flex items-center lg:hidden max-h-10 mr-11 -ml-3">
                         <label role="button" htmlFor="toggle_nav" aria-label="humburger" id="hamburger" className="relative  p-6 -mr-6">
                             <div aria-hidden="true" id="line" className="m-auto h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300"></div>
                             <div aria-hidden="true" id="line2" className="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300"></div>
                             <div aria-hidden="true" id="line2" className="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300"></div>
                         </label>
                     </div> : null }
+                    {!isOpen ?
                     <Link to='/' aria-label="logo" className="flex space-x-2 items-center ml-1">
                         <span className="text-4xl font-bold text-gray-900 dark:text-white">Kg Jobs</span>
-                    </Link>
+                    </Link> : null}
                     
                 </div>
 
@@ -89,7 +93,7 @@ export default function Dashboard() {
               <path d="M3 12h2c.35 0 .677-.084.964-.23l1.722-1.151a1 1 0 0 1 1.282.15L11 12h2c.35 0 .677.084.964.23l1.722 1.151a1 1 0 0 1 1.282-.15L19 12h2"></path>
               <path d="M3 6h18M3 18h18"></path>
             </svg>
-            <span className="ml-3">Dashboard</span>
+            {!isOpen ?<span className="ml-3">Dashboard</span> : null}
          </Link>
           <Link
             key={'jobs'}
@@ -102,7 +106,7 @@ export default function Dashboard() {
               <path d="M3 13h8v8"></path>
               <path d="M3 21v-8H3"></path>
             </svg>
-            <span className="flex-1 ml-3 whitespace-nowrap">Jobs</span>
+            {!isOpen ?<span className="flex-1 ml-3 whitespace-nowrap">Jobs</span>: null}
          </Link>
          {resume ? 
          <Link
@@ -117,11 +121,11 @@ export default function Dashboard() {
               key={'cover-letter'}
               to={'/dashboard/cover-letter'}
               aria-current={'page'}
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              className="flex items-center p-2 pb-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
                 <path d="M19 4h-2V2H7v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM7 10h10M7 14h4M12 2v4"></path>
               </svg>
-               <span className="flex-1 ml-3 whitespace-nowrap">Cover Letter</span>
+               {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Cover Letter</span>: null}
           </Link>
          {qa ? 
          <Link
@@ -132,16 +136,65 @@ export default function Dashboard() {
                <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                <span className="flex-1 ml-3 whitespace-nowrap">Q&A Room</span>
          </Link> : null}
+         <hr className='pb-6'/>
+          <Link
+              key={'profile'}
+              to={'/dashboard/profile'}
+              aria-current={'page'}
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                <path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"></path>
+                <path d="M12 14c-4.97 0-9 4.03-9 9h18c0-4.97-4.03-9-9-9z"></path>
+              </svg>
+               {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>: null}
+          </Link>
+          <Link
+              key={'settings'}
+              to={'/dashboard/settings'}
+              aria-current={'page'}
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                <path d="M12 20h9"></path>
+                <path d="M19 10h2"></path>
+                <path d="M19 6h2"></path>
+                <path d="M19 14h2"></path>
+                <path d="M5 20H3"></path>
+                <path d="M5 6H3"></path>
+                <path d="M5 14H3"></path>
+                <path d="M12 4v16"></path>
+              </svg>
+               {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Settings</span>: null}
+          </Link>
+          <Link
+              key={'cover-letter'}
+              to={'/dashboard/cover-letter'}
+              aria-current={'page'}
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                <path d="M12 2L2 12H10M22 12H12"></path>
+                <path d="M15 22h6V2H15"></path>
+                <path d="M8 8L4 12L8 16"></path>
+              </svg>
+               {!isOpen ? <span className="flex-1 ml-3 whitespace-nowrap">Logout</span>: null}
+          </Link>
           <div
-              className="fixed bottom-0 w-56 ml-1 pt-3 z-50 border-t border-gray-200 pb-4 flex items-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-               <span className="flex-1 whitespace-nowrap w-6">Collapse</span>
-              <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 scale-x-[-1] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd"></path></svg>
+            onClick={() => setIsOpen(true)}
+              className={`fixed bottom-0 ${isOpen ? 'w-8 ml-0':'w-56 ml-1'}  pt-3 z-50 border-t border-gray-200 pb-4 flex items-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700`}>
+              <span>
+                  <img
+                        className='h-8 w-8 rounded-full'
+                        src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                        alt=''
+                  />
+              </span>
+               {!isOpen ?<span className="flex-1 whitespace-nowrap w-6 ml-[10px]">Collapse</span> : null}
+              {!isOpen ?<svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 scale-x-[-1] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd"></path></svg>: null}
           </div>
       </ul>
    </div>
 </aside>
 
-<div className="p-4 sm:ml-64">
+<div className={`p-4 ${isOpen ? 'sm:ml-16' : 'sm:ml-64'}`}>
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
         <Outlet />
    </div>
