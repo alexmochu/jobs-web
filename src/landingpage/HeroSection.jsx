@@ -32,13 +32,13 @@ const HeroSection = () => (
                 </div>
                 <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
                     <div className="text-left">
-                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">AI-Driven Resume Optimization</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">AI-Driven Resumes That Get Noticed!</h6>
                     </div>
                     <div className="text-left">
-                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Interview Preparation and Coaching</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Master the Art of Interviews</h6>
                     </div>
                     <div className="text-left">
-                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Job Alerts and Custom Recommendations</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Supercharge Your Job Search</h6>
                     </div>
                 </div>
             </div>

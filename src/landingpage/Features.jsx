@@ -30,7 +30,7 @@ const Features = () => (
             >
               Turbocharge Your Job Search: AI-Powered Tools for Faster Results!
             </h5>
-            <p className="text-gray-600 dark:text-gray-300">Unlock your dream job faster with our AI-driven job search tool, powered by OpenAI(gpt) and Claude. Say goodbye to manual searching and hello to streamlined results.up fo an account            </p>
+            <p className="text-gray-600 dark:text-gray-300">Unlock your dream job faster with our AI-driven job search tool, powered by OpenAI(gpt) and Claude. Say goodbye to manual searching and hello to streamlined results.</p>
           </div>
         </div>
       </div>
