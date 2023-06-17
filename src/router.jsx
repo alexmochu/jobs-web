@@ -26,6 +26,9 @@ import Login from './routes/login.jsx'
 import SignUp, { action as signupAction } from './routes/signup.jsx'
 import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
+import PrivacyPolicy from './routes/privacyPolicy.jsx'
+import ContactUs from './routes/contactUs.jsx'
+import TermsConditions from './routes/termsConditions.jsx'
 import Employers from './routes/employers'
 import NavBar from './components/navBar'
 import ForgotPassword from './routes/forgot-password.jsx'
@@ -70,6 +73,21 @@ const router = createBrowserRouter([
   {
     path: 'faqs',
     element: <FaqS />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'privacy-policy',
+    element: <PrivacyPolicy />,
+    errorElement: <ErrorPage />,
+  },
+    {
+    path: 'terms-conditions',
+    element: <TermsConditions />,
+    errorElement: <ErrorPage />,
+  },
+    {
+    path: 'contact-us',
+    element: <ContactUs />,
     errorElement: <ErrorPage />,
   },
     {
