@@ -37,12 +37,15 @@ export default function Root() {
   const login = location.pathname === '/login'
   const signup = location.pathname === '/signup'
   const forgot = location.pathname === '/forgot-password'
+  const terms = location.pathname === '/terms-conditions'
+  const privacy = location.pathname === '/privacy-policy'
+  const contact = location.pathname === '/contact-us'
 
   return (
     <body className='bg-white dark:bg-gray-900'>
       {loading && <Spinner />}
       <Toast />
-      {home | faqs | login | signup | forgot ? <AppHeader /> : null}
+      {home | faqs | login | signup | forgot | terms | privacy | contact ? <AppHeader /> : null}
       {error ? <div>Error: {error.message}</div> : (
       <main>
         <Outlet />
