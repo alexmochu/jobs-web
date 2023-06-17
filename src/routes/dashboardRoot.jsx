@@ -4,9 +4,11 @@ import Resume from '../resume/resume'
 import { featureFlag } from '../../config';
 import { userState } from '../main'
 import Queries from '../api/queries'
+import Spinner from '../components/spinner';
 
 export default function Dashboard() {
   const [isLogged, setIsLogged] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const { resume, qa } = featureFlag
 
@@ -15,7 +17,9 @@ export default function Dashboard() {
   const navigate = useNavigate()
 
   const onLogout = async () => {
+    setLoading(true)
     await Queries.logout()
+    setLoading(false)
     await setUser({...user, isAuthenticated: false, showToast: true, toastMessage: 'You have logged out successfully.'})
     return navigate('/login')
   }
@@ -210,9 +214,10 @@ export default function Dashboard() {
 </aside>
 
 <div className={`p-4 ${isOpen ? 'sm:ml-16' : 'sm:ml-64'}`}>
+  {loading ? <Spinner/> :
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-2">
         <Outlet />
-   </div>
+   </div>}
 </div>
     </Fragment>
   );

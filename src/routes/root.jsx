@@ -20,7 +20,7 @@ export default function Root() {
       try {
         const response = await loader();
         setData(response);
-        console.log(data)
+        console.log(response)
       } catch (error) {
         setError(error);
       } finally {
