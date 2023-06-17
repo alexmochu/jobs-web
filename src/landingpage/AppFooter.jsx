@@ -11,7 +11,7 @@ const AppFooter = () => (
             <ul className="list-inside list-disc space-y-8">
               <li><Link to='/' className="transition hover:text-primary">Home</Link></li>
   
-              <li><Link to='/jobs' className="transition hover:text-primary">Jobs</Link></li>
+              {/* <li><Link to='/jobs' className="transition hover:text-primary">Jobs</Link></li> */}
               <li><Link to='/FAQs' className="transition hover:text-primary">FAQs</Link></li>
             </ul>
   
@@ -32,7 +32,7 @@ const AppFooter = () => (
                 </a>
               </li>
               <li>
-                <a href="https://twitter.com/KejaniG" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
+                <a href="https://twitter.com/Kejanijobs" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -47,18 +47,11 @@ const AppFooter = () => (
                 </a>
               </li>
               <li>
-                <a href="https://facebook.com/Kejani-Garage-107910814219468" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    className="w-5"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-                    />
-                  </svg>
-                  <span>Facebook</span>
+                <a href="https://www.linkedin.com/company/kejani-garage/" target='_blank' className="flex items-center space-x-3 transition hover:text-primary" rel="noreferrer">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000" width="24" height="24">
+      <path d="M22,2H2A2,2,0,0,0,0,4V22a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V4A2,2,0,0,0,22,2ZM7.75,19H4V9h3.75ZM5.88,7.51A1.88,1.88,0,1,1,4,5.63,1.87,1.87,0,0,1,5.88,7.51ZM19,19h-3.75V14.35c0-1.72,0-3.35-2.52-3.35A2.92,2.92,0,0,0,13,14.23V19H9V9h3.5v1.22A3.46,3.46,0,0,1,16,9.85c2,0,3.5,1.31,3.5,4.1Z"/>
+    </svg>
+                  <span>LinkedIn</span>
                 </a>
               </li>
             </ul>
@@ -70,12 +63,12 @@ const AppFooter = () => (
               >Bringing Ideas to Life</span
             >  
             <span className="flex justify-between text-gray-600 dark:text-white">
-              <a href="https://kejanigarage.com/terms-conditions" target='_blank' className="font-medium" rel="noreferrer">Terms of Use </a>
-              <a href="https://kejanigarage.com/privacy-policy" target='_blank' className="font-medium" rel="noreferrer"> Privacy Policy</a>
+              <a href="https://jobs.kejanigarage.com/terms-conditions" target='_blank' className="font-medium" rel="noreferrer">Terms of Use </a>
+              <a href="https://jobs.kejanigarage.com/privacy-policy" target='_blank' className="font-medium" rel="noreferrer"> Privacy Policy</a>
             </span>
   
             <span className="block text-gray-500 dark:text-gray-400"
-              >Need help? <a href="https://kejanigarage.com/contact-us" target='_blank' className="font-semibold text-gray-600 dark:text-white" rel="noreferrer"> Contact Us</a></span
+              >Need help? <a href="https://jobs.kejanigarage.com/contact-us" target='_blank' className="font-semibold text-gray-600 dark:text-white" rel="noreferrer"> Contact Us</a></span
             >
           </div>
         </div>
