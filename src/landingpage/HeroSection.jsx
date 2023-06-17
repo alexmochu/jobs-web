@@ -10,7 +10,7 @@ const HeroSection = () => (
         <div className="relative mt-20 ml-auto">
             <div className="lg:w-2/3 text-center mx-auto">
                 <h1 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">Find Your Dream Job with Our <span className="text-primary dark:text-white"> AI-Powered</span> Solutions</h1>
-                <p className="mt-8 text-gray-700 dark:text-gray-300">Streamline Your Job Search, Create a Winning Resume, and Ace Your Interviews with Our AI tools</p>
+                <p className="mt-8 text-2xl text-gray-700 dark:text-gray-300">Streamline Your Job Search, Create a Winning Resume, Cover letters and Ace Your Interviews with Our AI tools</p>
                 <div className="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
                     <Link
                       to='/login'
@@ -32,13 +32,13 @@ const HeroSection = () => (
                 </div>
                 <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
                     <div className="text-left">
-                        <h6 className="text-lg font-semibold text-gray-700 dark:text-white">AI-Driven Resume Optimization</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">AI-Driven Resume Optimization</h6>
                     </div>
                     <div className="text-left">
-                        <h6 className="text-lg font-semibold text-gray-700 dark:text-white">Interview Preparation and Coaching</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Interview Preparation and Coaching</h6>
                     </div>
                     <div className="text-left">
-                        <h6 className="text-lg font-semibold text-gray-700 dark:text-white">Job Alerts and Custom Recommendations</h6>
+                        <h6 className="text-2xl font-semibold text-gray-700 dark:text-white">Job Alerts and Custom Recommendations</h6>
                     </div>
                 </div>
             </div>
