@@ -5,7 +5,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Root, { loader as rootLoader } from './routes/root';
+import Root from './routes/root';
 import ErrorPage from './error-page';
 import Contact, {
   loader as contactLoader,
@@ -41,8 +41,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    // action: rootAction,
     children: [
     {
     index: true,
