@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
   return (
-    <div className="grid grid-cols-2 gap-3 h-full mb-4 rounded dark:bg-gray-800">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 h-full mb-4 rounded dark:bg-gray-800">
       <div className="bg-gray-50 h-fit rounded-3xl border-2 px-10 py-10">
         <div className="flex items-center justify-center mb-5 text-3xl font-bold">Jobs Search & Tracker</div>
         <p className="text-lg">Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at? Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia. Vitae error, quaerat officia delectus voluptatibus explicabo quo pariatur impedit, at reprehenderit aliquam a ipsum quas voluptatem</p>
