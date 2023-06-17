@@ -63,13 +63,29 @@ const AppFooter = () => (
               >Bringing Ideas to Life</span
             >  
             <span className="flex justify-between text-gray-600 dark:text-white">
-              <a href="https://jobs.kejanigarage.com/terms-conditions" target='_blank' className="font-medium" rel="noreferrer">Terms of Use </a>
-              <a href="https://jobs.kejanigarage.com/privacy-policy" target='_blank' className="font-medium" rel="noreferrer"> Privacy Policy</a>
+                        <Link
+            key={'terms'}
+            to={'/terms-conditions'}
+                  aria-current={'page'}
+                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'>
+                  Terms of Use
+          </Link>
+          <Link
+            key={'policy'}
+            to={'/privacy-policy'}
+                  aria-current={'page'}
+                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'>
+                  Terms of Use
+          </Link>
             </span>
   
-            <span className="block text-gray-500 dark:text-gray-400"
-              >Need help? <a href="https://jobs.kejanigarage.com/contact-us" target='_blank' className="font-semibold text-gray-600 dark:text-white" rel="noreferrer"> Contact Us</a></span
-            >
+            <span className="block text-gray-500 dark:text-gray-400"><Link
+            key={'contacts'}
+            to={'/contact-us'}
+                  aria-current={'page'}
+                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'>
+                  Contact Us
+          </Link></span>
           </div>
         </div>
       </div>
