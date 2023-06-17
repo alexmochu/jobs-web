@@ -26,7 +26,7 @@ const Features = () => (
 
           <div className="space-y-2">
             <h5
-              className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
+              className="text-gray-700 font-semibold  text-lg dark:text-white transition group-hover:text-secondary"
             >
               Turbocharge Your Job Search: AI-Powered Tools for Faster Results!
             </h5>
@@ -46,7 +46,7 @@ const Features = () => (
 
           <div className="space-y-2">
             <h5
-              className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
+              className="text-lg font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
             Stand Out from the Crowd: AI-Driven Resumes That Get Noticed!
             </h5>
@@ -68,7 +68,7 @@ const Features = () => (
 
           <div className="space-y-2">
             <h5
-              className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
+              className="text-lg font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
 Say Goodbye to Writer's Block: Let AI Generate Winning Cover Letters!
             </h5>
@@ -92,7 +92,7 @@ Say Goodbye to Writer's Block: Let AI Generate Winning Cover Letters!
 
           <div className="space-y-2">
             <h5
-              className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
+              className="text-lg font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
               Master the Art of Interviews: AI Tools to Land Your Dream Job!
             </h5>
