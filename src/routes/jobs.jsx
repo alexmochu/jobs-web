@@ -8,7 +8,6 @@ import List from '../components/list'
 import Form from '../components/form'
 import MobileForm from '../components/mobileForm'
 import Header from '../components/header'
-import NavBar from '../components/navBar'
 
 import { plans, sortOptions, navigation, filters } from '../constants'
 
