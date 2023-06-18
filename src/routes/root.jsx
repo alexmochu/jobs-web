@@ -43,10 +43,9 @@ export default function Root() {
 
   return (
     <body className='bg-white dark:bg-gray-900'>
-      {loading && <Spinner />}
       <Toast />
       {home | faqs | login | signup | forgot | terms | privacy | contact ? <AppHeader /> : null}
-      {error ? <div>Error: {error.message}</div> : (
+      {loading ? <Spinner/> : error ? <div>Error: {error.message}</div> : (
       <main>
         <Outlet />
       </main> )}

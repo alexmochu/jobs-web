@@ -7,6 +7,11 @@ const landingPage = async () => {
   return response
 }
 
+const signup = async (user) => {
+  const response = await api.user.signup(user)
+  return response
+}
+
 const login = async (credentials) => {
   const response = await api.user.login(credentials)
   const token = response.header_access_token
@@ -24,6 +29,7 @@ const logout = async () => {
 
 const Queries = {
   landingPage,
+  signup,
   login,
   logout,
 }

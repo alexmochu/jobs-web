@@ -23,7 +23,7 @@ import QA from './routes/qa.jsx'
 import CoverLetter from './routes/coverletter.jsx'
 import Resume from './routes/resume.jsx'
 import Login from './routes/login.jsx'
-import SignUp, { action as signupAction } from './routes/signup.jsx'
+import SignUp from './routes/signup.jsx'
 import Pricing from './routes/pricing'
 import FaqS from './routes/faqs.jsx'
 import PrivacyPolicy from './routes/privacyPolicy.jsx'
@@ -135,7 +135,7 @@ const router = createBrowserRouter([
     path: 'signup',
     element: <SignUp />,
     errorElement: <ErrorPage />,
-    action: signupAction
+    // action: signupAction
   },
 
     {
