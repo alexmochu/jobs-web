@@ -25,7 +25,7 @@ export default function Dashboard() {
             to={'/dashboard/resume'}
                   aria-current={'page'}
                 className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'>
-            <button className="bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg">View</button>
+            <button disabled className="bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg">Coming Soon</button>
           </Link>
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function Dashboard() {
             to={'/dashboard/qa'}
                   aria-current={'page'}
                 className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'>
-            <button className="bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg">View</button>
+            <button disabled className="bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg">Coming Soon</button>
           </Link>
         </div>
       </div>
