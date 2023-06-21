@@ -30,7 +30,7 @@ export default function SignUp() {
       setError({...error, email: 'Email cannot be empty'});
     } else if (!isValidEmail(email)) {
       setError({...error, email: 'Invalid email address'});
-    } else if (email !== 'mochualex4@gmail.com' | 'karanjamochu@gmail.com' | 'garagekejani@gmail.com') {
+    } else if (email !== 'mochualex4@gmail.com' && email !== 'karanjamochu@gmail.com' && email !== 'garagekejani@gmail.com') {
       setError({...error, email: 'Be Patient, Signup Power Unleashing Soon!'});
     } else if (username.trim() === '') {
       setError({...error, username: 'Username can\'t be blank',});
