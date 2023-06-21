@@ -104,7 +104,6 @@ export default function Login() {
                     <div className="mt-3 mb-4">
                       <button
                         type="submit"
-                        // onClick={onLogin}
                         className="bg-indigo-500 text-gray-100 pt-2 pb-2 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg"
                       >
                       Log In
