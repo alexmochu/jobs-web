@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { useConfig } from './useConfig';
+import { useEffect } from 'react'
+import { useConfig } from './useConfig'
 
 export const useDocumentTitle = () => {
-  const config = useConfig();
+  const config = useConfig()
 
   useEffect(() => {
-    document.title = config.contactInfo.name + ' Resume';
-  }, []);
-};
+    document.title = config.contactInfo.name + ' Resume'
+  }, [])
+}

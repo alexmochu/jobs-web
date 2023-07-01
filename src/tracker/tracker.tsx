@@ -1,11 +1,11 @@
-import { TrackerDashboard } from './components/sections';
+import { TrackerDashboard } from './components/sections'
 
 function Tracker() {
   return (
-    <div className="paper inline mx-auto">
+    <div className='paper inline mx-auto'>
       <TrackerDashboard />
     </div>
-  );
+  )
 }
 
-export default Tracker;
+export default Tracker

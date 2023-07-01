@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { MinusIcon, PlusIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
+import { MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const MobileForm = ({ mobileFiltersOpen, setMobileFiltersOpen, filters }) => {

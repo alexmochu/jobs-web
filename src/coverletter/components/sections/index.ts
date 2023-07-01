@@ -1,2 +1,2 @@
-export * from './ContactInfo';
-export * from './Summary';
+export * from './ContactInfo'
+export * from './Summary'

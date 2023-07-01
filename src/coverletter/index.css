@@ -21,16 +21,16 @@ ul {
   font-weight: 200;
 }
 
-.list{
-    font-size: 14px;
-    margin-left: 10px;
-    list-style-type: circle;
+.list {
+  font-size: 14px;
+  margin-left: 10px;
+  list-style-type: circle;
 }
 
-.exp-list{
-    font-size: 14px;
-    margin-left: 10px;
-    list-style-type: disc;
+.exp-list {
+  font-size: 14px;
+  margin-left: 10px;
+  list-style-type: disc;
 }
 
 .paper {

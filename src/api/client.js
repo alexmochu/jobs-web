@@ -5,8 +5,8 @@ import axios from 'axios'
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
 const getHeaderAccessToken = () => {
-  return localStorage.getItem('headerAccessToken');
-};
+  return localStorage.getItem('headerAccessToken')
+}
 
 var axiosInstance = axios.create({
   baseURL,
@@ -19,12 +19,12 @@ var axiosInstance = axios.create({
 // Interceptor to update the header access token before each request
 axiosInstance.interceptors.request.use(
   function (config) {
-    config.headers['header-access-token'] = getHeaderAccessToken();
-    return config;
+    config.headers['header-access-token'] = getHeaderAccessToken()
+    return config
   },
   function (error) {
-    return Promise.reject(error);
-  }
-);
+    return Promise.reject(error)
+  },
+)
 
 export default axiosInstance

@@ -8,6 +8,9 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "plugin:jsx-a11y/recommended",
+        "eslint-config-prettier",
         "prettier"
     ],
     "overrides": [
@@ -27,15 +30,22 @@
         "prettier"
     ],
     "settings": {
+       "react": { 
+            "version": "detect"
+            },
        "import/resolver": {
-            "typescript": {}
+            "typescript": {},
+            "node": {
+                "paths": ["src"]
+                // "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
        }
     },
     "rules": {
         "react/react-in-jsx-scope": "off",
         "camelcase": "error",
         "spaced-comment": "error",
-        "quotes": ["error", "single"],
+        // "quotes": ["error", "single"],
         "no-duplicate-imports": "error"
     }
 }

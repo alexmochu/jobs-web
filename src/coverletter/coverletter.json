@@ -1,79 +1,65 @@
 {
-  "selectedTemplate": 1,
-  "headings": {
-    "work": "Work(section heading)",
-    "education": "Education(Section Heading)",
-    "awards": "Award(section heading)",
-    "skills": "Skills(section heading)",
-    "projects": "Project(Section Heading)"
+  'selectedTemplate': 1,
+  'headings': {
+    'work': 'Work(section heading)',
+    'education': 'Education(Section Heading)',
+    'awards': 'Award(section heading)',
+    'skills': 'Skills(section heading)',
+    'projects': 'Project(Section Heading)'
   },
-  "basics": {
-    "name": "Alex Mochu",
-    "email": "mochualex4@gmail.com",
-    "phone": "+254743415785",
-    "website": "www.co.com(link)",
-    "location": {
-      "address": "Nairobi, Kenya"
+  'basics': {
+    'name': 'Alex Mochu',
+    'email': 'mochualex4@gmail.com',
+    'phone': '+254743415785',
+    'website': 'www.co.com(link)',
+    'location': {
+      'address': 'Nairobi, Kenya'
     }
   },
-  "education": [
+  'education': [
     {
-      "institution": "School Name",
-      "location": "School location",
-      "area": "Major",
-      "studyType": "Degree",
-      "startDate": "Start date",
-      "endDate": "End date",
-      "gpa": "GPA"
+      'institution': 'School Name',
+      'location': 'School location',
+      'area': 'Major',
+      'studyType': 'Degree',
+      'startDate': 'Start date',
+      'endDate': 'End date',
+      'gpa': 'GPA'
     }
   ],
-  "work": [
+  'work': [
     {
-      "company": "Company Name",
-      "location": "Job Location",
-      "position": "Job Title",
-      "website": "",
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "highlights": [
-        "Job Responsibilities"
-      ]
+      'company': 'Company Name',
+      'location': 'Job Location',
+      'position': 'Job Title',
+      'website': '',
+      'startDate': 'Start Date',
+      'endDate': 'End Date',
+      'highlights': ['Job Responsibilities']
     }
   ],
-  "skills": [
+  'skills': [
     {
-      "level": "",
-      "keywords": [
-        "Skill Details"
-      ],
-      "name": "Skill Name"
+      'level': '',
+      'keywords': ['Skill Details'],
+      'name': 'Skill Name'
     }
   ],
-  "projects": [
+  'projects': [
     {
-      "name": "Project Name",
-      "description": "Project description",
-      "url": "Link to Project",
-      "keywords": [
-        "Tools Used"
-      ]
+      'name': 'Project Name',
+      'description': 'Project description',
+      'url': 'Link to Project',
+      'keywords': ['Tools Used']
     }
   ],
-  "awards": [
+  'awards': [
     {
-      "title": "Award Name",
-      "date": "Award Date",
-      "awarder": "Awarder",
-      "summary": "Summary"
+      'title': 'Award Name',
+      'date': 'Award Date',
+      'awarder': 'Awarder',
+      'summary': 'Summary'
     }
   ],
-  "sections": [
-    "templates",
-    "profile",
-    "education",
-    "work",
-    "skills",
-    "projects",
-    "awards"
-  ]
+  'sections': ['templates', 'profile', 'education', 'work', 'skills', 'projects', 'awards']
 }

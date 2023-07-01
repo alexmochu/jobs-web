@@ -312,7 +312,7 @@ export type CountriesT =
   | 'Congo (Democratic Republic of the)'
   | 'Cook Islands'
   | 'Costa Rica'
-  | "Côte d'Ivoire"
+  | 'Côte d\'Ivoire'
   | 'Croatia'
   | 'Cuba'
   | 'Curaçao'
@@ -375,12 +375,12 @@ export type CountriesT =
   | 'Kazakhstan'
   | 'Kenya'
   | 'Kiribati'
-  | "Korea (Democratic People's Republic of)"
+  | 'Korea (Democratic People\'s Republic of)'
   | 'Korea (Republic of)'
   | 'Kuwait'
   | 'Kosovo'
   | 'Kyrgyzstan'
-  | "Lao People's Democratic Republic"
+  | 'Lao People\'s Democratic Republic'
   | 'Latvia'
   | 'Lebanon'
   | 'Lesotho'

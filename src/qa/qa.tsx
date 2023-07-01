@@ -1,15 +1,15 @@
-import { Answer } from './components/sections';
-import { useDocumentTitle } from '../hooks';
+import { Answer } from './components/sections'
+import { useDocumentTitle } from '../hooks'
 import './index.css'
 
 function QAnswer() {
-  useDocumentTitle();
+  useDocumentTitle()
 
   return (
-    <div className="paper inline mx-auto p-3">
+    <div className='paper inline mx-auto p-3'>
       <Answer />
     </div>
-  );
+  )
 }
 
-export default QAnswer;
+export default QAnswer

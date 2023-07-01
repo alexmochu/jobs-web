@@ -1,1 +1,1 @@
-export * from './SectionWrapper';
+export * from './SectionWrapper'

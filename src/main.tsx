@@ -5,53 +5,51 @@ import './index.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 const queryClient = new QueryClient()
 
-import {
-  RouterProvider,
-} from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom'
 
 import router from './router.jsx'
 
 const initialState = {
-  name:'',
+  name: '',
   isAuthenticated: false,
   showToast: false,
-  toastMessage: ''
+  toastMessage: '',
 }
 
 const CurrentUserState = createContext(initialState)
 
-const App = () => {  
-  const [user, setUser] = useState(()=> {
+const App = () => {
+  const [user, setUser] = useState(() => {
     const state = localStorage.getItem('store')
-    if(state === null){
+    if (state === null) {
       return initialState
-    } else if(!JSON.parse(state).isAuthenticated){
+    } else if (!JSON.parse(state).isAuthenticated) {
       return initialState
     } else {
       return JSON.parse(state)
     }
-  });
+  })
 
   useEffect(() => {
-    const storeState = localStorage.getItem('store');
+    const storeState = localStorage.getItem('store')
     if (storeState) {
-      setUser(JSON.parse(storeState));
+      setUser(JSON.parse(storeState))
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem('store', JSON.stringify(user));
+      localStorage.setItem('store', JSON.stringify(user))
     }
-  }, [user, user]);
+  }, [user, user])
 
-
-  return(
+  return (
     <CurrentUserState.Provider
       value={{
         user,
-        setUser
-      }}>
+        setUser,
+      }}
+    >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
@@ -60,11 +58,10 @@ const App = () => {
 }
 
 export function userState() {
-  return useContext(CurrentUserState);
+  return useContext(CurrentUserState)
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-
   <React.StrictMode>
     <App />
   </React.StrictMode>,

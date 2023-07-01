@@ -1,12 +1,6 @@
-import {
-  Document,
-  Page,
-  View,
-  StyleSheet,
-  PDFViewer,
-} from '@react-pdf/renderer';
-import { ContactInfo, Summary } from './components/sections';
-import { useDocumentTitle } from '../hooks';
+import { Document, Page, View, StyleSheet, PDFViewer } from '@react-pdf/renderer'
+import { ContactInfo, Summary } from './components/sections'
+import { useDocumentTitle } from '../hooks'
 import './index.css'
 
 const styles = StyleSheet.create({
@@ -22,15 +16,15 @@ const styles = StyleSheet.create({
     width: window.innerWidth, // the pdf viewer will take up all of the width and height
     height: window.innerHeight,
   },
-});
+})
 
-function CoverLetter({state}) {
-  useDocumentTitle();
+function CoverLetter({ state }) {
+  useDocumentTitle()
 
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
-        <Page size="A4" style={styles.page}>
+        <Page size='A4' style={styles.page}>
           <View style={styles.section}>
             <ContactInfo state={state} />
             <Summary state={state} />
@@ -38,7 +32,7 @@ function CoverLetter({state}) {
         </Page>
       </Document>
     </PDFViewer>
-  );
+  )
 }
 
-export default CoverLetter;
+export default CoverLetter
