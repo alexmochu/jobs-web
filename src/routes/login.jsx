@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import Queries from '../api/queries'
 import { userState } from '../main'
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode'
 
 export default function Login() {
   const { user, setUser } = userState()
@@ -30,9 +32,12 @@ export default function Login() {
       setLoading(true)
       const user = JSON.parse(localStorage.getItem('store'))
       await Queries.login(inputValue)
+      const token = localStorage.getItem('headerAccessToken')
+      const decoded = jwt_decode(token)
       setLoading(false)
       await setUser({
         ...user,
+        username: decoded.username,
         isAuthenticated: true,
         showToast: true,
         toastMessage: 'You have logged in successfully.',

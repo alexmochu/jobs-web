@@ -12,6 +12,8 @@ export default function Dashboard() {
 
   const { user, setUser } = userState()
 
+  const username = user.username
+
   const navigate = useNavigate()
 
   const onLogout = async () => {
@@ -325,7 +327,7 @@ export default function Dashboard() {
                 />
               </span>
               {!isOpen ? (
-                <span className='flex-1 whitespace-nowrap w-6 ml-[10px]'>@mochualex</span>
+                <span className='flex-1 whitespace-nowrap w-6 ml-[10px]'>@{username}</span>
               ) : null}
               {!isOpen ? (
                 <svg

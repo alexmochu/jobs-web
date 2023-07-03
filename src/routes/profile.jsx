@@ -3,7 +3,7 @@ import { userState } from '../main'
 
 export default function Profile() {
   const { user } = userState()
-  const profile = user.name
+  const username = user.username
   return (
     <>
       <Fragment>
@@ -13,7 +13,7 @@ export default function Profile() {
               <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6'>
                   <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-                    Profile {profile}
+                    {username}
                   </h1>
                 </div>
               </main>
