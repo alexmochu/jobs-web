@@ -27,8 +27,6 @@ export default function Login() {
       setError({ ...error, password: 'Password can\'t be blank' })
     } else {
       // Handle form submission here
-      console.log('Form submitted:', username)
-      console.log('Submitted:', password)
       setLoading(true)
       const user = JSON.parse(localStorage.getItem('store'))
       await Queries.login(inputValue)

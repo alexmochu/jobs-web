@@ -10,10 +10,14 @@ export default function Profile() {
         <main>
           <div className='bg-white'>
             <div>
-              <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-                <div className='flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6'>
-                  <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-                    {username}
+              <main className='mx-auto px-4 sm:px-6 lg:px-8'>
+                <h1 className='text-4xl font-bold tracking-tight text-gray-900 mb-6'>
+                  Profile
+                </h1>
+                <div className='border rounded-lg border-gray-200 p-6'>
+                  <p className='mb-2'>Your username</p>
+                  <h1 className='text-lg font-bold tracking-tight text-gray-900'>
+                    @{username}
                   </h1>
                 </div>
               </main>
