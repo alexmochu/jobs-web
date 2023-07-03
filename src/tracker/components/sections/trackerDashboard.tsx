@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import Queries from '../../../api/queries'
+import { userState } from '../../../main'
 
 export const TrackerDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +20,51 @@ export const TrackerDashboard = () => {
     setIsModalOpen(false);
   };
 
+  const { user } = userState()
+  const username = user.username
+
+  async function loader() {
+    const response = await Queries.getCurrentUserJobs(username)
+    return response
+  }
+
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState({jobs: []})
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await loader()
+        setData(response)
+        console.log(response)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    setTimeout(() => {
+      fetchData()
+    }, 2000);
+
+    // fetchData()
+  }, [])
+
+  const { jobs } = data
+
   return (
     <div className='grid grid-cols-6 gap-4 mt-10'>
       <div>
         <p className='text-xl mb-3'>Bookmarked</p>
         <button className='bg-gray-300 w-full py-2 text-lg'>+ Add Job</button>
         <div className='w-full'>
-          <div className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
-            <h2 className='text-xl font-bold mb-2'>Google Inc</h2>
-            <p className='mb-4 text-gray-500 text-lg'>Senior Software Engineer</p>
+          {jobs.length > 0 ? (
+          jobs.map(item => (
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+            <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
+            <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
               <span className='bg-indigo-500 px-6 pl-8 py-2 w-24 text-white rounded-3xl' onClick={openModal}>View</span>
               <div className='text-right'>
@@ -52,7 +91,7 @@ export const TrackerDashboard = () => {
                 )}
               </div>
             </div>
-          </div>
+          </div>))) : <h1>looading ...</h1>}
         </div>
       </div>
       <div>

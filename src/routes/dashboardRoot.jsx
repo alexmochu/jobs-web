@@ -18,11 +18,11 @@ export default function Dashboard() {
 
   const onLogout = async () => {
     setLoading(true)
-    const res = await Queries.logout()
-    console.log('the resp', res)
+    await Queries.logout()
     setLoading(false)
     await setUser({
       ...user,
+      username: '',
       isAuthenticated: false,
       showToast: true,
       toastMessage: 'You have logged out successfully.',

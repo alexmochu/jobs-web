@@ -27,11 +27,17 @@ const logout = async () => {
   return response
 }
 
+const getCurrentUserJobs = async (username) => {
+  const response = await api.jobs.jobsUser(username)
+  return response
+}
+
 const Queries = {
   landingPage,
   signup,
   login,
   logout,
+  getCurrentUserJobs
 }
 
 export default Queries

@@ -11,4 +11,7 @@ export default {
     forgotPassword: (user) =>
       client.post('/forgot-password', { user }).then((res) => res.data.user),
   },
+  jobs: {
+    jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data)
+  }
 }
