@@ -314,17 +314,21 @@ export default function Dashboard() {
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Logout</span> : null}
             </div>
             <div
-              onClick={() => setIsOpen(true)}
+              // onClick={() => setIsOpen(true)}
               className={`fixed bottom-0 ${
                 isOpen ? 'w-8 ml-0' : 'w-56 ml-1'
               }  pt-3 z-50 border-t border-gray-200 pb-4 flex items-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700`}
             >
-              <span>
-                <img
+              <span
+                onClick={() => {isOpen && setIsOpen(false)}}
+                className='h-8 w-8 pl-2 pt-1 rounded-full border border-black'
+              >
+                {/* <img
                   className='h-8 w-8 rounded-full'
                   src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
                   alt=''
-                />
+                /> */}
+                {username.charAt(0).toUpperCase()}
               </span>
               {!isOpen ? (
                 <span className='flex-1 whitespace-nowrap w-6 ml-[10px]'>@{username}</span>
@@ -334,6 +338,7 @@ export default function Dashboard() {
                   aria-hidden='true'
                   className='flex-shrink-0 w-6 h-6 scale-x-[-1] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
                   fill='currentColor'
+                  onClick={() => setIsOpen(true)}
                   viewBox='0 0 20 20'
                   xmlns='http://www.w3.org/2000/svg'
                 >
