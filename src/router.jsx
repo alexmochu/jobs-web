@@ -31,7 +31,8 @@ import ProtectedRoute from './routes/protectedRoute'
 import Dashboard from './routes/dashboard.jsx'
 import RootDashboard from './routes/dashboardRoot.jsx'
 // import Jobs from './routes/jobs.jsx'
-import JobsDashboard from './routes/jobsDashboard'
+import JobSearch from './routes/jobsSearch'
+import JobTracker from './routes/jobsTracker'
 import ChangePassword from './routes/changePassword'
 
 const router = createBrowserRouter([
@@ -112,10 +113,19 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: 'jobs',
+            path: 'job-search',
             element: (
               <ProtectedRoute>
-                <JobsDashboard />{' '}
+                <JobSearch />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'job-tracker',
+            element: (
+              <ProtectedRoute>
+                <JobTracker />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,

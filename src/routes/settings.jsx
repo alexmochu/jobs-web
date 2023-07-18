@@ -17,7 +17,7 @@ export default function Settings() {
             key={'change-password'}
             to={'/dashboard/change-password'}
             aria-current={'page'}>
-                <button className='border rounded-lg px-4 py-2 bg-gray-50 text-lg font-bold tracking-tight text-gray-900'>
+                <button className='border rounded-lg px-4 py-2 bg-indigo-500 text-lg font-bold tracking-tight text-white'>
                   Change password
                 </button>
               </Link>
