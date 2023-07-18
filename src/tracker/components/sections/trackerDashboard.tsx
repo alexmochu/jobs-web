@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 
 import Queries from '../../../api/queries'
 import { userState } from '../../../main'
+import TrackJobModal from './trackJobModal'
 
 export const TrackerDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTrackJob, setIsTrackJob] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -18,6 +20,14 @@ export const TrackerDashboard = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openJobModal = () => {
+    setIsTrackJob(true);
+  };
+
+  const closeJobModal = () => {
+    setIsTrackJob(false);
   };
 
   const { user } = userState()
@@ -58,7 +68,7 @@ export const TrackerDashboard = () => {
     <div className='grid grid-cols-6 gap-4 mt-10'>
       <div>
         <p className='text-xl mb-3'>Bookmarked</p>
-        <button className='bg-gray-300 w-full py-2 text-lg'>+ Add Job</button>
+        <button className='bg-gray-300 w-full py-2 text-lg' onClick={openJobModal}>+ Add Job</button>
         <div className='w-full'>
           {jobs.length > 0 ? (
           jobs.map(item => (
@@ -129,6 +139,22 @@ export const TrackerDashboard = () => {
           </div>
         </div>
       )}
+      {isTrackJob && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[400px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeJobModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <TrackJobModal />
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
