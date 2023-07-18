@@ -32,6 +32,7 @@ import Dashboard from './routes/dashboard.jsx'
 import RootDashboard from './routes/dashboardRoot.jsx'
 // import Jobs from './routes/jobs.jsx'
 import JobsDashboard from './routes/jobsDashboard'
+import ChangePassword from './routes/changePassword'
 
 const router = createBrowserRouter([
   {
@@ -151,6 +152,15 @@ const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Resume />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+          path: 'change-password',
+            element: (
+              <ProtectedRoute>
+                <ChangePassword />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
