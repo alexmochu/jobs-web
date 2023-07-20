@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Queries from '../../../api/queries'
 import { userState } from '../../../main'
 import TrackJobModal from './trackJobModal'
+import ViewJobModal from './viewJobModal'
 
 export const TrackerDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +15,6 @@ export const TrackerDashboard = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const openJobModal = () => {
     setIsTrackJob(true);
   };
@@ -30,8 +23,8 @@ export const TrackerDashboard = () => {
     setIsTrackJob(false);
   };
 
-  const { user } = userState()
-  const username = user.username
+  const { user, setUser } = userState()
+  const {username, currentUserJobs} = user
 
   async function loader() {
     const response = await Queries.getCurrentUserJobs(username)
@@ -39,14 +32,28 @@ export const TrackerDashboard = () => {
   }
 
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState({jobs: []})
+  const [data, setData] = useState({})
   const [error, setError] = useState(null)
 
+  const openModal = (item) => {
+    setData(item)
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setData({})
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
+    const storeState = localStorage.getItem('store')
+      if (storeState) {
+        setUser(JSON.parse(storeState))
+    }
     const fetchData = async () => {
       try {
         const response = await loader()
-        setData(response)
+        setUser((prevState) => ({ ...prevState, currentUserJobs: response.jobs  }));
         console.log(response)
       } catch (error) {
         setError(error)
@@ -62,21 +69,19 @@ export const TrackerDashboard = () => {
     // fetchData()
   }, [])
 
-  const { jobs } = data
-
   return (
     <div className='grid grid-cols-6 gap-4 mt-10'>
       <div>
         <p className='text-xl mb-3'>Bookmarked</p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={openJobModal}>+ Add Job</button>
         <div className='w-full'>
-          {jobs.length > 0 ? (
-          jobs.map(item => (
+          {currentUserJobs.length > 0 ? (
+          currentUserJobs.map(item => (
           <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
-              <span className='bg-indigo-500 px-6 pl-8 py-2 w-24 text-white rounded-3xl' onClick={openModal}>View</span>
+              <span className='bg-indigo-500 px-6 pl-8 py-2 w-24 text-white rounded-3xl' onClick={() => openModal(item)}>View</span>
               <div className='text-right'>
                 <h6 className='text-lg font-medium flex justify-end text-gray-700 dark:text-white items-center'>
                   <svg 
@@ -101,7 +106,7 @@ export const TrackerDashboard = () => {
                 )}
               </div>
             </div>
-          </div>))) : <h1>looading ...</h1>}
+          </div>))) : null}
         </div>
       </div>
       <div>
@@ -127,8 +132,7 @@ export const TrackerDashboard = () => {
       {isModalOpen && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>
           <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
-          <div className='relative bg-white p-8 rounded-lg shadow-md'>
-            <h3 className='text-2xl font-bold mb-4'>Modal Content</h3>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[600px]'>
             <button className='absolute top-2 right-2 text-gray-500' onClick={closeModal}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="none" d="M0 0h24v24H0z"/>
@@ -136,6 +140,7 @@ export const TrackerDashboard = () => {
               </svg>
             </button>
             {/* Add your modal content here */}
+            <ViewJobModal job={data} />
           </div>
         </div>
       )}
