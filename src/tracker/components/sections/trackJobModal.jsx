@@ -6,17 +6,11 @@ const jobDetails = {
   jobUrl: '',
   jobSummary: '',
   jobTitle: '',
-  jobCompany: ''
-}
-
-const jobInfo = {
-  title: '',
-  country: '',
-  type: '',
-}
-
-const jobTypeInfo = {
-    type: ''
+  jobCompany: '',
+  jobCountry: '',
+  jobType: '',
+  applicationState: 'bookmarked',
+  jobOwner: ''
 }
 
 function TrackJobModal() {
@@ -33,15 +27,6 @@ function TrackJobModal() {
     const { name, value } = e.target;
     setJobData((prevState) => ({ ...prevState, [name]: value }));
   };
-
-    const [jobState, setJobState] = useState(jobInfo)
-
-    const onChange = (e) => setJobState({ ...jobState, [e.target.name]: e.target.value })
-
-    const [jobType, setJobType] = useState(jobTypeInfo)
-
-    const onJobType = (e) => setJobType({ ...jobType, [e.target.name]: e.target.value })
-
 
   return (
     <>
@@ -94,10 +79,10 @@ function TrackJobModal() {
         <div className="grid grid-cols-4 gap-4">
         <select
           className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='country'
+          name='jobCountry'
           id='locations'
-          value={jobState.country}
-          onChange={onChange}
+          value={jobData.jobCountry}
+          onChange={handleChange}
         >
           {countries.map((item) => (
             <option key={item.country_code} value={item.en_short_name}>
@@ -107,10 +92,10 @@ function TrackJobModal() {
         </select>
                 <select
           className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='type'
+          name='jobType'
           id='type'
-          value={jobType.type}
-          onChange={onJobType}
+          value={jobData.jobType}
+          onChange={handleChange}
         >
           {jobTypes.map((item) => (
             <option key={item.type} value={item.type}>
