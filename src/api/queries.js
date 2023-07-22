@@ -12,6 +12,22 @@ const signup = async (user) => {
   return response
 }
 
+const createJob = async (job) => {
+  const response = await api.jobs.jobCreate(job)
+  return response
+}
+
+const updateJob = async (user) => {
+  const response = await api.jobs.jobUpdate(user)
+  return response
+}
+
+const deleteJob = async (id) => {
+  console.log('dlete')
+  const response = await api.jobs.jobDelete(id)
+  return response
+}
+
 const login = async (credentials) => {
   const response = await api.user.login(credentials)
   const token = response.header_access_token
@@ -37,7 +53,10 @@ const Queries = {
   signup,
   login,
   logout,
-  getCurrentUserJobs
+  getCurrentUserJobs,
+  createJob,
+  updateJob,
+  deleteJob
 }
 
 export default Queries
