@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { countries } from '../../../../countries'
 import { jobTypes } from '../../../../jobTypes'
 import Queries from '../../../../api/queries'
+import { userState } from '../../../../main'
 
 const jobDetails = {
   jobUrl: '',
@@ -21,6 +22,7 @@ const jobTypeInfo = {
 }
 
 function DeleteJob({setViewState, job, closeModal}) {
+  const { user, setUser } = userState()
   const [jobData, setJobData] = useState(jobDetails)
   const [error, setError] = useState('')
 
@@ -50,7 +52,11 @@ function DeleteJob({setViewState, job, closeModal}) {
         const { job_id } = job
           setLoading(true)
           console.log('ddada')
-          await Queries.deleteJob(job_id)
+          const response = await Queries.deleteJob(job_id)
+      await setUser({
+        ...user,
+        currentUserJobs: user.currentUserJobs.filter(job => job.job_id !== response.job.job_id)
+      })
           setLoading(false)
           closeModal()
     console.log('delete job');
@@ -61,10 +67,15 @@ function DeleteJob({setViewState, job, closeModal}) {
   };
 
   return (
-    <>
+    <div className=''>
     <div className="flex justify-center items-center">
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Delete Job</h1>
     </div>
+            {loading ? (
+                <div className='flex justify-center items-center pt-[40px] pb-[40px]'>
+       <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
+                </div>
+              ) : (
       <form onSubmit={handleDelete}>
         <div className='flex flex-col items-center'>
           <h1
@@ -93,8 +104,8 @@ function DeleteJob({setViewState, job, closeModal}) {
                                       shadow-lg'          
         >No</button>
         </div>
-      </form>
-    </>
+      </form>)}
+    </div>
   )
 }
 
