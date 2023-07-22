@@ -23,7 +23,6 @@ const updateJob = async (user) => {
 }
 
 const deleteJob = async (id) => {
-  console.log('dlete')
   const response = await api.jobs.jobDelete(id)
   return response
 }

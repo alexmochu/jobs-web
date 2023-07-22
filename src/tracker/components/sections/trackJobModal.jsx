@@ -1,26 +1,42 @@
 import { useState } from 'react'
 import { countries } from './../../../countries'
 import { jobTypes } from './../../../jobTypes'
+import Queries from '../../../api/queries'
 
 const jobDetails = {
   jobUrl: '',
-  jobSummary: '',
+  jobDescription: '',
   jobTitle: '',
   jobCompany: '',
-  jobCountry: '',
+  jobLocation: '',
   jobType: '',
   applicationState: 'bookmarked',
-  jobOwner: ''
 }
 
 function TrackJobModal() {
   const [jobData, setJobData] = useState(jobDetails)
-  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted value:', jobData);
-    setJobData(jobDetails);
+  const [error, setError] = useState(jobDetails)
+
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { jobTitle, jobCompany } = jobData
+    if (jobTitle.trim() === '') {
+      setError({ ...error, jobTitle: 'Job title can\'t be blank' })
+    } else if (jobCompany.trim() === '') {
+      setError({ ...error, jobCompany: 'Job company can\'t be blank' })
+    } else {
+      // Handle form submission here
+      setLoading(true)
+      await Queries.createJob(jobData)
+      setLoading(false)
+
+      // Reset form
+      setJobData(jobDetails)
+      setError(jobDetails)
+    }    
   };
 
   const handleChange = (e) => {
@@ -79,9 +95,9 @@ function TrackJobModal() {
         <div className="grid grid-cols-4 gap-4">
         <select
           className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='jobCountry'
+          name='jobLocation'
           id='locations'
-          value={jobData.jobCountry}
+          value={jobData.jobLocation}
           onChange={handleChange}
         >
           {countries.map((item) => (
@@ -106,10 +122,10 @@ function TrackJobModal() {
         </div>
         <div>
           <textarea
-            name="jobSummary"
-            value={jobData.jobSummary}
+            name="jobDescription"
+            value={jobData.jobDescription}
             onChange={handleChange}
-            placeholder="Enter job summary"
+            placeholder="Enter job description"
             className={`mt-1 mb-4 h-48 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                             focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                             disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
