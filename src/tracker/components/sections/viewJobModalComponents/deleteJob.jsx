@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { countries } from '../../../../countries'
 import { jobTypes } from '../../../../jobTypes'
+import Queries from '../../../../api/queries'
 
 const jobDetails = {
-  jobUrl: 'www.job.com',
-  jobSummary: 'This is a job summary',
-  jobTitle: 'Software Engineer',
-  jobCompany: 'Job Company Ltd'
+  jobUrl: '',
+  jobSummary: '',
+  jobTitle: '',
+  jobCompany: ''
 }
 
 const jobInfo = {
@@ -19,9 +20,11 @@ const jobTypeInfo = {
     type: 'Remote'
 }
 
-function DeleteJob({setViewState, job}) {
+function DeleteJob({setViewState, job, closeModal}) {
   const [jobData, setJobData] = useState(jobDetails)
   const [error, setError] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +45,14 @@ function DeleteJob({setViewState, job}) {
 
     const onJobType = (e) => setJobType({ ...jobType, [e.target.name]: e.target.value })
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
+    e.preventDefault()
+        const { job_id } = job
+          setLoading(true)
+          console.log('ddada')
+          await Queries.deleteJob(job_id)
+          setLoading(false)
+          closeModal()
     console.log('delete job');
   };
 
