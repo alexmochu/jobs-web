@@ -9,7 +9,7 @@ const state = {
   // delete: true
 }
 
-function ViewJobModal({job}) {
+function ViewJobModal({job, closeModal}) {
   const [viewState, setViewState] = useState(state)
   const {view, edit} = viewState
 
@@ -25,7 +25,8 @@ function ViewJobModal({job}) {
           job={job}/> : 
         <DeleteJob 
           setViewState={setViewState}
-          job={job}/>}
+          job={job}
+          closeModal={closeModal}/>}
     </>
   )
 }
