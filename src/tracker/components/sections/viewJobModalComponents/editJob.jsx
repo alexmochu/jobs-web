@@ -1,49 +1,47 @@
+/* eslint-disable camelcase */
 import { useState } from 'react'
 import { countries } from '../../../../countries'
 import { jobTypes } from '../../../../jobTypes'
+import Queries from '../../../../api/queries'
 
 const jobDetails = {
-  jobUrl: 'www.job.com',
-  jobSummary: 'This is a job summary',
-  jobTitle: 'Software Engineer',
-  jobCompany: 'Job Company Ltd'
-}
-
-const jobInfo = {
-  title: 'Kenya',
-  country: 'Kenya',
-  type: 'Kenya',
-}
-
-const jobTypeInfo = {
-    type: 'Remote'
+  job_url: '',
+  job_description: '',
+  job_title: '',
+  job_company: '',
+  job_state: '',
+  job_type: '',
+  job_location: ''
 }
 
 function EditJob({setViewState, job}) {
-  const [jobData, setJobData] = useState(jobDetails)
-  const [error, setError] = useState('')
+  console.log('this is a job', job)
+  const [jobData, setJobData] = useState(job)
+  const [error, setError] = useState(jobDetails)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted value:', jobData);
-    setJobData(jobDetails);
-  };
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJobData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-    const [jobState, setJobState] = useState(jobInfo)
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    const { job_title, job_company } = jobData
+    if (job_title.trim() === '') {
+      setError({ ...error, job_title: 'Job title can\'t be blank' })
+    } else if (job_company.trim() === '') {
+      setError({ ...error, job_company: 'Job company can\'t be blank' })
+    } else {
+      // Handle form submission here
+      setLoading(true)
+      await Queries.updateJob(jobData)
+      setLoading(false)
 
-    const onChange = (e) => setJobState({ ...jobState, [e.target.name]: e.target.value })
-
-    const [jobType, setJobType] = useState(jobTypeInfo)
-
-    const onJobType = (e) => setJobType({ ...jobType, [e.target.name]: e.target.value })
-
-  const handleUpdate = (e) => {
-    console.log('update job')
+      // Reset form
+      setError(jobDetails)
+    }  
   };
 
   const handleExit = (e) => {
@@ -60,8 +58,8 @@ function EditJob({setViewState, job}) {
         <div className="grid grid-cols-4 gap-4 mb-4">
           <input
             type="text"
-            name="jobUrl"
-            value={job.job_url}
+            name="job_url"
+            value={jobData.job_url}
             onChange={handleChange}
             placeholder="Enter job posting url"
             className={`col-span-4 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -75,8 +73,8 @@ function EditJob({setViewState, job}) {
         </div>
         <div>
           <input
-            name="jobTitle"
-            value={job.job_title}
+            name="job_title"
+            value={jobData.job_title}
             onChange={handleChange}
             placeholder="Enter job title"
             className={`mt-1 mb-4 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -88,8 +86,8 @@ function EditJob({setViewState, job}) {
         </div>
         <div>
           <input
-            name="jobCompany"
-            value={job.job_company}
+            name="job_company"
+            value={jobData.job_company}
             onChange={handleChange}
             placeholder="Enter job company"
             className={`mt-1 mb-4 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -102,10 +100,10 @@ function EditJob({setViewState, job}) {
         <div className="grid grid-cols-4 gap-4">
         <select
           className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='country'
+          name='job_location'
           id='locations'
-          value={jobState.country}
-          onChange={onChange}
+          value={jobData.job_location}
+          onChange={handleChange}
         >
           {countries.map((item) => (
             <option key={item.country_code} value={item.en_short_name}>
@@ -115,10 +113,10 @@ function EditJob({setViewState, job}) {
         </select>
                 <select
           className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='type'
+          name='job_type'
           id='type'
-          value={jobType.type}
-          onChange={onJobType}
+          value={jobData.job_type}
+          onChange={handleChange}
         >
           {jobTypes.map((item) => (
             <option key={item.type} value={item.type}>
@@ -129,8 +127,8 @@ function EditJob({setViewState, job}) {
         </div>
         <div>
           <textarea
-            name="jobSummary"
-            value={job.job_description}
+            name="job_description"
+            value={jobData.job_description}
             onChange={handleChange}
             placeholder="Enter job summary"
             className={`mt-1 mb-4 h-48 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
