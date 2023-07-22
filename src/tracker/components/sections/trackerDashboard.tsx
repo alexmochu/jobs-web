@@ -155,7 +155,7 @@ export const TrackerDashboard = () => {
               </svg>
             </button>
             {/* Add your modal content here */}
-            <TrackJobModal />
+            <TrackJobModal closeJobModal={closeJobModal}/>
           </div>
         </div>
       )}
