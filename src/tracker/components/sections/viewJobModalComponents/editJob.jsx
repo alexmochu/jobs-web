@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { countries } from '../../../../countries'
 import { jobTypes } from '../../../../jobTypes'
 import Queries from '../../../../api/queries'
+import { userState } from '../../../../main'
 
 const jobDetails = {
   job_url: '',
@@ -15,7 +16,8 @@ const jobDetails = {
 }
 
 function EditJob({setViewState, job}) {
-  console.log('this is a job', job)
+  const { user, setUser } = userState()
+
   const [jobData, setJobData] = useState(job)
   const [error, setError] = useState(jobDetails)
 
@@ -36,7 +38,16 @@ function EditJob({setViewState, job}) {
     } else {
       // Handle form submission here
       setLoading(true)
-      await Queries.updateJob(jobData)
+      const response = await Queries.updateJob(jobData)
+      await setUser(prevState => ({
+      ...prevState,
+      currentUserJobs: prevState.currentUserJobs.map(job => {
+        if (job.job_id === response.job.job_id) {
+          return { ...job, ...response.job };
+        }
+        return job;
+      })
+    }))
       setLoading(false)
 
       // Reset form
@@ -50,10 +61,16 @@ function EditJob({setViewState, job}) {
 
 
   return (
-    <>
+    <div className='h-[500px]'>
     <div className="flex justify-center items-center">
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Edit Job</h1>
     </div>
+
+    {loading ? (
+                <div className='flex justify-center items-center pt-[200px]'>
+       <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
+                </div>
+              ) : (
       <form onSubmit={handleUpdate}>
         <div className="grid grid-cols-4 gap-4 mb-4">
           <input
@@ -153,8 +170,8 @@ function EditJob({setViewState, job}) {
                                       shadow-lg'          
         >Exit</button>
         </div>
-      </form>
-    </>
+      </form>)}
+    </div>
   )
 }
 
