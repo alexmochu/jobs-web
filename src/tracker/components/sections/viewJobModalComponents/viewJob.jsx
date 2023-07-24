@@ -124,7 +124,7 @@ function ViewJob({setViewState, job}) {
           value={jobType.type}
         >
           {JobTypeIcon} 
-          <span className="ml-1">{job.job_location}</span>
+          <span className="ml-1">{job.job_type}</span>
         </h1>
         </div>
         <div>
