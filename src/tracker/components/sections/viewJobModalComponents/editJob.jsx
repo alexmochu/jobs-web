@@ -10,12 +10,12 @@ const jobDetails = {
   job_description: '',
   job_title: '',
   job_company: '',
-  job_state: '',
+  application_state: '',
   job_type: '',
   job_location: ''
 }
 
-function EditJob({setViewState, job}) {
+function EditJob({setViewState, job, closeModal}) {
   const { user, setUser } = userState()
 
   const [jobData, setJobData] = useState(job)
@@ -49,6 +49,7 @@ function EditJob({setViewState, job}) {
       })
     }))
       setLoading(false)
+      closeModal()
 
       // Reset form
       setError(jobDetails)
@@ -122,6 +123,9 @@ function EditJob({setViewState, job}) {
           value={jobData.job_location}
           onChange={handleChange}
         >
+            <option value='' disabled selected>
+    Select a location
+  </option>
           {countries.map((item) => (
             <option key={item.country_code} value={item.en_short_name}>
               {item.en_short_name}
@@ -135,6 +139,9 @@ function EditJob({setViewState, job}) {
           value={jobData.job_type}
           onChange={handleChange}
         >
+            <option value='' disabled selected>
+    Select job type
+  </option>
           {jobTypes.map((item) => (
             <option key={item.type} value={item.type}>
               {item.type}

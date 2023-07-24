@@ -59,7 +59,6 @@ function DeleteJob({setViewState, job, closeModal}) {
       })
           setLoading(false)
           closeModal()
-    console.log('delete job');
   };
 
   const handleExit = (e) => {
