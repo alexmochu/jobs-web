@@ -22,7 +22,8 @@ function ViewJobModal({job, closeModal}) {
       edit ? 
         <EditJob 
           setViewState={setViewState}
-          job={job}/> : 
+          job={job}
+          closeModal={closeModal}/>: 
         <DeleteJob 
           setViewState={setViewState}
           job={job}
