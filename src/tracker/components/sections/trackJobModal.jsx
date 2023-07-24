@@ -11,10 +11,10 @@ const jobDetails = {
   jobCompany: '',
   jobLocation: '',
   jobType: '',
-  applicationState: 'bookmarked',
+  applicationState: '',
 }
 
-function TrackJobModal({closeJobModal}) {
+function TrackJobModal({closeJobModal, applicationState}) {
   const { user, setUser } = userState()
   const [jobData, setJobData] = useState(jobDetails)
 
@@ -32,7 +32,7 @@ function TrackJobModal({closeJobModal}) {
     } else {
       // Handle form submission here
       setLoading(true)
-      const response = await Queries.createJob(jobData)
+      const response = await Queries.createJob({...jobData, applicationState: applicationState})
       await setUser({
         ...user,
         currentUserJobs: [
@@ -114,6 +114,9 @@ function TrackJobModal({closeJobModal}) {
           value={jobData.jobLocation}
           onChange={handleChange}
         >
+  <option value='' disabled selected>
+    Select a location
+  </option>
           {countries.map((item) => (
             <option key={item.country_code} value={item.en_short_name}>
               {item.en_short_name}
@@ -127,6 +130,9 @@ function TrackJobModal({closeJobModal}) {
           value={jobData.jobType}
           onChange={handleChange}
         >
+  <option value='' disabled selected>
+    Select job type
+  </option>
           {jobTypes.map((item) => (
             <option key={item.type} value={item.type}>
               {item.type}
