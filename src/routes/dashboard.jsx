@@ -17,7 +17,7 @@ export default function Dashboard() {
         <div className='flex items-center justify-center'>
           <Link
             key={'jobs'}
-            to={'/dashboard/jobs'}
+            to={'/dashboard/job-tracker'}
             aria-current={'page'}
             className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'
           >
