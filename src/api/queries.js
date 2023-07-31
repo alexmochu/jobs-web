@@ -52,6 +52,11 @@ const forgotPassword = async (user) => {
   return response
 }
 
+const changePassword = async (passwords) => {
+  const response = await api.user.changePassword(passwords)
+  return response  
+}
+
 const Queries = {
   landingPage,
   signup,
@@ -61,7 +66,8 @@ const Queries = {
   createJob,
   updateJob,
   deleteJob,
-  forgotPassword
+  forgotPassword,
+  changePassword
 }
 
 export default Queries

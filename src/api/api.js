@@ -10,6 +10,7 @@ export default {
     signup: (user) => client.post('/api/register', { user }).then((res) => res.data.user),
     forgotPassword: (email) =>
       client.post('/api/reset-password', { email }).then((res) => res.data.user),
+    changePassword: (passwords) => client.put('/api/change-password', {passwords}).then((res) => res.data)
   },
   jobs: {
     jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data),
