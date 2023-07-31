@@ -47,14 +47,19 @@ const getCurrentUserJobs = async (username) => {
   return response
 }
 
-const forgotPassword = async (user) => {
-  const response = await api.user.forgotPassword(user)
+const forgotPassword = async (email) => {
+  const response = await api.user.forgotPassword(email)
   return response
 }
 
 const changePassword = async (passwords) => {
   const response = await api.user.changePassword(passwords)
   return response  
+}
+
+const sendForgotPasswordEmail = async (items) => {
+  const response = await api.email.sendForgotPasswordEmail(items)
+  return response
 }
 
 const Queries = {
@@ -67,7 +72,8 @@ const Queries = {
   updateJob,
   deleteJob,
   forgotPassword,
-  changePassword
+  changePassword,
+  sendForgotPasswordEmail
 }
 
 export default Queries
