@@ -1,18 +1,13 @@
 import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Resend } from 'resend';
-import ResetPassword from '../../src/emails/resetPassword'
 import Queries from '../api/queries'
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
 
-  const resend = new Resend('re_XiQt7tGr_Kje46obGnJJyZkDbYgMqgVzd');
-
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     if (email.trim() === '') {
       setError('Email cannot be empty')
     } else if (!isValidEmail(email)) {
@@ -20,15 +15,7 @@ export default function ForgotPassword() {
     } else {
       // Handle form submission here
       const res = await Queries.forgotPassword(email)
-      console.log('Succes:', res)
-      console.log('Email', email)
-      await resend.sendEmail({
-        from: 'garagekejani@gmail.com',
-        to: email,
-        subject: 'KG Jobs reset password',
-        react: <ResetPassword />,
-      });
-
+      await Queries.sendForgotPasswordEmail(res)
       // Reset form
       setEmail('')
       setError('')
