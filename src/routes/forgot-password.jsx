@@ -8,7 +8,7 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
 
-  const resend = new Resend(import.meta.env.RESEND);
+  const resend = new Resend('re_XiQt7tGr_Kje46obGnJJyZkDbYgMqgVzd');
 
   const handleSubmit = async (event) => {
     event.preventDefault()
