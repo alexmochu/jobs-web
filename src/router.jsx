@@ -26,6 +26,7 @@ import ContactUs from './routes/contactUs.jsx'
 import TermsConditions from './routes/termsConditions.jsx'
 // import Employers from './routes/employers'
 import ForgotPassword from './routes/forgot-password.jsx'
+import ForgotPasswordVerify from './routes/forgot-password-verify.jsx'
 import ProtectedRoute from './routes/protectedRoute'
 // import { navigation as Navs } from './constants'
 import Dashboard from './routes/dashboard.jsx'
@@ -187,6 +188,11 @@ const router = createBrowserRouter([
       {
         path: 'forgot-password',
         element: <ForgotPassword />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'forgot-password/:id',
+        element: <ForgotPasswordVerify />,
         errorElement: <ErrorPage />,
       },
     ],
