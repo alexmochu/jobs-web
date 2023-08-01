@@ -22,5 +22,7 @@ export default {
   email: {
     sendForgotPasswordEmail: (email) =>
       clientEmail.post('/api/resetpassword', { email }).then((res) => res.data),
+    resetForgotPassword: (info) =>
+      client.put(`/api/reset-password/${info.token}`, {info}).then((res) => res.data)
   }
 }
