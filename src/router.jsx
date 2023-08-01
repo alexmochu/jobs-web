@@ -35,6 +35,7 @@ import RootDashboard from './routes/dashboardRoot.jsx'
 import JobSearch from './routes/jobsSearch'
 import JobTracker from './routes/jobsTracker'
 import ChangePassword from './routes/changePassword'
+import ConfirmEmail from './routes/confrimEmail'
 
 const router = createBrowserRouter([
   {
@@ -193,6 +194,11 @@ const router = createBrowserRouter([
       {
         path: 'forgot-password/:id',
         element: <ForgotPasswordVerify />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'verify-email/:id',
+        element: <ConfirmEmail />,
         errorElement: <ErrorPage />,
       },
     ],

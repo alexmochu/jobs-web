@@ -12,6 +12,8 @@ export default {
     changePassword: (passwords) => client.put('/api/change-password', {passwords}).then((res) => res.data),
     forgotPassword: (email) =>
       client.post('/api/reset-password', { email }).then((res) => res.data),
+    verifyPassword: (info) =>
+      client.get(`/api/verify-password/${info.token}`, {info}).then((res) => res.data)
   },
   jobs: {
     jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data),
