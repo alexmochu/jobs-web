@@ -8,12 +8,10 @@ export default {
   user: {
     login: (credentials) => client.post('/api/login', { credentials }).then((res) => res.data),
     logout: () => client.post('/api/logout'),
-    signup: (user) => client.post('/api/register', { user }).then((res) => res.data.user),
+    signup: (user) => client.post('/api/register', { user }).then((res) => res.data),
     changePassword: (passwords) => client.put('/api/change-password', {passwords}).then((res) => res.data),
     forgotPassword: (email) =>
       client.post('/api/reset-password', { email }).then((res) => res.data),
-    verifyPassword: (info) =>
-      client.get(`/api/verify-password/${info.token}`, {info}).then((res) => res.data)
   },
   jobs: {
     jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data),
@@ -22,6 +20,12 @@ export default {
     jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data)
   },
   email: {
+    createVerifyEmail: (email) =>
+      client.post('/api/create-verify-email', {email}).then((res) => res.data),
+    sendVerifyEmail: (email) =>
+      clientEmail.post('/api/welcomeemail', { email }).then((res) => res.data),
+    verifyEmail: (info) =>
+      client.post(`/api/verify-email/${info.token}`, {info}).then((res) => res.data),
     sendForgotPasswordEmail: (email) =>
       clientEmail.post('/api/resetpassword', { email }).then((res) => res.data),
     resetForgotPassword: (info) =>
