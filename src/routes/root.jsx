@@ -40,11 +40,13 @@ export default function Root() {
   const terms = location.pathname === '/terms-conditions'
   const privacy = location.pathname === '/privacy-policy'
   const contact = location.pathname === '/contact-us'
+  const forgotPassword = location.pathname.startsWith('/forgot-password/');
+  const verifyEmail = location.pathname.startsWith('/verify-email/')
 
   return (
     <body className='bg-white dark:bg-gray-900'>
       <Toast />
-      {home | faqs | login | signup | forgot | terms | privacy | contact ? <AppHeader /> : null}
+      {home | faqs | login | signup | forgot | terms | privacy | contact | forgotPassword | verifyEmail ? <AppHeader /> : null}
       {loading ? (
         <Spinner />
       ) : error ? (
