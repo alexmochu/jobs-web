@@ -43,11 +43,21 @@ export default function SignUp() {
     } else {
       // Handle form submission here
       setLoading(true)
-      await Queries.signup(inputValue)
+      const res = await Queries.signup(inputValue)
+
+      const item = await Queries.createVerifyEmail(res.email)
+
+      await Queries.sendVerifyEmail({
+        token: item.token,
+        username: res.username,
+        email: res.email
+      })
+
       setLoading(false)
       // Reset form
       setInputValue({ email: '', username: '', password: '' })
       setError({ email: '', username: '', password: '' })
+            
       return navigate('/login')
     }
   }
