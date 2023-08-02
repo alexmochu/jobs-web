@@ -67,8 +67,18 @@ const resetForgotPassword = async (items) => {
   return response
 }
 
-const verifyPassword = async (items) => {
-  const response = await api.jobs.verifyPassword(items)
+const verifyEmail = async (items) => {
+  const response = await api.email.verifyEmail(items)
+  return response
+}
+
+const createVerifyEmail = async (email) => {
+  const response = await api.email.createVerifyEmail(email)
+  return response
+}
+
+const sendVerifyEmail = async (items) => {
+  const response = await api.email.sendVerifyEmail(items)
   return response
 }
 
@@ -85,7 +95,9 @@ const Queries = {
   changePassword,
   sendForgotPasswordEmail,
   resetForgotPassword,
-  verifyPassword
+  verifyEmail,
+  createVerifyEmail,
+  sendVerifyEmail
 }
 
 export default Queries
