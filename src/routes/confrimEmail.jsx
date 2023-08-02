@@ -1,6 +1,17 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
+import Queries from '../api/queries'
+import { useParams } from 'react-router-dom';
 
 export default function ConfirmEmail() {
+  const { id } = useParams();
+  const item = {
+    token: id
+  }
+  useEffect(() => {
+    Queries.verifyEmail(item)
+  }, [])
+
+
   return (
     <Fragment>
       <div className='relative' id='home'>
