@@ -3,7 +3,7 @@ import { userState } from '../main'
 
 export default function Profile() {
   const { user } = userState()
-  const username = user.username
+  const { username, email } = user
   return (
     <>
       <Fragment>
@@ -18,6 +18,10 @@ export default function Profile() {
                   <p className='mb-2'>Your username</p>
                   <h1 className='text-lg font-bold tracking-tight text-gray-900'>
                     @{username}
+                  </h1>
+                  <p className='mt-6 mb-2'>Your email</p>
+                  <h1 className='text-lg font-bold tracking-tight text-gray-900'>
+                    {email}
                   </h1>
                 </div>
               </main>
