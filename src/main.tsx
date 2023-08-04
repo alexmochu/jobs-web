@@ -10,6 +10,7 @@ import { RouterProvider } from 'react-router-dom'
 import router from './router.jsx'
 
 const initialState = {
+  id: '',
   username: '',
   isAuthenticated: false,
   showToast: false,
