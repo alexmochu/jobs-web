@@ -14,7 +14,7 @@ export default {
       client.post('/api/reset-password', { email }).then((res) => res.data),
   },
   jobs: {
-    jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data),
+    jobsUser: (id) => client.get(`/api/jobs/${id}`, { id }).then((res) => res.data),
     jobCreate: (job) => client.post(`/api/jobs`, { job }).then((res) => res.data),
     jobUpdate: (job) => client.put(`/api/job/${job.job_id}`, { job }).then((res) => res.data),
     jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data)

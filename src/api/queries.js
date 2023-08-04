@@ -42,8 +42,8 @@ const logout = async () => {
   return response
 }
 
-const getCurrentUserJobs = async (username) => {
-  const response = await api.jobs.jobsUser(username)
+const getCurrentUserJobs = async (id) => {
+  const response = await api.jobs.jobsUser(id)
   return response
 }
 
