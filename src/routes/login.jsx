@@ -36,6 +36,7 @@ export default function Login() {
       await setUser({
         ...user,
         username: decoded.username,
+        id: decoded.id,
         isAuthenticated: true,
         showToast: true,
         toastMessage: 'You have logged in successfully.',
