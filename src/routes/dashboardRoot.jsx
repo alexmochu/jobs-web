@@ -21,9 +21,12 @@ export default function Dashboard() {
     await Queries.logout()
     setLoading(false)
     await setUser({
-      ...user,
+      id: '',
       username: '',
+      email: '',
       isAuthenticated: false,
+      currentUserJobs: [],
+      resetToken: '',
       showToast: true,
       toastMessage: 'You have logged out successfully.',
     })
