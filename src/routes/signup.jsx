@@ -4,7 +4,7 @@ import Queries from '../api/queries'
 import { userState } from '../main'
 
 export default function SignUp() {
-  const { user } = userState()
+  const { user, setUser } = userState()
   const [loading, setLoading] = useState(false)
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -54,6 +54,11 @@ export default function SignUp() {
       })
 
       setLoading(false)
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'You have signed up for an account successfully.',
+      })
       // Reset form
       setInputValue({ email: '', username: '', password: '' })
       setError({ email: '', username: '', password: '' })
