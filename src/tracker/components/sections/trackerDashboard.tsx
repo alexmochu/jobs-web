@@ -30,10 +30,10 @@ export const TrackerDashboard = () => {
   };
 
   const { user, setUser } = userState()
-  const {username, currentUserJobs} = user
+  const {currentUserJobs, id} = user
 
   async function loader() {
-    const response = await Queries.getCurrentUserJobs(username)
+    const response = await Queries.getCurrentUserJobs(id)
     return response
   }
 
