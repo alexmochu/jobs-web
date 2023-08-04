@@ -35,6 +35,8 @@ function TrackJobModal({closeJobModal, applicationState}) {
       const response = await Queries.createJob({...jobData, applicationState: applicationState})
       await setUser({
         ...user,
+        showToast: true,
+        toastMessage: 'Your job has been added successfully.',
         currentUserJobs: [
           response.job,
           ...user.currentUserJobs]
