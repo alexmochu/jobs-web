@@ -12,6 +12,7 @@ import router from './router.jsx'
 const initialState = {
   id: '',
   username: '',
+  email: '',
   isAuthenticated: false,
   showToast: false,
   toastMessage: '',
