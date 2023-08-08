@@ -82,13 +82,13 @@ export default function Login() {
 
   return (
     <Fragment>
-      <div className='relative'>
-        <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
-          <div className='relative mt-60 ml-auto'>
+      <div className='relative dark:bg-gray-900 min-h-screen'>
+        <div className='max-w-7xl dark:bg-gray-900 mx-auto px-6 md:px-12 xl:px-6'>
+          <div className='relative dark:bg-gray-900 pt-60 ml-auto'>
             <div className='lg:w-2/3 text-center mx-auto'>
               <label className='block'>
-                <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>Login</h1>
-                <span className='block text-sm font-medium text-slate-700'>
+                <h1 className='text-4xl dark:text-white font-bold tracking-tight mb-2 text-gray-900'>Login</h1>
+                <span className='block dark:text-white text-sm font-medium text-slate-700'>
                   Dont have an account?{' '}
                   <Link className='text-indigo-500' to='/signup'>
                     Register
@@ -103,7 +103,7 @@ export default function Login() {
                 <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                   <form onSubmit={handleSubmit}>
                     <label className='block'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                         Username
                       </span>
                       <input
@@ -128,7 +128,7 @@ export default function Login() {
                       )}
                     </label>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                         Password
                       </span>
                       <input
@@ -163,7 +163,7 @@ export default function Login() {
                       </div>
                     </label>
                     <label className='block'>
-                      <span className='block text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-sm font-medium text-slate-700'>
                         Cant rememeber password?{' '}
                         <Link className='text-indigo-500' to='/forgot-password'>
                           Recover it.
