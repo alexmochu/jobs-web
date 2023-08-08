@@ -300,6 +300,7 @@ export const TrackerDashboard = () => {
     }
 
   return (
+    <div className='relative dark:bg-gray-900 min-h-screen'>
     <div className='grid grid-cols-6 gap-4 mt-10'>
       <div>
         <p className='text-xl mb-3'>Bookmarked</p>
@@ -589,7 +590,7 @@ export const TrackerDashboard = () => {
           </div>
         </div>
       )}
-
+</div>
     </div>
   )
 }
