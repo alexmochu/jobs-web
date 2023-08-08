@@ -77,12 +77,12 @@ export default function ChangePassword() {
 
   return (
     <Fragment>
-      <div className='relative'>
+      <div className='relative dark:bg-gray-900 min-h-screen'>
         <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
           <div className='relative mt-20 ml-auto'>
             <div className='lg:w-2/3 text-center mx-auto'>
               <label className='block'>
-                <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>Change Password</h1>
+                <h1 className='text-4xl dark:text-white font-bold tracking-tight mb-2 text-gray-900'>Change Password</h1>
               </label>
               {loading ? (
                 <div className='flex justify-center items-center mt-10'>
@@ -92,7 +92,7 @@ export default function ChangePassword() {
                 <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                   <form onSubmit={handleSubmit}>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                         Current Password
                       </span>
                       <input
@@ -117,7 +117,7 @@ export default function ChangePassword() {
                       )}
                     </label>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='dark:text-white block text-left text-sm font-medium text-slate-700'>
                         New Password
                       </span>
                       <input
@@ -142,7 +142,7 @@ export default function ChangePassword() {
                       )}
                     </label>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='dark:text-white block text-left text-sm font-medium text-slate-700'>
                         Confirm Password
                       </span>
                       <input
