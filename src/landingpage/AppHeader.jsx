@@ -57,7 +57,7 @@ const AppHeader = () => {
                     </li>
                   ) : null}
                   <li>
-                    <Link to='/FAQs' className='block md:px-4 transition hover:text-primary'>
+                    <Link to='/FAQs' className='block dark:text-white md:px-4 transition hover:text-primary'>
                       <span>FAQs</span>
                     </Link>
                   </li>

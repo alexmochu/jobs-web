@@ -6,16 +6,16 @@ const AppFooter = () => (
       <div className='m-auto md:w-10/12 lg:w-8/12 xl:w-6/12'>
         <div className='flex flex-wrap items-center justify-between md:flex-nowrap'>
           <div className='flex w-full justify-center space-x-12 text-gray-600 dark:text-gray-300 sm:w-7/12 md:justify-start'>
-            <ul className='list-inside list-disc space-y-8'>
+            <ul className='list-inside dark:text-white list-disc space-y-8'>
               <li>
-                <Link to='/' className='transition hover:text-primary'>
+                <Link to='/' className='transition dark:text-white hover:text-primary'>
                   Home
                 </Link>
               </li>
 
               {/* <li><Link to='/jobs' className="transition hover:text-primary">Jobs</Link></li> */}
               <li>
-                <Link to='/FAQs' className='transition hover:text-primary'>
+                <Link to='/FAQs' className='transition hover:text-primary dark:text-white'>
                   FAQs
                 </Link>
               </li>
@@ -26,7 +26,7 @@ const AppFooter = () => (
                 <a
                   href='https://github.com/Kejani-Garage'
                   target='_blank'
-                  className='flex items-center space-x-3 transition hover:text-primary'
+                  className='flex items-center dark:text-white space-x-3 transition hover:text-primary'
                   rel='noreferrer'
                 >
                   <svg
@@ -44,7 +44,7 @@ const AppFooter = () => (
                 <a
                   href='https://twitter.com/Kejanijobs'
                   target='_blank'
-                  className='flex items-center space-x-3 transition hover:text-primary'
+                  className='flex items-center dark:text-white space-x-3 transition hover:text-primary'
                   rel='noreferrer'
                 >
                   <svg
@@ -62,7 +62,7 @@ const AppFooter = () => (
                 <a
                   href='https://www.linkedin.com/company/kejani-garage/'
                   target='_blank'
-                  className='flex items-center space-x-3 transition hover:text-primary'
+                  className='flex items-center dark:text-white space-x-3 transition hover:text-primary'
                   rel='noreferrer'
                 >
                   <svg
@@ -86,7 +86,7 @@ const AppFooter = () => (
                 key={'terms'}
                 to={'/terms-conditions'}
                 aria-current={'page'}
-                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'
+                className='flex flex-shrink-0 items-center bg-white text-gray-800 dark:bg-gray-900 dark:text-white px-2'
               >
                 Terms of Use
               </Link>
@@ -94,7 +94,7 @@ const AppFooter = () => (
                 key={'policy'}
                 to={'/privacy-policy'}
                 aria-current={'page'}
-                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'
+                className='flex flex-shrink-0 items-center bg-white dark:bg-gray-900 text-gray-800 px-2 dark:text-white'
               >
                 Privacy Policy
               </Link>
@@ -105,7 +105,7 @@ const AppFooter = () => (
                 key={'contacts'}
                 to={'/contact-us'}
                 aria-current={'page'}
-                className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'
+                className='flex flex-shrink-0 items-center dark:bg-gray-900 dark:text-white bg-white text-gray-800 px-2'
               >
                 Contact Us
               </Link>
