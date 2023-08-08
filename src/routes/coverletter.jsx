@@ -21,10 +21,10 @@ export default function CoverLetter() {
     <div className='grid grid-cols-2 gap-4 mb-4'>
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
         <div className='paper inline mx-auto p-3'>
-          <h3 className='font-bold text-2xl pb-5'>Personal Information</h3>
+          <h3 className='font-bold text-2xl pb-5 dark:text-white'>Personal Information</h3>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Full Name</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Full Name</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='fullName'
@@ -34,7 +34,7 @@ export default function CoverLetter() {
               />
             </div>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Job Title</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Job Title</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='title'
@@ -46,7 +46,7 @@ export default function CoverLetter() {
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Address</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Address</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='address'
@@ -56,7 +56,7 @@ export default function CoverLetter() {
               />
             </div>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Email</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Email</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='email'
@@ -68,7 +68,7 @@ export default function CoverLetter() {
           </div>
           <div className='grid grid-cols-2 gap-4 mb-4'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Phone Number</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Phone Number</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='phoneNumber'
@@ -78,7 +78,7 @@ export default function CoverLetter() {
               />
             </div>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Social Media</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Social Media</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='onlineLink'
@@ -90,7 +90,7 @@ export default function CoverLetter() {
           </div>
           <div className='grid grid-cols-2 gap-4'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Website/Other Links</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Website/Other Links</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='otherLinks'
@@ -103,10 +103,10 @@ export default function CoverLetter() {
           </div>
         </div>
         <div className='paper inline mx-auto p-3'>
-          <h3 className='font-bold text-2xl pb-5'>Employer Details</h3>
+          <h3 className='dark:text-white font-bold text-2xl pb-5'>Employer Details</h3>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Company Name</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Company Name</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='company'
@@ -116,7 +116,7 @@ export default function CoverLetter() {
               />
             </div>
             <div>
-              <p className='font-bold text-lg text-gray-600'>Hiring Manager</p>
+              <p className='dark:text-white font-bold text-lg text-gray-600'>Hiring Manager</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='hiringManager'
@@ -128,9 +128,9 @@ export default function CoverLetter() {
           </div>
         </div>
         <div className='paper inline mx-auto p-3'>
-          <h3 className='font-bold text-2xl pb-5'>Letter Details</h3>
+          <h3 className='dark:text-white font-bold text-2xl pb-5'>Letter Details</h3>
           <div>
-            <p>3–4 paragraphs explaining why youre the perfect candidate for a specific job</p>
+            <p className='dark:text-white'>3–4 paragraphs explaining why youre the perfect candidate for a specific job</p>
             <textarea
               className='border-2 border-black rounded-lg w-full h-56 p-2'
               name='letterDetails'
