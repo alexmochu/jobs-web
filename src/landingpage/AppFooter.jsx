@@ -96,7 +96,7 @@ const AppFooter = () => (
                 aria-current={'page'}
                 className='flex flex-shrink-0 items-center bg-white text-gray-800 px-2'
               >
-                Terms of Use
+                Privacy Policy
               </Link>
             </span>
 
