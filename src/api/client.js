@@ -10,19 +10,20 @@ const getHeaderAccessToken = () => {
 
 var axiosInstance = axios.create({
   baseURL,
-  headers: {
-    'Content-Type': 'application/json',
-    'header-access-token': getHeaderAccessToken(),
-  },
 })
 
 // Interceptor to update the header access token before each request
 axiosInstance.interceptors.request.use(
   function (config) {
-    config.headers['header-access-token'] = getHeaderAccessToken()
-    return config
+    const token = getHeaderAccessToken();
+    if (token) {
+      config.headers['Content-Type'] = 'application/json';
+      config.headers['header-access-token'] = token;
+    }
+    return config;
   },
   function (error) {
+    console.log('error', error)
     return Promise.reject(error)
   },
 )

@@ -27,12 +27,25 @@ export default function Login() {
       setError({ ...error, password: 'Password can\'t be blank' })
     } else {
       // Handle form submission here
-      setLoading(true)
+    try {
+      setLoading(true);
       const user = JSON.parse(localStorage.getItem('store'))
-      await Queries.login(inputValue)
-      const token = localStorage.getItem('headerAccessToken')
-      const decoded = jwt_decode(token)
-      setLoading(false)
+      await Queries.login(inputValue);
+
+      // console.log('Response status:', res);
+      // const data = await res.json();
+      // console.log('Response data:', data);
+
+      // if (res.status === 401) {
+      //   setError({ ...error, username: 'Invalid credentials', password: 'Invalid credentials' });
+      //   setLoading(false);
+      //   return;
+      // }
+
+      const token = localStorage.getItem('headerAccessToken');
+      const decoded = jwt_decode(token);
+      setLoading(false);
+
       await setUser({
         ...user,
         username: decoded.username,
@@ -46,6 +59,14 @@ export default function Login() {
       setInputValue({ username: '', password: '' })
       setError({ username: '', password: '' })
       return navigate('/dashboard')
+    } catch (error) {
+      if (error.response.status === 401) {
+        setError({ ...error, username: 'Invalid credentials', password: 'Invalid credentials' });
+        setLoading(false);
+        return;
+      }
+      console.error('Error:', error);
+    }
     }
   }
 
