@@ -75,12 +75,12 @@ export default function SignUp() {
   return (
     <Fragment>
       <main>
-        <div className='relative' id='home'>
+        <div className='relative dark:bg-gray-900 min-h-screen' id='home'>
           <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
-            <div className='relative mt-60 ml-auto'>
+            <div className='relative pt-60 ml-auto'>
               <div className='lg:w-2/3 text-center mx-auto'>
                 <label className='block'>
-                  <h1 className='text-4xl font-bold tracking-tight text-gray-900'>Signup</h1>
+                  <h1 className='text-4xl dark:text-white font-bold tracking-tight text-gray-900'>Signup</h1>
                 </label>
                 {loading ? (
                   <div className='flex justify-center items-center mt-10'>
@@ -90,7 +90,7 @@ export default function SignUp() {
                   <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                     <form onSubmit={handleSubmit}>
                       <label className='block'>
-                        <span className='block text-left text-sm font-medium text-slate-700'>
+                        <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                           Email
                         </span>
                         <input
@@ -115,7 +115,7 @@ export default function SignUp() {
                         )}
                       </label>
                       <label className='block mt-2'>
-                        <span className='block text-left text-sm font-medium text-slate-700'>
+                        <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                           Username
                         </span>
                         <input
@@ -140,7 +140,7 @@ export default function SignUp() {
                         )}
                       </label>
                       <label className='block mt-2'>
-                        <span className='block text-left text-sm font-medium text-slate-700'>
+                        <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                           Password
                         </span>
                         <input
@@ -175,7 +175,7 @@ export default function SignUp() {
                             Signup
                           </button>
                         </div>
-                        <span className='block text-sm font-medium text-slate-700'>
+                        <span className='block dark:text-white text-sm font-medium text-slate-700'>
                           Already have an account?{' '}
                           <Link className='text-indigo-500' to='/login'>
                             Login
