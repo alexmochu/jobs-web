@@ -43,19 +43,19 @@ export default function ForgotPasswordVerify() {
 
   return (
     <Fragment>
-      <div className='relative' id='home'>
+      <div className='relative dark:bg-gray-900 min-h-screen' id='home'>
         <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
-          <div className='relative mt-60 ml-auto'>
+          <div className='relative pt-60 ml-auto'>
             <div className='lg:w-2/3 text-center mx-auto'>
               <label className='block'>
-                <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>
+                <h1 className='text-4xl dark:text-white font-bold tracking-tight mb-2 text-gray-900'>
                   Reset password
                 </h1>
               </label>
                 <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                   <form onSubmit={handleSubmit}>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                         New Password
                       </span>
                       <input
@@ -80,7 +80,7 @@ export default function ForgotPasswordVerify() {
                       )}
                     </label>
                     <label className='block mt-2'>
-                      <span className='block text-left text-sm font-medium text-slate-700'>
+                      <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                         Confirm Password
                       </span>
                       <input
