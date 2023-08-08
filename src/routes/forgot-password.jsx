@@ -45,12 +45,12 @@ export default function ForgotPassword() {
 
   return (
     <Fragment>
-      <div className='relative' id='home'>
+      <div className='relative dark:bg-gray-900 min-h-screen' id='home'>
         <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
-          <div className='relative mt-60 ml-auto'>
+          <div className='relative pt-60 ml-auto'>
             <div className='lg:w-2/3 text-center mx-auto'>
               <label className='block'>
-                <h1 className='text-4xl font-bold tracking-tight mb-2 text-gray-900'>
+                <h1 className='text-4xl font-bold tracking-tight mb-2 dark:text-white text-gray-900'>
                   Recover password
                 </h1>
               </label>
@@ -62,7 +62,7 @@ export default function ForgotPassword() {
               <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                 <form onSubmit={handleSubmit}>
                   <label className='block'>
-                    <span className='block text-left text-sm font-medium text-slate-700'>
+                    <span className='block dark:text-white text-left text-sm font-medium text-slate-700'>
                       Email
                     </span>
                     <input
@@ -99,7 +99,7 @@ export default function ForgotPassword() {
                     </div>
                   </label>
                   <label className='block'>
-                    <span className='block text-sm font-medium text-slate-700'>
+                    <span className='block dark:text-white text-sm font-medium text-slate-700'>
                       Rememeber password?{' '}
                       <Link className='text-indigo-500' to='/login'>
                         Login
