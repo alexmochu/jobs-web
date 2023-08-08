@@ -301,7 +301,7 @@ export const TrackerDashboard = () => {
 
   return (
     <div className='relative dark:bg-gray-900 min-h-screen'>
-    <div className='grid grid-cols-6 gap-4 mt-10'>
+    <div className='grid grid-cols-6 gap-4 mt-10 pt-3 pr-3 pl-3'>
       <div>
         <p className='text-xl mb-3 dark:text-white'>Bookmarked</p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('bookmarked')}>+ Add Job</button>
