@@ -4,6 +4,7 @@ import clientEmail from './clientEmail'
 export default {
   home: {
     landingPage: () => client.get('/api').then((res) => res.data),
+    helloEmail: () => clientEmail.get('/api/hello').then((res) => res.data),
   },
   user: {
     login: (credentials) => client.post('/api/login', { credentials }).then((res) => res.data),

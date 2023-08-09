@@ -7,6 +7,11 @@ const landingPage = async () => {
   return response
 }
 
+const helloEmail = async () => {
+  const response = await api.home.helloEmail()
+  return response
+}
+
 const signup = async (user) => {
   const response = await api.user.signup(user)
   return response
@@ -84,7 +89,7 @@ const sendVerifyEmail = async (items) => {
 
 const Queries = {
   landingPage,
-  signup,
+  helloEmail,
   login,
   logout,
   getCurrentUserJobs,
