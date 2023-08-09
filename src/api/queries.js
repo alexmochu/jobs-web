@@ -90,6 +90,7 @@ const sendVerifyEmail = async (items) => {
 const Queries = {
   landingPage,
   helloEmail,
+  signup,
   login,
   logout,
   getCurrentUserJobs,
