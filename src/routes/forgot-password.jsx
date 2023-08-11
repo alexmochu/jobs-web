@@ -18,8 +18,7 @@ export default function ForgotPassword() {
     } else {
       // Handle form submission here
       setLoading(true)
-      const res = await Queries.forgotPassword(email)
-      await Queries.sendForgotPasswordEmail(res)
+      await Queries.forgotPassword(email)
       setLoading(false)
       await setUser(prevState => ({
       ...prevState,

@@ -10,11 +10,6 @@ export async function loader() {
   return response
 }
 
-export async function helloEmail() {
-  const response = await Queries.helloEmail()
-  return response
-}
-
 export default function Root() {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
@@ -24,9 +19,7 @@ export default function Root() {
     const fetchData = async () => {
       try {
         const response = await loader()
-        const res = await helloEmail()
         setData(response)
-        console.log(res)
         console.log(response)
       } catch (error) {
         setError(error)
