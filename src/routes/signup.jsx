@@ -37,18 +37,18 @@ export default function SignUp() {
     } else {
       // Handle form submission here
       setLoading(true)
-      // const res = await Queries.signup(inputValue)
+      const res = await Queries.signup(inputValue)
 
-      // const item = await Queries.createVerifyEmail(res.email)
+      await Queries.createVerifyEmail(res.email)
 
-      await Queries.sendVerifyEmail({
-        // token: item.token,
-        // username: res.username,
-        // email: res.email
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vY2h1YWxleDRAZ21haWwuY29tIn0.81fqbe0WDSl80dNUPgwmk6YcMijUxVD7Cb1_eih46R0",
-        username: 'mochualex4',
-        email: 'mochualex4@gmail.com'
-      })
+      // await Queries.sendVerifyEmail({
+      //   // token: item.token,
+      //   // username: res.username,
+      //   // email: res.email
+      //   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vY2h1YWxleDRAZ21haWwuY29tIn0.81fqbe0WDSl80dNUPgwmk6YcMijUxVD7Cb1_eih46R0",
+      //   username: 'mochualex4',
+      //   email: 'mochualex4@gmail.com'
+      // })
 
       setLoading(false)
       await setUser({
