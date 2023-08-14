@@ -271,6 +271,8 @@ export default function Dashboard() {
               </svg>
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Profile</span> : null}
             </Link>
+            {user.role === 'admin' &&
+            <>
             <Link
               key={'users'}
               to={'/dashboard/users'}
@@ -317,7 +319,7 @@ export default function Dashboard() {
               <circle cx="16" cy="16" r="3" />
             </svg>
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>All Jobs</span> : null}
-            </Link>
+            </Link></>}
             <Link
               key={'settings'}
               to={'/dashboard/settings'}
