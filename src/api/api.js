@@ -13,12 +13,14 @@ export default {
     changePassword: (passwords) => client.put('/api/change-password', {passwords}).then((res) => res.data),
     forgotPassword: (email) =>
       client.post('/api/reset-password', { email }).then((res) => res.data),
+    allUsers: () => client.get('/admin/users').then((res) => res.data)
   },
   jobs: {
     jobsUser: (id) => client.get(`/api/jobs/${id}`, { id }).then((res) => res.data),
     jobCreate: (job) => client.post(`/api/jobs`, { job }).then((res) => res.data),
     jobUpdate: (job) => client.put(`/api/job/${job.job_id}`, { job }).then((res) => res.data),
-    jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data)
+    jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data),
+    allJobs: () => client.get('/admin/jobs').then((res) => res.data)
   },
   email: {
     createVerifyEmail: (email) =>

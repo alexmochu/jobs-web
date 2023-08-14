@@ -7,6 +7,16 @@ const landingPage = async () => {
   return response
 }
 
+const getAllUsers = async () => {
+  const response = await api.user.allUsers()
+  return response
+}
+
+const getAllJobs = async () => {
+  const response = await api.jobs.allJobs()
+  return response
+}
+
 const helloEmail = async () => {
   const response = await api.home.helloEmail()
   return response
@@ -103,7 +113,9 @@ const Queries = {
   resetForgotPassword,
   verifyEmail,
   createVerifyEmail,
-  sendVerifyEmail
+  sendVerifyEmail,
+  getAllJobs,
+  getAllUsers
 }
 
 export default Queries
