@@ -28,6 +28,7 @@ export default function Dashboard() {
       currentUserJobs: [],
       resetToken: '',
       showToast: true,
+      role: '',
       toastMessage: 'You have logged out successfully.',
     })
     return navigate('/login')

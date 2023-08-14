@@ -54,6 +54,7 @@ export default function Login() {
         isAuthenticated: true,
         showToast: true,
         toastMessage: 'You have logged in successfully.',
+        role: decoded.role
       })
       // Reset form
       setInputValue({ username: '', password: '' })
