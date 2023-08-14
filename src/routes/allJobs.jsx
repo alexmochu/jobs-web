@@ -24,7 +24,6 @@ export default function AllJobs() {
     const fetchData = async () => {
       try {
         const response = await loader()
-        console.log('respo', response)
         setUser((prevState) => ({ ...prevState, allJobs: response.jobs  }));
         console.log(response)
       } catch (error) {

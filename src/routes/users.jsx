@@ -18,7 +18,6 @@ export default function Users() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    console.log('state', user)
     const storeState = localStorage.getItem('store')
       if (storeState) {
         setUser(JSON.parse(storeState))
@@ -26,8 +25,7 @@ export default function Users() {
     const fetchData = async () => {
       try {
         const response = await loader()
-        console.log('res', response)
-        setUser((prevState) => ({ ...prevState, users: response.users  }));
+        ((prevState) => ({ ...prevState, users: response.users  }));
         console.log(response)
       } catch (error) {
         setError(error)
@@ -35,7 +33,6 @@ export default function Users() {
         setLoading(false)
       }
     }
-console.log('state 2', user)
     setTimeout(() => {
       fetchData()
     }, 2000);
