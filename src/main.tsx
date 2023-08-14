@@ -18,7 +18,9 @@ const initialState = {
   toastMessage: '',
   currentUserJobs: [],
   resetToken: '',
-  role: ''
+  role: '',
+  allJobs: [],
+  users: []
 }
 
 const CurrentUserState = createContext(initialState)
