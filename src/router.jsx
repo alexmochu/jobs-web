@@ -13,6 +13,8 @@ import ErrorPage from './error-page'
 import App from './routes/App'
 // import Index from './routes/index.jsx'
 import Settings from './routes/settings.jsx'
+import AllJobs from './routes/allJobs'
+import Users from './routes/users'
 import Profile from './routes/profile.jsx'
 import QA from './routes/qa.jsx'
 import CoverLetter from './routes/coverletter.jsx'
@@ -164,6 +166,24 @@ const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Resume />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'all-jobs',
+            element: (
+              <ProtectedRoute>
+                <AllJobs />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'users',
+            element: (
+              <ProtectedRoute>
+                <Users />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
