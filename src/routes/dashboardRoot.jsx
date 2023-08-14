@@ -8,7 +8,7 @@ import Spinner from '../components/spinner'
 export default function Dashboard() {
   const [loading, setLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const { resume, qa } = featureFlag
+  const { resume, qa, letter } = featureFlag
 
   const { user, setUser } = userState()
 
@@ -184,6 +184,7 @@ export default function Dashboard() {
               </svg>
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Jobs</span> : null}
             </Link>
+            {letter &&
             <Link
               key={'cover'}
               to={'/dashboard/cover-letter'}
@@ -204,7 +205,7 @@ export default function Dashboard() {
                 <path d='M19 4h-2V2H7v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM7 10h10M7 14h4M12 2v4'></path>
               </svg>
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Cover Letter</span> : null}
-            </Link>
+            </Link>}
             {resume ? (
               <Link
                 key={'resume-builder'}

@@ -73,8 +73,10 @@ export default function Dashboard() {
             aria-current={'page'}
             className='flex dark:bg-gray-900 flex-shrink-0 items-center bg-white text-gray-800 px-2'
           >
-            <button className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'>
-              View
+            <button
+            disabled
+             className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'>
+              Coming soon
             </button>
           </Link>
         </div>

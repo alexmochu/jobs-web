@@ -4,5 +4,6 @@ export const featureFlag = {
     resume: false,
     qa: false,
     publicJobs: false,
-    search: false
+    search: false,
+    letter: false
 }
