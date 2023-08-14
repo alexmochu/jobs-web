@@ -29,6 +29,8 @@ export default function Dashboard() {
       resetToken: '',
       showToast: true,
       role: '',
+      allJobs: [],
+      users: [],
       toastMessage: 'You have logged out successfully.',
     })
     return navigate('/login')
@@ -268,6 +270,53 @@ export default function Dashboard() {
                 <path d='M12 14c-4.97 0-9 4.03-9 9h18c0-4.97-4.03-9-9-9z'></path>
               </svg>
               {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Profile</span> : null}
+            </Link>
+            <Link
+              key={'users'}
+              to={'/dashboard/users'}
+              aria-current={'page'}
+              className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="8" cy="6" r="3" />
+              <circle cx="16" cy="6" r="3" />
+              <path d="M8 9v6M16 9v6M12 21v-2" />
+            </svg>
+              {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Users</span> : null}
+            </Link>
+            <Link
+              key={'all-jobs'}
+              to={'/dashboard/all-jobs'}
+              aria-current={'page'}
+              className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              class="w-6 h-6"
+            >
+              <circle cx="8" cy="8" r="3" />
+              <circle cx="16" cy="8" r="3" />
+              <circle cx="12" cy="16" r="3" />
+              <circle cx="8" cy="16" r="3" />
+              <circle cx="16" cy="16" r="3" />
+            </svg>
+              {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>All Jobs</span> : null}
             </Link>
             <Link
               key={'settings'}
