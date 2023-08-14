@@ -25,7 +25,7 @@ export default function Users() {
     const fetchData = async () => {
       try {
         const response = await loader()
-        ((prevState) => ({ ...prevState, users: response.users  }));
+        setUser((prevState) => ({ ...prevState, users: response.users  }));
         console.log(response)
       } catch (error) {
         setError(error)
