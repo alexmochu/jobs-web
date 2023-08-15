@@ -1,11 +1,15 @@
 import { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
 import Queries from '../api/queries'
+import { useParams, useNavigate, Link, Navigate } from 'react-router-dom'
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode'
 import { userState } from '../main'
 
 export default function ForgotPasswordVerify() {
-    const { user } = userState()
-    const { resetToken } = user
+  const { id } = useParams();
+
+  const [loading, setLoading] = useState(false)
+
   const [inputValue, setInputValue] = useState({
     newPassword: '',
     confirmPassword: ''
@@ -15,7 +19,10 @@ export default function ForgotPasswordVerify() {
     confirmPassword: ''
   })
 
+  const { setUser } = userState()
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
+    const decoded = jwt_decode(id);
     event.preventDefault()
     const {newPassword, confirmPassword} = inputValue
     if (newPassword.trim() === '') {
@@ -29,10 +36,19 @@ export default function ForgotPasswordVerify() {
        })
     } else {
       // Handle form submission here
-      await Queries.resetForgotPassword({token:resetToken, ...inputValue })
+      setLoading(true);
+      // eslint-disable-next-line camelcase
+      await Queries.resetForgotPassword({token:id, id: decoded.reset_password,  password: newPassword, confirm_password: confirmPassword})
+      setLoading(false)
+      await setUser(prevState => ({
+      ...prevState,
+      showToast: true,
+      toastMessage: 'Your password has been reset succesfully. Please login'
+      })) 
       // Reset form
-      setInputValue({ currentPassword: '', newPassword: '' })
-      setError({ currentPassword: '', newPassword: '' })
+      setInputValue({ confirmPassword: '', newPassword: '' })
+      setError({ confirmPassword: '', newPassword: '' })
+      return navigate('/login')
     }
   }
 
@@ -52,6 +68,11 @@ export default function ForgotPasswordVerify() {
                   Reset password
                 </h1>
               </label>
+              {loading ? (
+                <div className='flex justify-center items-center mt-10'>
+                  <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
+                </div>
+              ) : (
                 <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                   <form onSubmit={handleSubmit}>
                     <label className='block mt-2'>
@@ -115,7 +136,7 @@ export default function ForgotPasswordVerify() {
                       </div>
                     </label>
                   </form>
-                </div>
+                </div>)}
             </div>
           </div>
         </div>
