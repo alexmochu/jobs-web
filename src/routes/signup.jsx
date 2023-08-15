@@ -36,8 +36,9 @@ export default function SignUp() {
       setError({ ...error, password: 'Password can\'t be blank' })
     } else {
       // Handle form submission here
+      try {
       setLoading(true)
-      const res = await Queries.signup(inputValue)
+      const res = await Queries.signup({email: email.toLowerCase(), username: username.toLowerCase(), password: password})
 
       await Queries.createVerifyEmail(res.email)
 
@@ -61,6 +62,18 @@ export default function SignUp() {
       setError({ email: '', username: '', password: '' })
             
       return navigate('/login')
+    } catch(error){
+      if (error.response.status === 400) {
+        if(error.response.data['error'] === 'Username already exists'){
+          setError({ ...error, username: 'Username already exists' });
+        } else if (error.response.data['error'] === 'Email already exists'){
+          setError({ ...error, email: 'Email already exists' });
+        }
+        setLoading(false);
+        return;
+      }
+      console.error('Error:', error);
+    }
     }
   }
 
