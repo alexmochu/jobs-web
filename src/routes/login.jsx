@@ -30,7 +30,7 @@ export default function Login() {
     try {
       setLoading(true);
       const user = JSON.parse(localStorage.getItem('store'))
-      await Queries.login(inputValue);
+      await Queries.login({username: username.toLowerCase(), password:password});
 
       // console.log('Response status:', res);
       // const data = await res.json();
