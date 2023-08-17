@@ -340,12 +340,12 @@ export const TrackerDashboard = () => {
     <div className='relative dark:bg-gray-900 min-h-screen'>
     <div className='grid grid-cols-6 gap-4 mt-10 pt-3 pr-3 pl-3'>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Bookmarked <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{bookmarkedJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>Bookmarked <span className='border pl-1 pr-1 border-red-500 text-black text-lg rounded-full'>{bookmarkedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('bookmarked')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'bookmarked').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-red-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
@@ -383,12 +383,12 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Applied <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{appliedJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>Applied <span className='border pl-1 pr-1 border-blue-500 text-black text-lg rounded-full'>{appliedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('applied')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'applied').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-blue-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
@@ -426,12 +426,12 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>First Calls <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{callsJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>First Calls <span className='border pl-1 pr-1 border-yellow-500 text-black text-lg rounded-full'>{callsJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('calls')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'calls').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-yellow-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
@@ -469,12 +469,12 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Final Interview <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{interviewJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>Final Interview <span className='border pl-1 pr-1 border-green-500 text-black text-lg rounded-full'>{interviewJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('interview')}>+ Add Job</button>
               <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'interview').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-green-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
@@ -512,12 +512,12 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Offer <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{offerJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>Offer <span className='border pl-1 pr-1 border-purple-500 text-black text-lg rounded-full'>{offerJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('offer')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'offer').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-purple-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
@@ -555,12 +555,12 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Rejected <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{rejectedJobCount}</span></p>
+        <p className='text-xl mb-3 dark:text-white'>Rejected <span className='border pl-1 pr-1 border-pink-500 text-black text-lg rounded-full'>{rejectedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('rejected')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
           filterJobsByState(currentUserJobs, 'rejected').map((item, index) => (
-          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-gray-50 h-30'>
+          <div key={item.id} className='rounded-2xl p-5 my-3 border bg-red-100 h-30'>
             <h2 className='text-xl font-bold mb-2'>{item.job_company}</h2>
             <p className='mb-4 text-gray-500 text-lg'>{item.job_title}</p>
             <div className='grid grid-cols-2 gap-4 mb-2'>
