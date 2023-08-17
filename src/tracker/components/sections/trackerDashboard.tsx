@@ -299,11 +299,48 @@ export const TrackerDashboard = () => {
       // Reset form
     }
 
+  function getBookmarkedJobCount(jobs) {
+  return filterJobsByState(jobs, 'bookmarked').length;
+  }
+
+  function getAppliedJobCount(jobs) {
+  return filterJobsByState(jobs, 'applied').length;
+  }
+
+  function getCallsJobCount(jobs) {
+  return filterJobsByState(jobs, 'calls').length;
+  }
+
+  function getInterviewJobCount(jobs) {
+  return filterJobsByState(jobs, 'interview').length;
+  }
+
+  function getOfferJobCount(jobs) {
+  return filterJobsByState(jobs, 'offer').length;
+  }
+
+  function getRejectedJobCount(jobs) {
+  return filterJobsByState(jobs, 'rejected').length;
+  }
+
+  // In your component
+  const bookmarkedJobCount = getBookmarkedJobCount(currentUserJobs);
+
+  const appliedJobCount = getAppliedJobCount(currentUserJobs);
+
+  const callsJobCount = getCallsJobCount(currentUserJobs);
+
+  const interviewJobCount = getInterviewJobCount(currentUserJobs);
+
+  const offerJobCount = getOfferJobCount(currentUserJobs);
+
+  const rejectedJobCount = getRejectedJobCount(currentUserJobs);
+
   return (
     <div className='relative dark:bg-gray-900 min-h-screen'>
     <div className='grid grid-cols-6 gap-4 mt-10 pt-3 pr-3 pl-3'>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Bookmarked</p>
+        <p className='text-xl mb-3 dark:text-white'>Bookmarked <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{bookmarkedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('bookmarked')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -346,7 +383,7 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Applied</p>
+        <p className='text-xl mb-3 dark:text-white'>Applied <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{appliedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('applied')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -389,7 +426,7 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>First Calls</p>
+        <p className='text-xl mb-3 dark:text-white'>First Calls <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{callsJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('calls')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -432,7 +469,7 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Final Interview</p>
+        <p className='text-xl mb-3 dark:text-white'>Final Interview <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{interviewJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('interview')}>+ Add Job</button>
               <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -475,7 +512,7 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Offer</p>
+        <p className='text-xl mb-3 dark:text-white'>Offer <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{offerJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('offer')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -518,7 +555,7 @@ export const TrackerDashboard = () => {
         </div>
       </div>
       <div>
-        <p className='text-xl mb-3 dark:text-white'>Rejected</p>
+        <p className='text-xl mb-3 dark:text-white'>Rejected <span className='border pl-1 pr-1 border-indigo-500 text-black text-lg rounded-full'>{rejectedJobCount}</span></p>
         <button className='bg-gray-300 w-full py-2 text-lg' onClick={() => openJobModal('rejected')}>+ Add Job</button>
         <div className='w-full'>
           {currentUserJobs.length > 0 ? (
