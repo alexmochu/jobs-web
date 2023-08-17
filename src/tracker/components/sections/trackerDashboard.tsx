@@ -498,7 +498,7 @@ export const TrackerDashboard = () => {
                 </div>
               ) : (
                     <ul className="pl-2 pr-2">
-                      <li className="hover:bg-white hover:text-gray-700 w-28 text-left h-8 border-b-2 mb-2" onClick={(e) => handleUpdate(e, item, 'bookmark')}>Bookmark</li>
+                      <li className="hover:bg-white hover:text-gray-700 w-28 text-left h-8 border-b-2 mb-2" onClick={(e) => handleUpdate(e, item, 'bookmarked')}>Bookmark</li>
                       <li className="hover:bg-white hover:text-gray-700 w-28 text-left h-8 border-b-2 mb-2" onClick={(e) => handleUpdate(e, item, 'applied')}>Applied</li>
                       <li className="hover:bg-white hover:text-gray-700 w-28 text-left h-8 border-b-2 mb-2" onClick={(e) => handleUpdate(e, item, 'calls')}>First Callls</li>
                       <li className="hover:bg-white hover:text-gray-700 w-28 text-left h-8 border-b-2 mb-2" onClick={(e) => handleUpdate(e, item, 'offer')}>Offer</li>
