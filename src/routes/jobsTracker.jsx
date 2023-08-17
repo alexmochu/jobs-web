@@ -1,6 +1,7 @@
 import Tracker from '../tracker/tracker'
 import { Link } from 'react-router-dom'
 import { featureFlag } from '../../config'
+import { Tooltip } from 'react-tooltip'
 
 export default function JobTracker() {
   const { search } = featureFlag
@@ -25,23 +26,26 @@ export default function JobTracker() {
               Jobs Application Tracker
             </button>
           </li>
-         {search &&
+         {/* {search && */}
           <li className='mr-2' role='presentation'>
-        <Link className='text-indigo-500' 
+        {/* <Link className='text-indigo-500' 
             key={'jobs-search'}
             to={'/dashboard/job-search'}
-            aria-current={'page'}>
+            aria-current={'page'}> */}
             <button
-              className='inline-block p-4 border-b-2 rounded-t-lg text-2xl'
+              className='inline-block p-4 border-b-2 rounded-t-lg text-2xl text-indigo-500'
               id='profile-tab'
-              data-tabs-target='#profile'
               type='button'
+              data-tooltip-id="my-tooltip" 
+              data-tooltip-content="AI Solution coming soon!"
+              data-tooltip-delay-hide={1000}
               aria-controls='profile'
             >
               Jobs Search
             </button>
-        </Link>
-          </li>}
+        {/* </Link> */}
+          </li>
+          {/* } */}
         </ul>
       </div>
       <div id='myTabContent'>
@@ -53,6 +57,7 @@ export default function JobTracker() {
           <Tracker />
         </div>
       </div>
+      <Tooltip id="my-tooltip" />
     </div>
   )
 }
