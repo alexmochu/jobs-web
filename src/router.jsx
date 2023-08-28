@@ -17,8 +17,10 @@ import AllJobs from './routes/allJobs'
 import Users from './routes/users'
 import Profile from './routes/profile.jsx'
 import QA from './routes/qa.jsx'
-import CoverLetter from './routes/coverletter.jsx'
-import Resume from './routes/resume.jsx'
+import CoverLetters from './routes/coverletter.jsx'
+import CoverLetterBuilder from './routes/coverletterbuilder.jsx'
+import ResumeBuilder from './routes/resumeBuilder.jsx'
+import Resumes from './routes/resumes.jsx'
 import Login from './routes/login.jsx'
 import SignUp from './routes/signup.jsx'
 // import Pricing from './routes/pricing'
@@ -153,19 +155,37 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: 'cover-letter',
+            path: 'cover-letters',
             element: (
               <ProtectedRoute>
-                <CoverLetter />{' '}
+                <CoverLetters />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
           },
           {
-            path: 'resume',
+            path: 'cover-letter-builder',
             element: (
               <ProtectedRoute>
-                <Resume />{' '}
+                <CoverLetterBuilder />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'resume-builder',
+            element: (
+              <ProtectedRoute>
+                <ResumeBuilder />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'resumes',
+            element: (
+              <ProtectedRoute>
+                <Resumes />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
