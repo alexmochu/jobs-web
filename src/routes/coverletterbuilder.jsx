@@ -20,9 +20,8 @@ export default function CoverLetter() {
   return (
     <div className='grid grid-cols-2 gap-4 mb-4'>
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
-        <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Personal Information</h3>
+            <h2 className="font-bold text-4xl py-5 dark:text-white">Google cover letter</h2>
             <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
               <span>Copy</span>
               <span>
@@ -48,6 +47,10 @@ export default function CoverLetter() {
                 </svg>
               </span>
             </div>
+          </div>
+        <div className='paper inline mx-auto p-3'>
+          <div className="flex justify-between items-center">
+            <h3 className="font-bold text-2xl pb-5 dark:text-white">Personal Information</h3>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
