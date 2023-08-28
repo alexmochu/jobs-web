@@ -190,7 +190,7 @@ export default function Dashboard() {
             {letter &&
             <Link
               key={'cover'}
-              to={'/dashboard/cover-letter'}
+              to={'/dashboard/cover-letters'}
               aria-current={'page'}
               className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
             >
@@ -207,12 +207,12 @@ export default function Dashboard() {
               >
                 <path d='M19 4h-2V2H7v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM7 10h10M7 14h4M12 2v4'></path>
               </svg>
-              {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Cover Letter</span> : null}
+              {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Cover Letters</span> : null}
             </Link>}
             {resume ? (
               <Link
                 key={'resume-builder'}
-                to={'/dashboard/resume'}
+                to={'/dashboard/resumes'}
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
               >
@@ -226,7 +226,7 @@ export default function Dashboard() {
                   <path d='M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z'></path>
                   <path d='M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z'></path>
                 </svg>
-                <span className='flex-1 ml-3 whitespace-nowrap'>Resume Builder</span>
+                {!isOpen ? <span className='flex-1 ml-3 whitespace-nowrap'>Resumes/CVs</span> : null}
               </Link>
             ) : null}
             {qa ? (
