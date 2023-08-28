@@ -108,31 +108,6 @@ export default function ResumeBuilder() {
         <><div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl pb-5 dark:text-white">Personal Information</h3>
-            <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
-              <span>Copy</span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 3h6a2 2 0 012 2v12a2 2 0 01-2 2h-6a2 2 0 01-2-2V5a2 2 0 012-2z"
-                  />
-                </svg>
-              </span>
-            </div>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -234,31 +209,6 @@ export default function ResumeBuilder() {
       <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl pb-5 dark:text-white">Work Experience</h3>
-            <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
-              <span>Copy</span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 3h6a2 2 0 012 2v12a2 2 0 01-2 2h-6a2 2 0 01-2-2V5a2 2 0 012-2z"
-                  />
-                </svg>
-              </span>
-            </div>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -332,31 +282,6 @@ export default function ResumeBuilder() {
           <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl pb-5 dark:text-white">Education Background</h3>
-            <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
-              <span>Copy</span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 3h6a2 2 0 012 2v12a2 2 0 01-2 2h-6a2 2 0 01-2-2V5a2 2 0 012-2z"
-                  />
-                </svg>
-              </span>
-            </div>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -425,31 +350,6 @@ export default function ResumeBuilder() {
         <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl pb-5 dark:text-white">Websites & Social Links</h3>
-            <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
-              <span>Copy</span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 3h6a2 2 0 012 2v12a2 2 0 01-2 2h-6a2 2 0 01-2-2V5a2 2 0 012-2z"
-                  />
-                </svg>
-              </span>
-            </div>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -479,6 +379,33 @@ export default function ResumeBuilder() {
         <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl pb-5 dark:text-white">Skills</h3>
+          </div>
+          <div>
+            <p className='font-bold text-lg text-gray-600'>Skill</p>
+            <input
+              className='border-2 border-black rounded-lg p-2 w-full'
+              name='skillsInfo'
+              value={skillValue}
+              onKeyDown={handleKeyPress}
+              onChange={handleSkillChange}
+              placeholder='skill'
+            />
+          </div>
+        </div>
+
+  const stepComponents = [
+    personal,
+    experience,
+    education,
+    websites,
+    skills
+  ];
+        
+  return (
+    <div className='grid grid-cols-2 gap-4 mb-4'>
+      <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold text-4xl py-5 dark:text-white">Google Resume</h2>
             <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
               <span>Copy</span>
               <span>
@@ -505,30 +432,6 @@ export default function ResumeBuilder() {
               </span>
             </div>
           </div>
-          <div>
-            <p className='font-bold text-lg text-gray-600'>Skill</p>
-            <input
-              className='border-2 border-black rounded-lg p-2 w-full'
-              name='skillsInfo'
-              value={skillValue}
-              onKeyDown={handleKeyPress}
-              onChange={handleSkillChange}
-              placeholder='skill'
-            />
-          </div>
-        </div>
-
-  const stepComponents = [
-    personal,
-    experience,
-    education,
-    websites,
-    skills
-  ];
-        
-  return (
-    <div className='grid grid-cols-2 gap-4 mb-4'>
-      <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
         {stepComponents[currentStep - 1]}
         <div className="flex justify-between pb-6">
             <div className="flex justify-start">
