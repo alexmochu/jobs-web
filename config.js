@@ -1,9 +1,9 @@
 // Feature Flags
 export const featureFlag = {
     pricing: false,
-    resume: false,
+    resume: true,
     qa: false,
     publicJobs: false,
     search: false,
-    letter: false
+    letter: true
 }
