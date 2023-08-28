@@ -39,7 +39,6 @@ export default function Users() {
 
     // fetchData()
   }, [])
-
   return (
     <Fragment>
       <div className='relative dark:bg-gray-900 min-h-screen' id='home'>
@@ -55,6 +54,9 @@ export default function Users() {
                  <table className="min-w-full divide-y divide-gray-200">
     <thead className="bg-gray-50">
       <tr>
+        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          ID
+        </th>
         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Email
         </th>
@@ -73,6 +75,13 @@ export default function Users() {
         {users.length > 0 ? (
           users.map((item, index) => (
         <tr key={index} className="hover:bg-gray-50">
+            <td className="px-6 py-4 whitespace-nowrap">
+            <div className="flex items-center">
+              <div className="ml-4">
+                <div className="text-sm font-medium text-gray-900">{index + 1}</div>
+              </div>
+            </div>
+          </td>
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="flex items-center">
               <div className="ml-4">
