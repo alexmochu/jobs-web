@@ -1,149 +1,182 @@
 import { useState } from 'react'
-import Cover from '../coverletter/coverletter'
+import { Link, } from 'react-router-dom'
+import CreateCoverLetter from '../components/coverletter/addCoverLetter';
+import ViewCoverLetter from '../components/coverletter/viewCoverLetter';
+import DeleteCoverLetter from '../components/coverletter/deleteCoverLetter';
 
-const initialState = {
-  fullName: '',
-  title: '',
-  address: '',
-  email: '',
-  phoneNumber: '',
-  onlineLink: '',
-  otherLinks: '',
-  company: '',
-  hiringManager: '',
-  letterDetails: '',
-}
-export default function CoverLetter() {
-  const [state, setState] = useState(initialState)
-  const onChange = (e) => setState({ ...state, [e.target.name]: e.target.value })
+export default function Resumes() {
+  const [createCoverLetter, setCreateCoverLetter] = useState(false)
+  const [viewCoverLetter, setViewCoverLetter] = useState(false)
+  const [deleteCoverLetter, setDeleteCoverLetter] = useState(false)
+  const [applicationState, setApplicationState] = useState('')
 
+    const data = [
+    { id: 1, name: 'AWS cover letter', role: 'Admin' },
+    { id: 2, name: 'Google cover letter', role: 'User' },
+    { id: 3, name: 'Facebook cover letter', role: 'User' },
+    { id: 4, name: 'X cover letter', role: 'User' },
+  ];
+
+  const openJobModal = () => {
+    setCreateCoverLetter(true);
+  };
+
+  const closeJobModal = () => {
+    setCreateCoverLetter(false);
+  };
+
+  const openViewModal = () => {
+    setViewCoverLetter(true);
+  };
+
+  const closeViewModal = () => {
+    setViewCoverLetter(false);
+  };
+
+  const openDeleteModal = () => {
+    setDeleteCoverLetter(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteCoverLetter(false);
+  };
+        
   return (
-    <div className='grid grid-cols-2 gap-4 mb-4'>
+    <div className='mb-4'>
+      <div className='pl-5 pr-5 h-fit dark:bg-gray-800'>
+        <div className="flex justify-between pb-6">
+          <div className="flex justify-start">
+            <h1 className='text-4xl dark:text-white font-bold tracking-tight text-gray-900 mb-6'>
+              Cover Letters
+            </h1>
+            </div>
+            <div className='flex justify-end'>
+              <button onClick={openJobModal}  className={`flex bg-indigo-500 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
+                  </svg>
+                </span>
+                <span>Create Cover Letter</span>
+              </button>
+            </div>
+          </div>
+      </div>
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
-        <div className='paper inline mx-auto p-3'>
-          <h3 className='font-bold text-2xl pb-5 dark:text-white'>Personal Information</h3>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Full Name</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='fullName'
-                value={state.fullName}
-                onChange={onChange}
-                placeholder='Full Name'
-              />
-            </div>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Job Title</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='title'
-                value={state.title}
-                onChange={onChange}
-                placeholder='Job Title'
-              />
-            </div>
+        <div className="flex justify-between pb-6">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  ID
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="flex justify-end px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                  <td className="flex justify-end px-6 py-4 whitespace-nowrap">
+              <Link
+                key={'edit'}
+                to={'/dashboard/cover-letter-builder'}
+                aria-current={'page'}
+                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
+              >
+                    <button className='flex bg-indigo-500 border rounded-md text-white px-6 py-2'>
+                      <span>Edit</span>
+                    </button>
+                    </Link>
+              <Link
+                key={'view'}
+                to='#'
+                aria-current={'page'}
+                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
+              >
+                    <button onClick={openViewModal} className='flex bg-gray-900 border rounded-md text-white px-6 py-2'>
+                      <span>View</span>
+                    </button>
+                    </Link>
+              <Link
+                key={'qa'}
+                to="#"
+                aria-current={'page'}
+                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
+              >
+                    <button onClick={openDeleteModal} className='flex bg-red-600 border rounded-md text-white px-6 py-2'>
+                      <span>Delete</span>
+                    </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           </div>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Address</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='address'
-                value={state.address}
-                onChange={onChange}
-                placeholder='Address'
-              />
-            </div>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Email</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='email'
-                value={state.email}
-                onChange={onChange}
-                placeholder='Email'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4 mb-4'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Phone Number</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='phoneNumber'
-                value={state.phoneNumber}
-                onChange={onChange}
-                placeholder='Phone Number'
-              />
-            </div>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Social Media</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='onlineLink'
-                value={state.onlineLink}
-                onChange={onChange}
-                placeholder='Social Media'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Website/Other Links</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='otherLinks'
-                value={state.otherLinks}
-                onChange={onChange}
-                placeholder='Website/Other Links'
-              />
-            </div>
-            <div></div>
+      </div> 
+        {createCoverLetter && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[400px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeJobModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <CreateCoverLetter closeJobModal={closeJobModal} applicationState={applicationState}/>
           </div>
         </div>
-        <div className='paper inline mx-auto p-3'>
-          <h3 className='dark:text-white font-bold text-2xl pb-5'>Employer Details</h3>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Company Name</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='company'
-                value={state.company}
-                onChange={onChange}
-                placeholder='Company Name'
-              />
-            </div>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Hiring Manager</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='hiringManager'
-                value={state.hiringManager}
-                onChange={onChange}
-                placeholder='Hiring Manager'
-              />
-            </div>
+      )}
+      {viewCoverLetter && (
+        <div className='fixed inset-0 flex justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative mt-10 bg-white w-[760px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeViewModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <ViewCoverLetter closeJobModal={closeViewModal} applicationState={applicationState}/>
           </div>
         </div>
-        <div className='paper inline mx-auto p-3'>
-          <h3 className='dark:text-white font-bold text-2xl pb-5'>Letter Details</h3>
-          <div>
-            <p className='dark:text-white'>3–4 paragraphs explaining why youre the perfect candidate for a specific job</p>
-            <textarea
-              className='border-2 border-black rounded-lg w-full h-56 p-2'
-              name='letterDetails'
-              value={state.letterDetails}
-              onChange={onChange}
-              placeholder='Letter Details'
-            ></textarea>
+      )}
+      {deleteCoverLetter && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[400px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeDeleteModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <DeleteCoverLetter closeJobModal={closeDeleteModal} applicationState={applicationState}/>
           </div>
         </div>
-      </div>
-      <div className='flex items-center justify-center rounded border border-gray-200 h-fit dark:bg-gray-800'>
-        <Cover state={state} />
-      </div>
+      )} 
     </div>
   )
 }
