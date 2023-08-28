@@ -20,7 +20,7 @@ export default function Dashboard() {
             key={'jobs'}
             to={'/dashboard/job-tracker'}
             aria-current={'page'}
-            className='flex dark:bg-gray-900 flex-shrink-0 items-center bg-white text-gray-800 px-2'
+            className='flex flex-shrink-0 items-center text-gray-800 px-2'
           >
             <button className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'>
               View
@@ -42,15 +42,14 @@ export default function Dashboard() {
         <div className='flex items-center justify-center'>
           <Link
             key={'jobs'}
-            to={'/dashboard/resume'}
+            to={'/dashboard/resumes'}
             aria-current={'page'}
-            className='flex dark:bg-gray-900 flex-shrink-0 items-center bg-white text-gray-800 px-2'
+            className='flex flex-shrink-0 items-center text-gray-800 px-2'
           >
             <button
-              disabled
               className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'
             >
-              Coming Soon
+              View
             </button>
           </Link>
         </div>
@@ -69,14 +68,13 @@ export default function Dashboard() {
         <div className='flex items-center justify-center'>
           <Link
             key={'jobs'}
-            to={'/dashboard/cover-letter'}
+            to={'/dashboard/cover-letters'}
             aria-current={'page'}
-            className='flex dark:bg-gray-900 flex-shrink-0 items-center bg-white text-gray-800 px-2'
+            className='flex flex-shrink-0 items-center text-gray-800 px-2'
           >
             <button
-            disabled
              className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'>
-              Coming soon
+              View
             </button>
           </Link>
         </div>
@@ -97,7 +95,7 @@ export default function Dashboard() {
             key={'jobs'}
             to={'/dashboard/qa'}
             aria-current={'page'}
-            className='flex flex-shrink-0 items-center dark:bg-gray-900 bg-white text-gray-800 px-2'
+            className='flex flex-shrink-0 items-center text-gray-800 px-2'
           >
             <button
               disabled
