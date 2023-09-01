@@ -104,11 +104,85 @@ export default function ResumeBuilder() {
     setSkillValue(event.target.value)
   }
 
+  const expItem = <>
+              <hr className='my-4 border-t-4 border-gray-900'/>
+              <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Job Title</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  value={workState[0].title}
+                  onChange={(e) => updateWorkInfo('title', e.target.value)}
+                  placeholder='Job Title'
+                />
+              </div>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Employer</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='employer'
+                  value={workState[0].employer}
+                  onChange={(e) => updateWorkInfo('employer', e.target.value)}
+                  placeholder='Employer'
+                />
+              </div>
+            </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Start Date</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='startDate'
+                  value={workState[0].startDate}
+                  onChange={(e) => updateWorkInfo('startDate', e.target.value)}
+                  placeholder='Start Date'
+                />
+              </div>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>End Date</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='endDate'
+                  value={workState[0].endDate}
+                  onChange={(e) => updateWorkInfo('endDate', e.target.value)}
+                  placeholder='End Date'
+                />
+              </div>
+            </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>City</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='city'
+                  value={workState[0].city}
+                  onChange={(e) => updateWorkInfo('city', e.target.value)}
+                  placeholder='City'
+                />
+              </div>
+              <div></div>
+            </div>
+            <div>
+              <p className='font-bold text-lg text-gray-600'>Description</p>
+              <textarea
+                className='border-2 border-black rounded-lg w-full h-56 p-2'
+                name='description'
+                value={workState[0].description}
+                onChange={(e) => updateWorkInfo('description', e.target.value)}
+                placeholder='Description'
+              ></textarea>
+    </div>
+  </>
+
+  const expArray = [expItem, expItem]
+
   const personal = 
-        <><div className='paper inline mx-auto p-3'>
+        <>
+        <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Personal Information</h3>
+            <h3 className="font-bold text-2xl dark:text-white">Personal Information</h3>
           </div>
+          <hr className='my-4 border-t-4 border-gray-900'/>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>Job Title</p>
@@ -190,7 +264,8 @@ export default function ResumeBuilder() {
           </div>
         </div>
         <div className='paper inline mx-auto p-3'>
-          <h3 className='font-bold text-2xl pb-5'>Professional Summary</h3>
+          <h3 className='font-bold text-2xl'>Professional Summary</h3>
+          <hr className='my-4 border-t-4 border-gray-900'/>
           <div>
             <p>
               Write 2-4 short & energetic sentences to interest the reader! Mention your role,
@@ -208,81 +283,23 @@ export default function ResumeBuilder() {
   const experience = 
       <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Work Experience</h3>
+            <h3 className="font-bold text-2xl dark:text-white">Work Experience</h3>
           </div>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Job Title</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                value={workState[0].title}
-                onChange={(e) => updateWorkInfo('title', e.target.value)}
-                placeholder='Job Title'
-              />
-            </div>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Employer</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='employer'
-                value={workState[0].employer}
-                onChange={(e) => updateWorkInfo('employer', e.target.value)}
-                placeholder='Employer'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Start Date</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='startDate'
-                value={workState[0].startDate}
-                onChange={(e) => updateWorkInfo('startDate', e.target.value)}
-                placeholder='Start Date'
-              />
-            </div>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>End Date</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='endDate'
-                value={workState[0].endDate}
-                onChange={(e) => updateWorkInfo('endDate', e.target.value)}
-                placeholder='End Date'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>City</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='city'
-                value={workState[0].city}
-                onChange={(e) => updateWorkInfo('city', e.target.value)}
-                placeholder='City'
-              />
-            </div>
-            <div></div>
-          </div>
-          <div>
-            <p className='font-bold text-lg text-gray-600'>Description</p>
-            <textarea
-              className='border-2 border-black rounded-lg w-full h-56 p-2'
-              name='description'
-              value={workState[0].description}
-              onChange={(e) => updateWorkInfo('description', e.target.value)}
-              placeholder='Description'
-            ></textarea>
-          </div>
+
+        {expArray.length > 0 ? (
+          expArray.map((item, index) => (
+            <>
+            {item}
+            </>
+          ))) : 'Opps report this bug'}
         </div>
 
   const education = 
           <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Education Background</h3>
+            <h3 className="font-bold text-2xl dark:text-white">Education Background</h3>
           </div>
+            <hr className='my-4 border-t-4 border-gray-900'/>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>School</p>
@@ -349,8 +366,9 @@ export default function ResumeBuilder() {
   const websites =
         <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Websites & Social Links</h3>
+            <h3 className="font-bold text-2xl dark:text-white">Websites & Social Links</h3>
           </div>
+          <hr className='my-4 border-t-4 border-gray-900'/>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>Label</p>
@@ -378,8 +396,9 @@ export default function ResumeBuilder() {
   const skills =
         <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-2xl pb-5 dark:text-white">Skills</h3>
+            <h3 className="font-bold text-2xl dark:text-white">Skills</h3>
           </div>
+          <hr className='my-4 border-t-4 border-gray-900'/>
           <div>
             <p className='font-bold text-lg text-gray-600'>Skill</p>
             <input
@@ -433,13 +452,14 @@ export default function ResumeBuilder() {
             </div>
           </div>
         {stepComponents[currentStep - 1]}
-        <div className="flex justify-between pb-6">
+        <div className="flex justify-between pb-20">
             <div className="flex justify-start">
               <button className="bg-indigo-500 px-5 py-2 border rounded text-white dark:text-white">Save</button>
             </div>
             {currentStep === 1 ? null:
             <div className='flex justify-end'>
-              <button  className={`flex bg-gray-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
+            <div>
+              <button  onClick={() => console.log('current', currentStep)}  className={`flex bg-gray-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -456,8 +476,14 @@ export default function ResumeBuilder() {
                     />
                   </svg>
                 </span>
-                <span>Add</span>
+                <span>Add {currentStep}</span>
               </button>
+            </div>
+            <div className='flex justify-end'>
+              <button  className={`flex bg-red-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
+                <span>Remove</span>
+              </button>
+            </div>
             </div>}
           </div>
           <div className="fixed bottom-0 ml-[-150px] bg-white pt-6 border-t flex justify-center w-full pb-6">
