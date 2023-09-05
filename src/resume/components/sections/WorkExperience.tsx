@@ -33,19 +33,27 @@ const styles = StyleSheet.create({
 export const WorkExperience = ({ work }) => {
   return (
     <>
-      {true ? (
         <>
           <View style={styles.summaryHeader}>
             <Text>Work Experience</Text>
           </View>
-          <View style={styles.svgContainer}>
-            <View style={styles.line} />
+        {work.map((item, i) => (
+          <>
+          <View>
+            <Text>{item.employer}</Text>
+            <Text>{item.startDate} - {item.endDate}</Text>
           </View>
           <View>
-            <Text style={styles.summaryText}>This is a summary</Text>
+            <Text>{item.title}</Text>
+            <Text>{item.city}</Text>
+          </View>
+          <View>
+            <Text style={styles.summaryText}>{item.description}</Text>
           </View>
         </>
-      ) : null}
+        ))}
+        </>
+      
       <SectionWrapper title='Work Experience'>
         <ul className='ml-2'>
           {work.map((item, i) => (
