@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Select from 'react-select';
 import Resume from '../resume/resume'
+import { locations } from '../locations';
 
 const personalInfo = {
   title: '',
@@ -61,6 +63,21 @@ export default function ResumeBuilder() {
     'links': links,
     'skills': skills
   })
+
+  // useEffect(() => {
+  //   // Fetch country data from the REST Countries API
+  //   fetch('https://restcountries.com/v3/all')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Format the data into options for the dropdown
+  //       const countryOptions = data.map((country) => ({
+  //         label: country.capital + ', ' + country.name.common,
+  //         value: country.capital + ', ' + country.name.common
+  //       }));
+  //       setCountries(countryOptions);
+  //     })
+  //     .catch((error) => console.error('Error fetching country data:', error));
+  // }, []);
 
   const addItem = (currentStep) => {
     if(currentStep === 2){
@@ -391,13 +408,20 @@ export default function ResumeBuilder() {
             <div className='grid grid-cols-2 gap-4 mb-5'>
               <div>
                 <p className='font-bold text-lg text-gray-600'>City</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='city'
-                  value={workExperiences[index].city}
-                  onChange={(e) => updateWorkInfo('city', e.target.value, index)}
-                  placeholder='City'
-                />
+                <Select 
+                  options={locations}
+                  value={locations.find((item) => item.value === workExperiences[index].city)}
+                  onChange={(selectedOption, action) => updateWorkInfo('city', selectedOption.value, index)}
+                  placeholder="Select a location"
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      // Add additional styles here
+                      borderColor: 'black',
+                      borderRadius: '8px'
+                    }),
+                  }}
+                  />
               </div>
               <div></div>
             </div>
@@ -471,13 +495,20 @@ export default function ResumeBuilder() {
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>City</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='city'
-                value={educations[index].city}
-                onChange={(e) => updateEducationInfo('city', e.target.value, index)}
-                placeholder='City'
-              />
+              <Select 
+                  options={locations}
+                  value={locations.find((item) => item.value === educations[index].city)}
+                  onChange={(selectedOption, action) => updateEducationInfo('city', selectedOption.value, index)}
+                  placeholder="Select a location"
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      // Add additional styles here
+                      borderColor: 'black',
+                      borderRadius: '8px'
+                    }),
+                  }}
+                  />
             </div>
             <div></div>
           </div>
