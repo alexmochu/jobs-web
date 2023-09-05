@@ -47,10 +47,6 @@ const linksInfo = [
 const skillsInfo = []
 
 export default function ResumeBuilder() {
-  const [resumeState, setResumeState] = useState([
-    
-  ])
-
   const [personalState, setPersonalState] = useState(personalInfo)
   const [skillValue, setSkillValue] = useState('')
   const [currentStep, setCurrentStep] = useState(1);
@@ -58,6 +54,13 @@ export default function ResumeBuilder() {
   const [educations, setEducations] = useState(educationInfo)
   const [links, setLinks] = useState(linksInfo)
   const [skills, setSkills] = useState(skillsInfo)
+  const [resumeState, setResumeState] = useState({
+    'personalState': personalState,
+    'workExperiences': workExperiences,
+    'educations': educations,
+    'links': links,
+    'skills': skills
+  })
 
   const addItem = (currentStep) => {
     if(currentStep === 2){
@@ -197,6 +200,49 @@ export default function ResumeBuilder() {
       const newArray = prevArray.filter((item, index) => index !== i);
       return newArray;
   });
+  }
+
+  const saveState = (currentStep) => {
+    if(currentStep === 1){
+      setResumeState((prevState) => {
+        let updatedPersonalState = { ...prevState.personalState };
+        updatedPersonalState = { ...personalState }
+        return {
+          ...prevState,
+          personalState: updatedPersonalState,
+        };
+      })
+    } else if(currentStep === 2){
+      setResumeState((prevState) => {
+        return {
+          ...prevState,
+          links: [...links]
+        };
+      })
+    } else if(currentStep === 3){
+      setResumeState((prevState) => {
+        return {
+          ...prevState,
+          workExperiences: [...workExperiences]
+        };
+      })
+    } else if(currentStep === 4){
+      setResumeState((prevState) => {
+        return {
+          ...prevState,
+          educations: [...educations]
+        };
+      })
+    } else if(currentStep === 5){
+      setResumeState((prevState) => {
+        let updatedSkills = [...prevState.skills];
+        updatedSkills = [...skills]
+        return {
+          ...prevState,
+          skills: updatedSkills
+        }
+      })
+    }
   }
 
   const personal = 
@@ -531,7 +577,7 @@ export default function ResumeBuilder() {
         {stepComponents[currentStep - 1]}
         <div className="flex justify-between pb-20">
             <div className="flex justify-start">
-              <button className="bg-indigo-500 px-5 py-2 border rounded text-white dark:text-white">Save</button>
+              <button className="bg-indigo-500 px-5 py-2 border rounded text-white dark:text-white" onClick={() => saveState(currentStep)}>Save</button>
             </div>
             {currentStep === 1 || currentStep === 5 ? null:
             <div className='flex justify-end'>
@@ -617,11 +663,11 @@ export default function ResumeBuilder() {
       </div>
       <div className='flex items-center justify-center rounded border border-gray-200 h-fit dark:bg-gray-800'>
         <Resume
-          personal={personalState}
-          work={workExperiences}
-          education={educations}
-          links={links}
-          skills={skills}
+          personal={resumeState.personalState}
+          work={resumeState.workExperiences}
+          education={resumeState.educations}
+          links={resumeState.links}
+          skills={resumeState.skills}
         />
       </div>
     </div>
