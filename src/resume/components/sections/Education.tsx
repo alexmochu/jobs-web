@@ -33,20 +33,28 @@ const styles = StyleSheet.create({
 export const Education = ({ education }) => {
   return (
     <>
-      {true ? (
+    <>
+      <View style={styles.summaryHeader}>
+        <Text>Education</Text>
+      </View>
+      {education.map((item, i) => (
         <>
-          <View style={styles.summaryHeader}>
-            <Text>Education</Text>
-          </View>
-          <View style={styles.svgContainer}>
-            <View style={styles.line} />
+          <View>
+            <Text>{item.school}</Text>
+            <Text>{item.startDate} - {item.endDate}</Text>
           </View>
           <View>
-            <Text style={styles.summaryText}>This is a summary</Text>
+            <Text>{item.degree}</Text>
+            <Text>{item.city}</Text>
+          </View>
+          <View>
+            <Text style={styles.summaryText}>{item.description}</Text>
           </View>
           {/* {summary} */}
+          </>
+        ))}
         </>
-      ) : null}
+
       <SectionWrapper title='Education'>
         <ul className='ml-2'>
           {education.map((education, i) => (
