@@ -26,6 +26,7 @@ const workInfo = [
 
 const educationInfo = [
   {
+    id: 0,
     school: '',
     degree: '',
     startDate: '',
@@ -37,6 +38,7 @@ const educationInfo = [
 
 const linksInfo = [
   {
+    id: 0,
     label: '',
     link: '',
   },
@@ -45,15 +47,76 @@ const linksInfo = [
 const skillsInfo = []
 
 export default function ResumeBuilder() {
+  const [resumeState, setResumeState] = useState([
+    
+  ])
+
   const [personalState, setPersonalState] = useState(personalInfo)
-  const [workState, setWorkState] = useState(workInfo)
-  const [educationState, setEducationState] = useState(educationInfo)
-  const [linksState, setLinksState] = useState(linksInfo)
-  const [skillsState, setSkillsState] = useState(skillsInfo)
-
   const [skillValue, setSkillValue] = useState('')
-
   const [currentStep, setCurrentStep] = useState(1);
+  const [workExperiences, setWorkExperiences] = useState(workInfo)
+  const [educations, setEducations] = useState(educationInfo)
+  const [links, setLinks] = useState(linksInfo)
+  const [skills, setSkills] = useState(skillsInfo)
+
+  const addItem = (currentStep) => {
+    if(currentStep === 2){
+      setLinks((prevLinks) => [
+        ...prevLinks,
+        {
+          id: prevLinks.length,
+          label: '',
+          link: ''
+        },
+      ])
+    } else if(currentStep === 3){
+      setWorkExperiences((prevWorkExperiences) => [
+        ...prevWorkExperiences,
+        {
+        id: prevWorkExperiences.length, // Assign a unique ID
+        title: '', // Initialize other fields with empty values
+        employer: '',
+        startDate: '',
+        endDate: '',
+        city: '',
+        description: '',
+        },
+      ]);
+    } else if(currentStep === 4){
+      setEducations((prevEducation) => [
+        ...prevEducation,
+        {
+          id: prevEducation.length,
+          school: '',
+          degree: '',
+          startDate: '',
+          endDate: '',
+          city: '',
+          description: '',
+        },
+      ])
+    } else if(currentStep === 5){
+      setSkills((prevLinks) => [
+        ...prevLinks,
+        {
+          id: prevLinks.length,
+          title: ''
+        },
+      ])
+    }
+  };
+
+  const removeItem = (currentStep) => {
+    if(currentStep === 2){
+      setLinks(links.slice(0, -1))
+    } else if(currentStep === 3){
+      setWorkExperiences(workExperiences.slice(0, -1));
+    } else if(currentStep === 4){
+      setEducations(educations.slice(0, -1))
+    } else if(currentStep === 5){
+      setSkills(skills.slice(0, -1))
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -69,23 +132,48 @@ export default function ResumeBuilder() {
 
   const onChange = (e) => setPersonalState({ ...personalState, [e.target.name]: e.target.value })
 
-  const updateWorkInfo = (field, value) => {
-    setWorkState((prevWorkInfo) => {
-      const updatedWorkInfo = [{ ...prevWorkInfo[0], [field]: value }]
+  const updateWorkInfo = (field, value, index) => {
+    setWorkExperiences((prevWorkInfo) => {
+      const updatedWorkInfo = prevWorkInfo.map((item, i) => {
+      if (i === index) {
+        // Update the specific item in the array
+        return {
+          ...item,
+          [field]: value,
+        };
+      }
+      return item;
+    });
       return updatedWorkInfo
     })
   }
 
-  const updateEducationInfo = (field, value) => {
-    setEducationState((prevEducationInfo) => {
-      const updatedEducationInfo = [{ ...prevEducationInfo[0], [field]: value }]
+  const updateEducationInfo = (field, value, index) => {
+    setEducations((prevEducationInfo) => {
+      const updatedEducationInfo = prevEducationInfo.map((item, i) => {
+        if (i === index){
+          return {
+            ...item,
+            [field]: value
+          }
+        }
+        return item
+      })
       return updatedEducationInfo
     })
   }
 
-  const updateLinksInfo = (field, value) => {
-    setLinksState((prevLinksInfo) => {
-      const updatedLinksInfo = [{ ...prevLinksInfo[0], [field]: value }]
+  const updateLinksInfo = (field, value, index) => {
+    setLinks((prevLinksInfo) => {
+      const updatedLinksInfo = prevLinksInfo.map((item, i) => {
+        if (i === index){
+          return {
+            ...item,
+            [field]: value
+          }
+        }
+        return item
+      })
       return updatedLinksInfo
     })
   }
@@ -94,7 +182,7 @@ export default function ResumeBuilder() {
     if (event.key === 'Enter') {
       event.preventDefault()
       const newSkill = event.target.value
-      setSkillsState((prevSkillsInfo) => [...prevSkillsInfo, newSkill])
+      setSkills((prevSkillsInfo) => [...prevSkillsInfo, newSkill])
       event.target.value = '' // Clear the input field
       setSkillValue('')
     }
@@ -104,77 +192,12 @@ export default function ResumeBuilder() {
     setSkillValue(event.target.value)
   }
 
-  const expItem = <>
-              <hr className='my-4 border-t-4 border-gray-900'/>
-              <div className='grid grid-cols-2 gap-4 mb-5'>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>Job Title</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  value={workState[0].title}
-                  onChange={(e) => updateWorkInfo('title', e.target.value)}
-                  placeholder='Job Title'
-                />
-              </div>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>Employer</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='employer'
-                  value={workState[0].employer}
-                  onChange={(e) => updateWorkInfo('employer', e.target.value)}
-                  placeholder='Employer'
-                />
-              </div>
-            </div>
-            <div className='grid grid-cols-2 gap-4 mb-5'>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>Start Date</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='startDate'
-                  value={workState[0].startDate}
-                  onChange={(e) => updateWorkInfo('startDate', e.target.value)}
-                  placeholder='Start Date'
-                />
-              </div>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>End Date</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='endDate'
-                  value={workState[0].endDate}
-                  onChange={(e) => updateWorkInfo('endDate', e.target.value)}
-                  placeholder='End Date'
-                />
-              </div>
-            </div>
-            <div className='grid grid-cols-2 gap-4 mb-5'>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>City</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='city'
-                  value={workState[0].city}
-                  onChange={(e) => updateWorkInfo('city', e.target.value)}
-                  placeholder='City'
-                />
-              </div>
-              <div></div>
-            </div>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Description</p>
-              <textarea
-                className='border-2 border-black rounded-lg w-full h-56 p-2'
-                name='description'
-                value={workState[0].description}
-                onChange={(e) => updateWorkInfo('description', e.target.value)}
-                placeholder='Description'
-              ></textarea>
-    </div>
-  </>
-
-  const expArray = [expItem, expItem]
+  const deleteSkill = (i) => {
+    setSkills((prevArray) => {
+      const newArray = prevArray.filter((item, index) => index !== i);
+      return newArray;
+  });
+  }
 
   const personal = 
         <>
@@ -183,19 +206,6 @@ export default function ResumeBuilder() {
             <h3 className="font-bold text-2xl dark:text-white">Personal Information</h3>
           </div>
           <hr className='my-4 border-t-4 border-gray-900'/>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Job Title</p>
-              <input
-                className='border-2 border-black rounded-lg w-full p-2'
-                name='title'
-                value={personalState.title}
-                onChange={onChange}
-                placeholder='Job Title'
-              />
-            </div>
-            <div></div>
-          </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>First Name</p>
@@ -220,6 +230,16 @@ export default function ResumeBuilder() {
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
+              <p className='font-bold text-lg text-gray-600'>Job Title</p>
+              <input
+                className='border-2 border-black rounded-lg w-full p-2'
+                name='title'
+                value={personalState.title}
+                onChange={onChange}
+                placeholder='Job Title'
+              />
+            </div>
+            <div>
               <p className='font-bold text-lg text-gray-600'>Email</p>
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
@@ -227,38 +247,6 @@ export default function ResumeBuilder() {
                 value={personalState.email}
                 onChange={onChange}
                 placeholder='Email'
-              />
-            </div>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Phone Number</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='phoneNumber'
-                value={personalState.phoneNumber}
-                onChange={onChange}
-                placeholder='Phone'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4 mb-5'>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>Country</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='country'
-                value={personalState.country}
-                onChange={onChange}
-                placeholder='Country'
-              />
-            </div>
-            <div>
-              <p className='font-bold text-lg text-gray-600'>City</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='city'
-                value={personalState.city}
-                onChange={onChange}
-                placeholder='City'
               />
             </div>
           </div>
@@ -280,25 +268,95 @@ export default function ResumeBuilder() {
             ></textarea>
           </div>
         </div></>
+
   const experience = 
       <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl dark:text-white">Work Experience</h3>
           </div>
 
-        {expArray.length > 0 ? (
-          expArray.map((item, index) => (
-            <>
-            {item}
-            </>
+        {workExperiences.length > 0 ? (
+          workExperiences.map((item, index) => (
+<>
+              <hr className='my-4 border-t-4 border-gray-900'/>
+              <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Job Title</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  value={workExperiences[index].title}
+                  onChange={(e) => updateWorkInfo('title', e.target.value, index)}
+                  placeholder='Job Title'
+                />
+              </div>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Employer</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='employer'
+                  value={workExperiences[index].employer}
+                  onChange={(e) => updateWorkInfo('employer', e.target.value, index)}
+                  placeholder='Employer'
+                />
+              </div>
+            </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>Start Date</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='startDate'
+                  value={workExperiences[index].startDate}
+                  onChange={(e) => updateWorkInfo('startDate', e.target.value, index)}
+                  placeholder='Start Date'
+                />
+              </div>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>End Date</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='endDate'
+                  value={workExperiences[index].endDate}
+                  onChange={(e) => updateWorkInfo('endDate', e.target.value, index)}
+                  placeholder='End Date'
+                />
+              </div>
+            </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <p className='font-bold text-lg text-gray-600'>City</p>
+                <input
+                  className='border-2 border-black rounded-lg p-2 w-full'
+                  name='city'
+                  value={workExperiences[index].city}
+                  onChange={(e) => updateWorkInfo('city', e.target.value, index)}
+                  placeholder='City'
+                />
+              </div>
+              <div></div>
+            </div>
+            <div>
+              <p className='font-bold text-lg text-gray-600'>Description</p>
+              <textarea
+                className='border-2 border-black rounded-lg w-full h-56 p-2'
+                name='description'
+                value={workExperiences[index].description}
+                onChange={(e) => updateWorkInfo('description', e.target.value, index)}
+                placeholder='Description'
+              ></textarea>
+    </div>
+  </>
           ))) : 'Opps report this bug'}
         </div>
 
   const education = 
-          <div className='paper inline mx-auto p-3'>
+                <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl dark:text-white">Education Background</h3>
           </div>
+            {educations.length > 0 ? (
+    educations.map((item, index) => (
+      <>
             <hr className='my-4 border-t-4 border-gray-900'/>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -306,8 +364,8 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='school'
-                value={educationState[0].school}
-                onChange={(e) => updateEducationInfo('school', e.target.value)}
+                value={educations[index].school}
+                onChange={(e) => updateEducationInfo('school', e.target.value, index)}
                 placeholder='School'
               />
             </div>
@@ -316,8 +374,8 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='degree'
-                value={educationState[0].degree}
-                onChange={(e) => updateEducationInfo('degree', e.target.value)}
+                value={educations[index].degree}
+                onChange={(e) => updateEducationInfo('degree', e.target.value, index)}
                 placeholder='Degree'
               />
             </div>
@@ -328,8 +386,8 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='startDate'
-                value={educationState[0].startDate}
-                onChange={(e) => updateEducationInfo('startDate', e.target.value)}
+                value={educations[index].startDate}
+                onChange={(e) => updateEducationInfo('startDate', e.target.value, index)}
                 placeholder='Start Date'
               />
             </div>
@@ -338,8 +396,8 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='endDate'
-                value={educationState[0].endDate}
-                onChange={(e) => updateEducationInfo('endDate', e.target.value)}
+                value={educations[index].endDate}
+                onChange={(e) => updateEducationInfo('endDate', e.target.value, index)}
                 placeholder='End Date'
               />
             </div>
@@ -350,13 +408,15 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='city'
-                value={educationState[0].city}
-                onChange={(e) => updateEducationInfo('city', e.target.value)}
+                value={educations[index].city}
+                onChange={(e) => updateEducationInfo('city', e.target.value, index)}
                 placeholder='City'
               />
             </div>
             <div></div>
           </div>
+          </>
+          ))) : 'Opps report this bug'}
           {/* <div>
                <p className='font-bold text-lg text-gray-600'>Description</p>
                <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={educationState[0].description} onChange={(e) => updateEducationInfo('description', e.target.value)} placeholder='Description'></textarea>
@@ -368,6 +428,9 @@ export default function ResumeBuilder() {
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl dark:text-white">Websites & Social Links</h3>
           </div>
+            {links.length > 0 ? (
+    links.map((item, index) => (
+      <>
           <hr className='my-4 border-t-4 border-gray-900'/>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
@@ -375,8 +438,8 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='label'
-                value={linksState[0].label}
-                onChange={(e) => updateLinksInfo('label', e.target.value)}
+                value={links[index].label}
+                onChange={(e) => updateLinksInfo('label', e.target.value, index)}
                 placeholder='Label'
               />
             </div>
@@ -385,39 +448,53 @@ export default function ResumeBuilder() {
               <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='link'
-                value={linksState[0].link}
-                onChange={(e) => updateLinksInfo('link', e.target.value)}
+                value={links[index].link}
+                onChange={(e) => updateLinksInfo('link', e.target.value, index)}
                 placeholder='Link'
               />
             </div>
           </div>
+          </>
+          ))) : 'Opps report this bug'}
         </div>
 
-  const skills =
+  const skillsComponent =
         <div className='paper inline mx-auto p-3'>
           <div className="flex justify-between items-center">
             <h3 className="font-bold text-2xl dark:text-white">Skills</h3>
           </div>
+            {/* {skills.length > 0 ? (
+    skills.map((item, index) => ( */}
+      <>
           <hr className='my-4 border-t-4 border-gray-900'/>
           <div>
             <p className='font-bold text-lg text-gray-600'>Skill</p>
             <input
               className='border-2 border-black rounded-lg p-2 w-full'
               name='skillsInfo'
+              // value={skills[index].title}
               value={skillValue}
               onKeyDown={handleKeyPress}
               onChange={handleSkillChange}
               placeholder='skill'
             />
           </div>
+          </>
+          <div className='flex'>
+            {skills.map((item, index) => <>
+            <div className='my-4 border pl-2 border-black rounded-md mr-2'>{skills[index]}
+              <button className='px-2 h-8 ml-4 hover:border hover:rounded-full hover:border-black' onClick={() => deleteSkill(index)}>X</button>
+            </div>
+          </>)}
+          </div>
         </div>
 
   const stepComponents = [
     personal,
+    websites,
     experience,
     education,
-    websites,
-    skills
+    skillsComponent
   ];
         
   return (
@@ -456,10 +533,10 @@ export default function ResumeBuilder() {
             <div className="flex justify-start">
               <button className="bg-indigo-500 px-5 py-2 border rounded text-white dark:text-white">Save</button>
             </div>
-            {currentStep === 1 ? null:
+            {currentStep === 1 || currentStep === 5 ? null:
             <div className='flex justify-end'>
             <div>
-              <button  onClick={() => console.log('current', currentStep)}  className={`flex bg-gray-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
+              <button  onClick={() => addItem(currentStep)}  className={`flex bg-gray-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -476,11 +553,11 @@ export default function ResumeBuilder() {
                     />
                   </svg>
                 </span>
-                <span>Add {currentStep}</span>
+                <span>Add</span>
               </button>
             </div>
             <div className='flex justify-end'>
-              <button  className={`flex bg-red-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
+              <button onClick={() => removeItem(currentStep)}  className={`flex bg-red-900 text-white items-center space-x-2 border rounded-md px-5 py-2`}>
                 <span>Remove</span>
               </button>
             </div>
@@ -541,10 +618,10 @@ export default function ResumeBuilder() {
       <div className='flex items-center justify-center rounded border border-gray-200 h-fit dark:bg-gray-800'>
         <Resume
           personal={personalState}
-          work={workState}
-          education={educationState}
-          links={linksState}
-          skills={skillsState}
+          work={workExperiences}
+          education={educations}
+          links={links}
+          skills={skills}
         />
       </div>
     </div>
