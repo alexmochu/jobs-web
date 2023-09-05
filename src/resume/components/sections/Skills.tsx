@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 export const Skills = ({ skills }) => {
   return (
     <>
-      {true ? (
         <>
           <View style={styles.summaryHeader}>
             <Text>Skills</Text>
@@ -57,15 +56,6 @@ export const Skills = ({ skills }) => {
           </View>
           {/* {summary} */}
         </>
-      ) : null}
-      {/* <SectionWrapper title="Skills">
-      {skills.map((skill) => (
-        <Fragment key={skill}>
-          <Text style={{ paddingLeft: 10, paddingRight: 10 }}>•</Text>
-          <Text>{skill}</Text>
-        </Fragment>
-      ))}
-    </SectionWrapper> */}
     </>
   )
 }
