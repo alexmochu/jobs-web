@@ -202,6 +202,26 @@ export default function ResumeBuilder() {
   });
   }
 
+  const copyResumeData = () => {
+    // Convert the JSON data to a JSON string
+    const jsonString = JSON.stringify(resumeState, null, 2);
+
+    // Create a temporary textarea element to copy the JSON string to the clipboard
+    const textarea = document.createElement('textarea');
+    textarea.value = jsonString;
+    document.body.appendChild(textarea);
+    textarea.select();
+
+      // Copy JSON string to the clipboard
+    navigator.clipboard.writeText(jsonString)
+        .then(() => {
+          console.log('JSON data copied to clipboard:\n' + jsonString);
+        })
+        .catch((err) => {
+          console.error('Failed to copy JSON data: ', err);
+        });
+  };
+
   const saveState = (currentStep) => {
     if(currentStep === 1){
       setResumeState((prevState) => {
@@ -548,7 +568,7 @@ export default function ResumeBuilder() {
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-4xl py-5 dark:text-white">Google Resume</h2>
-            <div className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
+            <button className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2" onClick={() => copyResumeData()}>
               <span>Copy</span>
               <span>
                 <svg
@@ -572,7 +592,7 @@ export default function ResumeBuilder() {
                   />
                 </svg>
               </span>
-            </div>
+            </button>
           </div>
         {stepComponents[currentStep - 1]}
         <div className="flex justify-between pb-20">
