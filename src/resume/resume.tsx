@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
 
 function Resume({ personal, work, education, skills, links }) {
   useDocumentTitle()
+            // console.log('skills', skills)
 
   return (
     <PDFViewer style={styles.viewer}>
