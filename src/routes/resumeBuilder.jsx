@@ -544,9 +544,10 @@ export default function ResumeBuilder() {
               <div>
                 <p className='font-bold text-lg text-gray-600'>Country</p>
                 <Select 
-                  options={locations}
-                  value={locations.find((item) => item.value === workExperiences[index].city)}
-                  onChange={(selectedOption, action) => updateWorkInfo('city', selectedOption.value, index, 5)}
+                  options={countries.map(country => ({ value: country.alpha_2_code, label: country.en_short_name }))}
+                  value={countries.find((item) => item.label === workExperiences[index].city)}
+                  onChange={(selectedOption, action) => {
+                    updateWorkInfo('city', selectedOption.label, index, 5)}}
                   placeholder="Select a location"
                   styles={{
                     control: (provided) => ({
@@ -642,10 +643,11 @@ export default function ResumeBuilder() {
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>Country</p>
-              <Select 
-                  options={locations}
-                  value={locations.find((item) => item.value === educations[index].city)}
-                  onChange={(selectedOption, action) => updateEducationInfo('city', selectedOption.value, index, 5)}
+                <Select 
+                  options={countries.map(country => ({ value: country.alpha_2_code, label: country.en_short_name }))}
+                  value={countries.find((item) => item.label === workExperiences[index].city)}
+                  onChange={(selectedOption, action) => {
+                    updateEducationInfo('city', selectedOption.label, index, 5)}}
                   placeholder="Select a location"
                   styles={{
                     control: (provided) => ({
