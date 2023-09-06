@@ -1,5 +1,6 @@
 import { SectionWrapper } from '../shared'
 import { Text, View, StyleSheet, Font } from '@react-pdf/renderer'
+import { format } from 'date-fns'; 
 
 Font.register({
   family: 'RobotoBold',
@@ -41,7 +42,8 @@ export const WorkExperience = ({ work }) => {
           <>
           <View>
             <Text>{item.employer}</Text>
-            <Text>{item.startDate} - {item.endDate}</Text>
+            {/* <Text>{} - {item.endDate}</Text> */}
+            <Text>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}</Text>
           </View>
           <View>
             <Text>{item.title}</Text>
@@ -54,37 +56,28 @@ export const WorkExperience = ({ work }) => {
         ))}
         </>
       
-      <SectionWrapper title='Work Experience'>
+      {/* <SectionWrapper title='Work Experience'>
         <ul className='ml-2'>
           {work.map((item, i) => (
             <li key={item.employer} className={i % 2 ? 'mt-1 exp-list' : 'mt-half exp-list'}>
               <div className='flex'>
                 <h3>
                   Andela - Kenya
-                  {/* {item.employer} - {item.city} */}
                 </h3>
                 <span className='ml-auto text-muted'>
                   1 june 2019 - 1 June 2022
-                  {/* {item.startDate} - {item.endDate} */}
                 </span>
               </div>
               <h4 className='italic'>
                 Sofware Developer
-                {/* {item.title} */}
               </h4>
               <p>
                 This is a description
-                {/* {item.description} */}
               </p>
-              {/* <ul className="ml-3">
-              {workExperience.bulletPoints.map((bulletPoint) => (
-                <li className="list" key={bulletPoint}>{bulletPoint}</li>
-              ))}
-            </ul> */}
             </li>
           ))}
         </ul>
-      </SectionWrapper>
+      </SectionWrapper> */}
     </>
   )
 }
