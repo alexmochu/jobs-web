@@ -1,5 +1,6 @@
 import { SectionWrapper } from '../shared'
 import { Text, View, StyleSheet, Font } from '@react-pdf/renderer'
+import { format } from 'date-fns'; 
 
 Font.register({
   family: 'RobotoBold',
@@ -41,7 +42,7 @@ export const Education = ({ education }) => {
         <>
           <View>
             <Text>{item.school}</Text>
-            <Text>{item.startDate} - {item.endDate}</Text>
+            <Text>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}</Text>
           </View>
           <View>
             <Text>{item.degree}</Text>
@@ -55,29 +56,25 @@ export const Education = ({ education }) => {
         ))}
         </>
 
-      <SectionWrapper title='Education'>
+      {/* <SectionWrapper title='Education'>
         <ul className='ml-2'>
           {education.map((education, i) => (
             <li key={education.school} className={i % 2 ? 'mt-1 exp-list' : 'mt-half exp-list'}>
               <div className='flex'>
                 <h3>
                   Kenyatta Uni - Nairobi
-                  {/* {education.school} - {education.city} */}
                 </h3>
                 <span className='ml-auto text-muted'>
                   1 june 2019 - 1 June 2022
-                  {/* {education.startDate} - {education.endDate} */}
                 </span>
               </div>
               <h4 className='italic'>
                 Bsc Econimics
-                {/* {education.degree} */}
-                {/* , {education.major} */}
               </h4>
             </li>
           ))}
         </ul>
-      </SectionWrapper>
+      </SectionWrapper> */}
     </>
   )
 }
