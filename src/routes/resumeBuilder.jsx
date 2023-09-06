@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import Select from 'react-select';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
+import { format } from 'date-fns'; 
 import Resume from '../resume/resume'
 import { locations } from '../locations';
+import { countries } from '../countries'
 
 const personalInfo = {
   title: '',
@@ -19,8 +23,8 @@ const workInfo = [
     id: 0,
     title: '',
     employer: '',
-    startDate: '',
-    endDate: '',
+    startDate: null,
+    endDate: null,
     city: '',
     description: '',
   },
@@ -31,8 +35,8 @@ const educationInfo = [
     id: 0,
     school: '',
     degree: '',
-    startDate: '',
-    endDate: '',
+    startDate: null,
+    endDate: null,
     city: '',
     description: '',
   },
@@ -63,6 +67,66 @@ export default function ResumeBuilder() {
     'links': links,
     'skills': skills
   })
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEndDate, setIsOpenEndDate] = useState(false);
+  const [startDateW, setStartDateW] = useState(null);
+  const [endDateW, setEndDateW] = useState(null);
+  const [isOpenW, setIsOpenW] = useState(false);
+  const [isOpenEndDateW, setIsOpenEndDateW] = useState(false);
+  const [datePickerOpen, setDatePickerOpen] = useState(new Array(workExperiences.length).fill(false));
+  const [datePickerEnd, setDatePickerEnd] = useState(new Array(workExperiences.length).fill(false));
+  const [datePickerOpenW, setDatePickerOpenW] = useState(new Array(educations.length).fill(false));
+  const [datePickerEndW, setDatePickerEndW] = useState(new Array(educations.length).fill(false));
+
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setIsOpen(!isOpen);
+  // };
+
+  const handleClick = (index) => {
+    setDatePickerOpen((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  const handleClickEndDate = (index) => {
+    setDatePickerEnd((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  const handleClickW = (index) => {
+    setDatePickerOpenW((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  const handleChangeEndDateW = (e) => {
+    setIsOpenW(!isOpenEndDateW);
+    setEndDateW(e);
+  };
+  const handleClickEndDateW = (index) => {
+    setDatePickerEndW((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  // Handle the checkbox change event
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked); // Toggle the checkbox state
+  };
 
   // useEffect(() => {
   //   // Fetch country data from the REST Countries API
@@ -96,8 +160,8 @@ export default function ResumeBuilder() {
         id: prevWorkExperiences.length, // Assign a unique ID
         title: '', // Initialize other fields with empty values
         employer: '',
-        startDate: '',
-        endDate: '',
+        startDate: null,
+        endDate: null,
         city: '',
         description: '',
         },
@@ -109,8 +173,8 @@ export default function ResumeBuilder() {
           id: prevEducation.length,
           school: '',
           degree: '',
-          startDate: '',
-          endDate: '',
+          startDate: null,
+          endDate: null,
           city: '',
           description: '',
         },
@@ -152,14 +216,46 @@ export default function ResumeBuilder() {
 
   const onChange = (e) => setPersonalState({ ...personalState, [e.target.name]: e.target.value })
 
-  const updateWorkInfo = (field, value, index) => {
+  const updateWorkInfo = (field, value, index, no) => {
+    let input
+    if(no === 1){
+      input = value
+    }
+    if(no === 2){
+      input = value
+    }
+    if(no === 3){
+      setStartDate(value);
+      setDatePickerOpen((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+      input = value
+    }
+
+    if(no === 4){
+      setEndDate(value);
+      setDatePickerEnd((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+      input = value
+    }
+    if(no === 5){
+      input = value
+    }
+    if(no == 6){
+      input = value
+    }
     setWorkExperiences((prevWorkInfo) => {
       const updatedWorkInfo = prevWorkInfo.map((item, i) => {
       if (i === index) {
         // Update the specific item in the array
         return {
           ...item,
-          [field]: value,
+          [field]: input,
         };
       }
       return item;
@@ -168,13 +264,41 @@ export default function ResumeBuilder() {
     })
   }
 
-  const updateEducationInfo = (field, value, index) => {
+  const updateEducationInfo = (field, value, index, no) => {
+    let input
+    if(no === 1){
+      input = value
+    }
+    if(no === 2){
+      input = value
+    }
+    if(no === 3){
+      setStartDateW(value);
+      setDatePickerOpenW((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+      input = value
+    }
+    if(no === 4){
+      setEndDateW(value);
+      setDatePickerEndW((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+      input = value
+    }
+    if(no === 5){
+      input = value
+    }
     setEducations((prevEducationInfo) => {
       const updatedEducationInfo = prevEducationInfo.map((item, i) => {
         if (i === index){
           return {
             ...item,
-            [field]: value
+            [field]:input
           }
         }
         return item
@@ -368,7 +492,7 @@ export default function ResumeBuilder() {
                 <input
                   className='border-2 border-black rounded-lg p-2 w-full'
                   value={workExperiences[index].title}
-                  onChange={(e) => updateWorkInfo('title', e.target.value, index)}
+                  onChange={(e) => updateWorkInfo('title', e.target.value, index, 1)}
                   placeholder='Job Title'
                 />
               </div>
@@ -378,40 +502,51 @@ export default function ResumeBuilder() {
                   className='border-2 border-black rounded-lg p-2 w-full'
                   name='employer'
                   value={workExperiences[index].employer}
-                  onChange={(e) => updateWorkInfo('employer', e.target.value, index)}
+                  onChange={(e) => updateWorkInfo('employer', e.target.value, index, 2)}
                   placeholder='Employer'
                 />
               </div>
             </div>
-            <div className='grid grid-cols-2 gap-4 mb-5'>
-              <div>
-                <p className='font-bold text-lg text-gray-600'>Start Date</p>
+            <div className='mb-2 text-lg'>
+              {/* Render the checkbox input element */}
+              <label>
                 <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='startDate'
-                  value={workExperiences[index].startDate}
-                  onChange={(e) => updateWorkInfo('startDate', e.target.value, index)}
-                  placeholder='Start Date'
+                  type="checkbox"
+                  checked={isChecked} // Set the checked state of the checkbox
+                  onChange={handleCheckboxChange} // Handle the change event
+                  className='mr-2 mb-1'
                 />
+                I am currently working in this role.
+              </label>
+            </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div >
+                <p className='font-bold text-lg text-gray-600'>Start Date</p>
+                <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClick(index)}>
+                  {workExperiences[index].startDate === null ? "Click to select a date" : format(workExperiences[index].startDate, 'MMM, yyyy')}
+                </button>
+                {datePickerOpen[index] && (
+                  <DatePicker selected={workExperiences[index].startDate} onChange={(e) => updateWorkInfo('startDate', e, index, 3)} inline />
+                )}
               </div>
+              {!isChecked &&
               <div>
                 <p className='font-bold text-lg text-gray-600'>End Date</p>
-                <input
-                  className='border-2 border-black rounded-lg p-2 w-full'
-                  name='endDate'
-                  value={workExperiences[index].endDate}
-                  onChange={(e) => updateWorkInfo('endDate', e.target.value, index)}
-                  placeholder='End Date'
-                />
-              </div>
+                <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickEndDate(index)}>
+                  {workExperiences[index].endDate === null ? "Click to select a date" : format(workExperiences[index].endDate, "MMM, yyyy")}
+                </button>
+                {datePickerEnd[index] && (
+                  <DatePicker selected={workExperiences[index].endDate} onChange={(e) => updateWorkInfo('endDate', e, index, 4)} inline />
+                )}
+              </div>}
             </div>
             <div className='grid grid-cols-2 gap-4 mb-5'>
               <div>
-                <p className='font-bold text-lg text-gray-600'>City</p>
+                <p className='font-bold text-lg text-gray-600'>Country</p>
                 <Select 
                   options={locations}
                   value={locations.find((item) => item.value === workExperiences[index].city)}
-                  onChange={(selectedOption, action) => updateWorkInfo('city', selectedOption.value, index)}
+                  onChange={(selectedOption, action) => updateWorkInfo('city', selectedOption.value, index, 5)}
                   placeholder="Select a location"
                   styles={{
                     control: (provided) => ({
@@ -431,12 +566,12 @@ export default function ResumeBuilder() {
                 className='border-2 border-black rounded-lg w-full h-56 p-2'
                 name='description'
                 value={workExperiences[index].description}
-                onChange={(e) => updateWorkInfo('description', e.target.value, index)}
+                onChange={(e) => updateWorkInfo('description', e.target.value, index, 6)}
                 placeholder='Description'
               ></textarea>
     </div>
   </>
-          ))) : 'Opps report this bug'}
+          ))) : 'Add work experience'}
         </div>
 
   const education = 
@@ -455,7 +590,7 @@ export default function ResumeBuilder() {
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='school'
                 value={educations[index].school}
-                onChange={(e) => updateEducationInfo('school', e.target.value, index)}
+                onChange={(e) => updateEducationInfo('school', e.target.value, index, 1)}
                 placeholder='School'
               />
             </div>
@@ -465,7 +600,7 @@ export default function ResumeBuilder() {
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='degree'
                 value={educations[index].degree}
-                onChange={(e) => updateEducationInfo('degree', e.target.value, index)}
+                onChange={(e) => updateEducationInfo('degree', e.target.value, index, 2)}
                 placeholder='Degree'
               />
             </div>
@@ -473,32 +608,44 @@ export default function ResumeBuilder() {
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
               <p className='font-bold text-lg text-gray-600'>Start Date</p>
-              <input
+              {/* <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='startDate'
                 value={educations[index].startDate}
                 onChange={(e) => updateEducationInfo('startDate', e.target.value, index)}
                 placeholder='Start Date'
-              />
+              /> */}
+              <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickW(index)}>
+                  {educations[index].startDate === null ? "Click to select a date" : format(educations[index].startDate, 'MMM, yyyy')}
+                </button>
+                {datePickerOpenW[index] && (
+                  <DatePicker selected={educations[index].startDate} onChange={(e) => updateEducationInfo('startDate', e, index, 3)} inline />
+                )}
             </div>
             <div>
-              <p>End Date</p>
-              <input
+              <p>End Date (or expected date)</p>
+              {/* <input
                 className='border-2 border-black rounded-lg p-2 w-full'
                 name='endDate'
                 value={educations[index].endDate}
                 onChange={(e) => updateEducationInfo('endDate', e.target.value, index)}
                 placeholder='End Date'
-              />
+              /> */}
+                <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickEndDateW(index)}>
+                  {educations[index].endDate === null ? "Click to select a date" : format(educations[index].endDate, "MMM, yyyy")}
+                </button>
+                {datePickerEndW[index] && (
+                  <DatePicker selected={educations[index].endDate} onChange={(e) => updateEducationInfo('endDate', e, index, 4)} inline />
+                )}
             </div>
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
-              <p className='font-bold text-lg text-gray-600'>City</p>
+              <p className='font-bold text-lg text-gray-600'>Country</p>
               <Select 
                   options={locations}
                   value={locations.find((item) => item.value === educations[index].city)}
-                  onChange={(selectedOption, action) => updateEducationInfo('city', selectedOption.value, index)}
+                  onChange={(selectedOption, action) => updateEducationInfo('city', selectedOption.value, index, 5)}
                   placeholder="Select a location"
                   styles={{
                     control: (provided) => ({
@@ -513,11 +660,7 @@ export default function ResumeBuilder() {
             <div></div>
           </div>
           </>
-          ))) : 'Opps report this bug'}
-          {/* <div>
-               <p className='font-bold text-lg text-gray-600'>Description</p>
-               <textarea className='border-2 border-black rounded-lg w-full h-56 p-2' name='description' value={educationState[0].description} onChange={(e) => updateEducationInfo('description', e.target.value)} placeholder='Description'></textarea>
-               </div> */}
+          ))) : 'Add education background'}
         </div>
 
   const websites =
@@ -552,7 +695,7 @@ export default function ResumeBuilder() {
             </div>
           </div>
           </>
-          ))) : 'Opps report this bug'}
+          ))) : 'Add social profile links'}
         </div>
 
   const skillsComponent =
