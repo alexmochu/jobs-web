@@ -3,6 +3,7 @@ import { countries } from './../../../countries'
 import { jobTypes } from './../../../jobTypes'
 import Queries from '../../../api/queries'
 import { userState } from '../../../main'
+import Select from 'react-select';
 
 const jobDetails = {
   jobUrl: '',
@@ -53,6 +54,14 @@ function TrackJobModal({closeJobModal, applicationState}) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJobData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleCountriesChange = (field, value) => {
+    setJobData((prevState) => ({ ...prevState, [field]: value }));
+  };
+
+  const handleJobTypeChange = (field, value) => {
+    setJobData((prevState) => ({ ...prevState, [field]: value }));
   };
 
   return (
@@ -108,40 +117,40 @@ function TrackJobModal({closeJobModal, applicationState}) {
                             focus:invalid:border-pink-500 focus:invalid:ring-pink-500`}
           />
         </div>
-        <div className="grid grid-cols-4 gap-4">
-        <select
-          className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='jobLocation'
-          id='locations'
-          value={jobData.jobLocation}
-          onChange={handleChange}
-        >
-  <option value='' disabled selected>
-    Select a location
-  </option>
-          {countries.map((item) => (
-            <option key={item.country_code} value={item.en_short_name}>
-              {item.en_short_name}
-            </option>
-          ))}
-        </select>
-                <select
-          className='col-span-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
-          name='jobType'
-          id='type'
-          value={jobData.jobType}
-          onChange={handleChange}
-        >
-  <option value='' disabled selected>
-    Select job type
-  </option>
-          {jobTypes.map((item) => (
-            <option key={item.type} value={item.type}>
-              {item.type}
-            </option>
-          ))}
-        </select>
-        </div>
+            <div className='grid grid-cols-2 gap-4 mb-5'>
+              <div>
+                <Select 
+                  options={countries.map(country => ({ value: country.alpha_2_code, label: country.en_short_name }))}
+                  value={countries.find((item) => item.label === jobData.jobLocation)}
+                  onChange={(selectedOption, action) => {
+                    handleCountriesChange('jobLocation', selectedOption.label)}}
+                  placeholder="Select a location"
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      // Add additional styles here
+                      borderRadius: '8px',
+                    }),
+                  }}
+                  />
+              </div>
+              <div>
+              <Select  
+                  options={jobTypes.map(type => ({ label: type.label, value: type.value }))}
+                  value={jobTypes.find((item) => item.label === jobData.jobType)}
+                  onChange={(selectedOption, action) => {
+                    handleJobTypeChange('jobType', selectedOption.label)}}
+                  placeholder="Select a job type"
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      // Add additional styles here
+                      borderRadius: '8px'
+                    }),
+                  }}
+                  />
+              </div>
+            </div>
         <div>
           <textarea
             name="jobDescription"
