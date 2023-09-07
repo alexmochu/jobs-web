@@ -1,12 +1,15 @@
 /* eslint-disable camelcase */
 export const jobTypes = [
   {
-    type: 'Remote',
+    label: 'Remote',
+    value: 'Remote',
   },
   {
-    type: 'Onsite',
+    label: 'Onsite',
+    value: 'Onsite',
   },
   {
-    type: 'Hybrid',
+    label: 'Hybrid',
+    value: 'Hybrid',
   },
 ]
