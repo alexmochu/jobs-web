@@ -4,18 +4,20 @@ import Cover from '../coverletter/coverletter'
 const initialState = {
   fullName: '',
   title: '',
-  address: '',
   email: '',
-  phoneNumber: '',
-  onlineLink: '',
-  otherLinks: '',
   company: '',
   hiringManager: '',
   letterDetails: '',
 }
 export default function CoverLetter() {
   const [state, setState] = useState(initialState)
+  const [coverLetter, setCoverLetterState] = useState(state)
   const onChange = (e) => setState({ ...state, [e.target.name]: e.target.value })
+
+  const saveState = () => {
+    console.log('clicked')
+    setCoverLetterState(state)
+  }
 
   return (
     <div className='grid grid-cols-2 gap-4 mb-4'>
@@ -77,14 +79,6 @@ export default function CoverLetter() {
           </div>
           <div className='grid grid-cols-2 gap-4 mb-5'>
             <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Address</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='address'
-                value={state.address}
-                onChange={onChange}
-                placeholder='Address'
-              />
             </div>
             <div>
               <p className='dark:text-white font-bold text-lg text-gray-600'>Email</p>
@@ -96,41 +90,6 @@ export default function CoverLetter() {
                 placeholder='Email'
               />
             </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4 mb-4'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Phone Number</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='phoneNumber'
-                value={state.phoneNumber}
-                onChange={onChange}
-                placeholder='Phone Number'
-              />
-            </div>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Social Media</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='onlineLink'
-                value={state.onlineLink}
-                onChange={onChange}
-                placeholder='Social Media'
-              />
-            </div>
-          </div>
-          <div className='grid grid-cols-2 gap-4'>
-            <div>
-              <p className='dark:text-white font-bold text-lg text-gray-600'>Website/Other Links</p>
-              <input
-                className='border-2 border-black rounded-lg p-2 w-full'
-                name='otherLinks'
-                value={state.otherLinks}
-                onChange={onChange}
-                placeholder='Website/Other Links'
-              />
-            </div>
-            <div></div>
           </div>
         </div>
         <div className='paper inline mx-auto p-3'>
@@ -173,14 +132,12 @@ export default function CoverLetter() {
             ></textarea>
           </div>
         </div>
-        <div className='paper inline mx-auto p-3'>
-          <div>
-            <button className='border bg-indigo-500 text-white rounded-md px-5 py-2 dark:text-white'>Save</button>
-          </div>
+        <div>
+            <button onClick={() => saveState()}  className='border mb-5 bg-indigo-500 text-white rounded-md px-5 py-2 dark:text-white'>Save</button>
         </div>
       </div>
       <div className='flex items-center justify-center rounded border border-gray-200 h-fit dark:bg-gray-800'>
-        <Cover state={state} />
+        <Cover state={coverLetter} />
       </div>
     </div>
   )
