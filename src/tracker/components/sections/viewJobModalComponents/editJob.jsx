@@ -62,7 +62,7 @@ function EditJob({setViewState, job, closeModal}) {
     setViewState((prevState) => ({ ...prevState, view: true, edit: false }));
   };
 
-
+  
   return (
     <div className='h-[500px]'>
     <div className="flex justify-center items-center">
@@ -145,8 +145,8 @@ function EditJob({setViewState, job, closeModal}) {
     Select job type
   </option>
           {jobTypes.map((item) => (
-            <option key={item.type} value={item.type}>
-              {item.type}
+            <option key={item.label} value={item.label}>
+              {item.label}
             </option>
           ))}
         </select>
