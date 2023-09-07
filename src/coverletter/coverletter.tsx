@@ -1,5 +1,5 @@
 import { Document, Page, View, StyleSheet, PDFViewer } from '@react-pdf/renderer'
-import { ContactInfo, Summary } from './components/sections'
+import { Summary } from './components/sections'
 import { useDocumentTitle } from '../hooks'
 import './index.css'
 
@@ -26,7 +26,6 @@ function CoverLetter({ state }) {
       <Document>
         <Page size='A4' style={styles.page}>
           <View style={styles.section}>
-            <ContactInfo state={state} />
             <Summary state={state} />
           </View>
         </Page>
