@@ -556,7 +556,7 @@ export const countries = [
   {
     alpha_2_code: 'TF',
     alpha_3_code: 'ATF',
-    country_code: '+262',
+    country_code: '+26222',
     en_short_name: 'French Southern Territories',
     nationality: 'French Southern Territories',
   },
@@ -626,7 +626,7 @@ export const countries = [
   {
     alpha_2_code: 'GP',
     alpha_3_code: 'GLP',
-    country_code: '+590',
+    country_code: '+590000',
     en_short_name: 'Guadeloupe',
     nationality: 'Guadeloupe',
   },
@@ -647,7 +647,7 @@ export const countries = [
   {
     alpha_2_code: 'GG',
     alpha_3_code: 'GGY',
-    country_code: '+44',
+    country_code: '+444444',
     en_short_name: 'Guernsey',
     nationality: 'Channel Island',
   },
@@ -759,7 +759,7 @@ export const countries = [
   {
     alpha_2_code: 'IM',
     alpha_3_code: 'IMN',
-    country_code: '+44',
+    country_code: '+44454445',
     en_short_name: 'Isle of Man',
     nationality: 'Manx',
   },
@@ -794,7 +794,7 @@ export const countries = [
   {
     alpha_2_code: 'JE',
     alpha_3_code: 'JEY',
-    country_code: '+44',
+    country_code: '+445678',
     en_short_name: 'Jersey',
     nationality: 'Channel Island',
   },
@@ -1011,7 +1011,7 @@ export const countries = [
   {
     alpha_2_code: 'YT',
     alpha_3_code: 'MYT',
-    country_code: '+262',
+    country_code: '+2623434343',
     en_short_name: 'Mayotte',
     nationality: 'Mahoran',
   },
@@ -1172,7 +1172,7 @@ export const countries = [
   {
     alpha_2_code: 'NO',
     alpha_3_code: 'NOR',
-    country_code: '+47',
+    country_code: '+4777777',
     en_short_name: 'Norway',
     nationality: 'Norwegian',
   },
@@ -1305,7 +1305,7 @@ export const countries = [
   {
     alpha_2_code: 'BL',
     alpha_3_code: 'BLM',
-    country_code: '+590',
+    country_code: '+5923230',
     en_short_name: 'Saint Barthélemy',
     nationality: 'Barthélemois',
   },
@@ -1459,7 +1459,7 @@ export const countries = [
   {
     alpha_2_code: 'GS',
     alpha_3_code: 'SGS',
-    country_code: '+500',
+    country_code: '+5000000',
     en_short_name: 'South Georgia and the South Sandwich Islands',
     nationality: 'South Georgia or South Sandwich Islands',
   },
@@ -1662,7 +1662,7 @@ export const countries = [
   {
     alpha_2_code: 'US',
     alpha_3_code: 'USA',
-    country_code: '+1',
+    country_code: '+1111111',
     en_short_name: 'United States of America',
     nationality: 'American',
   },
@@ -1725,7 +1725,7 @@ export const countries = [
   {
     alpha_2_code: 'EH',
     alpha_3_code: 'ESH',
-    country_code: '+212',
+    country_code: '+2122',
     en_short_name: 'Western Sahara',
     nationality: 'Sahrawi, Sahrawian, Sahraouian',
   },
