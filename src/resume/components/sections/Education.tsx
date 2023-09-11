@@ -84,7 +84,7 @@ export const Education = ({ education }) => {
               <Text style={styles.oneLine}>|</Text>
               <Text style={styles.data}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")}
               {item.endDate !== null ? <>
-                {' '} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}
+                {' '} - {item.endDate === null ? item.endDate : format(item.endDate, "MMM, yyyy")}
               </> : null}
               </Text>
             </> : null}
