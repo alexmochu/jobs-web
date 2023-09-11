@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   svgContainer: {
     backgroundColor: 'red',
     width: '100%',
-    marginBottom: 10,
     marginTop: 6,
   },
   line: {
@@ -35,8 +34,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   degree: {
-    fontFamily: 'RobotoBold',
-    fontWeight: 'bold',
     fontSize: 13,
   },
   city: {
@@ -56,6 +53,9 @@ const styles = StyleSheet.create({
     marginLeft: '4px',
     marginRight: '4px',
     bottom: '4px'
+  },
+  mainContainer: {
+    marginTop: 10
   }
 })
 
@@ -70,7 +70,7 @@ export const Education = ({ education }) => {
           <View style={styles.line} />
         </View>
       {education.map((item, i) => (
-        <>
+        <View key={i} style={styles.mainContainer}>
           <View style={styles.container}>
             <Text style={styles.school}>{item.school}</Text>
             {item.city.length > 1 ? <>
@@ -93,7 +93,7 @@ export const Education = ({ education }) => {
             <Text style={styles.summaryText}>{item.description}</Text>
           </View>
           {/* {summary} */}
-          </>
+          </View>
         ))}
         </>
     </>
