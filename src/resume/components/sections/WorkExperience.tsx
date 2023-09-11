@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   svgContainer: {
     backgroundColor: 'red',
     width: '100%',
-    marginBottom: 10,
     marginTop: 6,
   },
   line: {
@@ -55,6 +54,9 @@ const styles = StyleSheet.create({
     marginRight: '4px',
     bottom: '4px'
   },
+  mainContainer: {
+    marginTop: 10
+  },
   container: {
     flexDirection: 'row'
   }
@@ -71,7 +73,7 @@ export const WorkExperience = ({ work }) => {
             <View style={styles.line} />
           </View>
         {work.map((item, i) => (
-          <>
+          <View style={styles.mainContainer} key={i}>
           <View style={styles.container}>
             <Text style={styles.employer}>{item.employer}</Text>
             {item.city.length > 1 ? <>
@@ -97,7 +99,7 @@ export const WorkExperience = ({ work }) => {
           <View>
             <Text style={styles.summaryText}>{item.description}</Text>
           </View>
-        </>
+        </View>
         ))}
         </>
     </>
