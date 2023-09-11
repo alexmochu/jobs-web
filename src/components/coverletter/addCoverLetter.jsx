@@ -54,7 +54,7 @@ function CreateResume({closeJobModal, applicationState}) {
   };
 
   return (
-    <div className='h-[600px]'>
+    <div className='h-[180px]'>
     <div className="flex justify-center items-center">
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Create Cover Letter</h1>
     </div>
@@ -83,21 +83,13 @@ function CreateResume({closeJobModal, applicationState}) {
                             }`}
           />
         </div>
-        <h4 className='mb-2'>Select Template</h4>
-        <div className='overflow-y-auto grid grid-cols-2 gap-4 h-[430px]'>
-          <div className='border h-[200px] rounded-md shadow-md flex items-center justify-center'>Template 1</div>
-          <div className='border h-[200px] rounded-md shadow-md flex items-center justify-center'>Template 2</div>
-          <div className='border h-[200px] rounded-md shadow-md flex items-center justify-center'>Template 3</div>
-          <div className='border h-[200px] rounded-md shadow-md flex items-center justify-center'>Template 4</div>
-          <div className='border h-[200px] rounded-md shadow-md flex items-center justify-center'>Template 5</div>
-        </div>
         <div className="grid grid-cols-4 gap-4">
         <button 
           type="submit"
-          className='col-span-2 bg-indigo-500 text-gray-100 pt-2 pb-1 w-full rounded-full tracking-wide
+          className='col-span-2 bg-indigo-500 text-gray-100 pt-2 pb-2 w-[100px] rounded-full tracking-wide
                                       font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                       shadow-lg'          
-        >Submit</button>
+        >Create</button>
         </div>
       </form>)}
     </div>
