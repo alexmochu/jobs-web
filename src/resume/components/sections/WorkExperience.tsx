@@ -85,9 +85,11 @@ export const WorkExperience = ({ work }) => {
             <>
               <Text style={styles.oneLine}>|</Text>
               <Text style={styles.date}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} 
-                {item.endDate !== null ? <>
+                {item.current ? ' - Current' :
+                <>{item.endDate !== null ? <>
                 {' '}- {item.endDate === null ? item.endDate : format(item.endDate, "MMM, yyyy")}
-                </> : null}
+                </> : null}</>
+                }
               </Text>
             </>
             : null}
