@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 export const WorkExperience = ({ work }) => {
   return (
     <>
+    {work.length > 0 && 
         <>
           <View style={styles.summaryHeader}>
             <Text>Work Experience</Text>
@@ -101,7 +102,7 @@ export const WorkExperience = ({ work }) => {
           </View>
         </View>
         ))}
-        </>
+        </>}
     </>
   )
 }

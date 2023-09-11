@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
 export const Education = ({ education }) => {
   return (
     <>
+    {education.length > 0 &&
     <>
       <View style={styles.summaryHeader}>
         <Text>Education</Text>
@@ -95,7 +96,7 @@ export const Education = ({ education }) => {
           {/* {summary} */}
           </View>
         ))}
-        </>
+        </>}
     </>
   )
 }

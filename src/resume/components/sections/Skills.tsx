@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
 export const Skills = ({ skills }) => {
   return (
     <>
-        <>
+      {skills.length > 0 ?
+      <>
           <View style={styles.summaryHeader}>
             <Text>Skills</Text>
           </View>
@@ -54,8 +55,8 @@ export const Skills = ({ skills }) => {
               </Fragment>
             ))}
           </View>
-          {/* {summary} */}
-        </>
+          </>
+          : null}
     </>
   )
 }
