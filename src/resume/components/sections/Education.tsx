@@ -29,6 +29,34 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 1.5,
   },
+  school: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  degree: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  city: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  data: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  container: {
+    flexDirection: 'row'
+  },
+  oneLine: {
+    marginLeft: '4px',
+    marginRight: '4px',
+    bottom: '4px'
+  }
 })
 
 export const Education = ({ education }) => {
@@ -38,15 +66,28 @@ export const Education = ({ education }) => {
       <View style={styles.summaryHeader}>
         <Text>Education</Text>
       </View>
+      <View style={styles.svgContainer}>
+          <View style={styles.line} />
+        </View>
       {education.map((item, i) => (
         <>
-          <View>
-            <Text>{item.school}</Text>
-            <Text>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}</Text>
+          <View style={styles.container}>
+            <Text style={styles.school}>{item.school}</Text>
+            {item.city.length > 1 ? <>
+              <Text style={styles.oneLine}>|</Text>
+              <Text style={styles.city}>{item.city}</Text>
+            </> : null}
           </View>
-          <View>
-            <Text>{item.degree}</Text>
-            <Text>{item.city}</Text>
+          <View style={styles.container}>
+            <Text style={styles.degree}>{item.degree}</Text>
+            {item.startDate !== null || item.endDate !== null ? <>
+              <Text style={styles.oneLine}>|</Text>
+              <Text style={styles.data}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")}
+              {item.endDate !== null ? <>
+                {' '} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}
+              </> : null}
+              </Text>
+            </> : null}
           </View>
           <View>
             <Text style={styles.summaryText}>{item.description}</Text>
@@ -55,26 +96,6 @@ export const Education = ({ education }) => {
           </>
         ))}
         </>
-
-      {/* <SectionWrapper title='Education'>
-        <ul className='ml-2'>
-          {education.map((education, i) => (
-            <li key={education.school} className={i % 2 ? 'mt-1 exp-list' : 'mt-half exp-list'}>
-              <div className='flex'>
-                <h3>
-                  Kenyatta Uni - Nairobi
-                </h3>
-                <span className='ml-auto text-muted'>
-                  1 june 2019 - 1 June 2022
-                </span>
-              </div>
-              <h4 className='italic'>
-                Bsc Econimics
-              </h4>
-            </li>
-          ))}
-        </ul>
-      </SectionWrapper> */}
     </>
   )
 }
