@@ -15,7 +15,7 @@ const personalInfo = {
   phoneNumber: '',
   country: '',
   city: '',
-  summary: '',
+  summary: ''
 }
 
 const workInfo = [
@@ -26,8 +26,9 @@ const workInfo = [
     startDate: null,
     endDate: null,
     city: '',
-    description: '',
-  },
+    current: false,
+    description: ''
+  }
 ]
 
 const educationInfo = [
@@ -125,7 +126,7 @@ export default function ResumeBuilder() {
 
   // Handle the checkbox change event
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked); // Toggle the checkbox state
+    setIsChecked((prevIsChecked) => !prevIsChecked); // Toggle the checkbox state
   };
 
   // useEffect(() => {
@@ -216,7 +217,7 @@ export default function ResumeBuilder() {
 
   const onChange = (e) => setPersonalState({ ...personalState, [e.target.name]: e.target.value })
 
-  const updateWorkInfo = (field, value, index, no) => {
+  const updateWorkInfo = async (field, value, index, no) => {
     let input
     if(no === 1){
       input = value
@@ -248,6 +249,15 @@ export default function ResumeBuilder() {
     }
     if(no == 6){
       input = value
+    }
+    if(no === 7){
+      setIsChecked((prevIsChecked) => {
+        // Toggle the checkbox state
+        const newIsChecked = !prevIsChecked;
+        input = newIsChecked; // Set the input value
+        console.log('changes', newIsChecked); // Log the updated state
+        return newIsChecked;
+      });
     }
     setWorkExperiences((prevWorkInfo) => {
       const updatedWorkInfo = prevWorkInfo.map((item, i) => {
@@ -512,8 +522,8 @@ export default function ResumeBuilder() {
               <label>
                 <input
                   type="checkbox"
-                  checked={isChecked} // Set the checked state of the checkbox
-                  onChange={handleCheckboxChange} // Handle the change event
+                  checked={workExperiences[index].current} // Set the checked state of the checkbox
+                  onChange={(e) => updateWorkInfo('current', e, index, 7)} // Handle the change event
                   className='mr-2 mb-1'
                 />
                 I am currently working in this role.
@@ -529,7 +539,7 @@ export default function ResumeBuilder() {
                   <DatePicker selected={workExperiences[index].startDate} onChange={(e) => updateWorkInfo('startDate', e, index, 3)} inline />
                 )}
               </div>
-              {!isChecked &&
+              {!workExperiences[index].current &&
               <div>
                 <p className='font-bold text-lg text-gray-600'>End Date</p>
                 <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickEndDate(index)}>
