@@ -1,18 +1,28 @@
 import { Fragment, useCallback } from 'react'
-import { Text, View, StyleSheet, Link } from '@react-pdf/renderer'
+import { Text, View, StyleSheet, Link, Font } from '@react-pdf/renderer'
+
+Font.register({
+  family: 'TavirajBold',
+  src: '/fonts/Taviraj-Bold.ttf',
+})
 
 const styles = StyleSheet.create({
-  nameTitle: {
+  name: {
     backgroundColor: 'white',
     color: 'black',
-    alignSelf: 'center',
+    fontSize: 23,
+    fontFamily: 'TavirajBold',
+    fontWeight: 900,
+  },
+  title: {
+    backgroundColor: 'white',
+    color: 'black',
     fontSize: 13,
     marginBottom: 4,
   },
   viewLinks: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   link: {
     textDecoration: 'none',
@@ -30,20 +40,20 @@ export const ContactInfo = ({ personal, links }) => {
 
   return (
     <>
-      <Text style={styles.nameTitle}>{firstName + ' ' + lastName}</Text>
-      <Text style={styles.nameTitle}>{title}</Text>
+      <Text style={styles.name}>{firstName + ' ' + lastName}</Text>
+      <Text style={styles.title}>{title}</Text>
       <View style={styles.viewLinks}>
         <Link style={styles.link} src={`mailto:${email}`}>
           {email}
         </Link>
-        {links.map((item) => (
+        {/* {links.map((item) => (
           <Fragment key={item}>
             <Text style={{ paddingLeft: 10, paddingRight: 10 }}>•</Text>
             <Link style={styles.link} src={item.link}>
               {cleanLink(item.label)}
             </Link>
           </Fragment>
-        ))}
+        ))} */}
       </View>
     </>
   )
