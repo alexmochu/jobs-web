@@ -28,7 +28,36 @@ const styles = StyleSheet.create({
   summaryText: {
     fontSize: 13,
     lineHeight: 1.5,
+    marginTop: '7px'
   },
+  employer: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  title: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  date: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  city: {
+    fontFamily: 'RobotoBold',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  oneLine: {
+    marginLeft: '4px',
+    marginRight: '4px',
+    bottom: '4px'
+  },
+  container: {
+    flexDirection: 'row'
+  }
 })
 
 export const WorkExperience = ({ work }) => {
@@ -38,16 +67,30 @@ export const WorkExperience = ({ work }) => {
           <View style={styles.summaryHeader}>
             <Text>Work Experience</Text>
           </View>
+          <View style={styles.svgContainer}>
+            <View style={styles.line} />
+          </View>
         {work.map((item, i) => (
           <>
-          <View>
-            <Text>{item.employer}</Text>
-            {/* <Text>{} - {item.endDate}</Text> */}
-            <Text>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} - {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}</Text>
+          <View style={styles.container}>
+            <Text style={styles.employer}>{item.employer}</Text>
+            {item.city.length > 1 ? <>
+            <Text style={styles.oneLine}>|</Text>
+            <Text style={styles.city}>{item.city}</Text>
+            </> : null }
           </View>
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.city}</Text>
+          <View style={styles.container}>
+            <Text style={styles.title}>{item.title}</Text>
+            {item.startDate !== null || item.endDate !== null ? 
+            <>
+              <Text style={styles.oneLine}>|</Text>
+              <Text style={styles.date}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} 
+                {item.endDate !== null ? <>
+                {' '}- {item.endDate === null ? item.endDate : format(item.startDate, "MMM, yyyy")}
+                </> : null}
+              </Text>
+            </>
+            : null}
           </View>
           <View>
             <Text style={styles.summaryText}>{item.description}</Text>
@@ -55,29 +98,6 @@ export const WorkExperience = ({ work }) => {
         </>
         ))}
         </>
-      
-      {/* <SectionWrapper title='Work Experience'>
-        <ul className='ml-2'>
-          {work.map((item, i) => (
-            <li key={item.employer} className={i % 2 ? 'mt-1 exp-list' : 'mt-half exp-list'}>
-              <div className='flex'>
-                <h3>
-                  Andela - Kenya
-                </h3>
-                <span className='ml-auto text-muted'>
-                  1 june 2019 - 1 June 2022
-                </span>
-              </div>
-              <h4 className='italic'>
-                Sofware Developer
-              </h4>
-              <p>
-                This is a description
-              </p>
-            </li>
-          ))}
-        </ul>
-      </SectionWrapper> */}
     </>
   )
 }
