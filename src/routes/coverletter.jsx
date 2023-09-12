@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, } from 'react-router-dom'
 import CreateCoverLetter from '../components/coverletter/addCoverLetter';
 import ViewCoverLetter from '../components/coverletter/viewCoverLetter';
 import DeleteCoverLetter from '../components/coverletter/deleteCoverLetter';
+import Queries from '../api/queries';
+import { userState } from '../main';
 
 export default function Resumes() {
   const [createCoverLetter, setCreateCoverLetter] = useState(false)
@@ -10,12 +12,44 @@ export default function Resumes() {
   const [deleteCoverLetter, setDeleteCoverLetter] = useState(false)
   const [applicationState, setApplicationState] = useState('')
 
+  const [loading, setLoading] = useState(true)
+  const [loadingList, setLoadingList] = useState(false)
+  // const [data, setData] = useState({})
+  const [error, setError] = useState(null)
+
+  const { user, setUser } = userState()
+  const {currentUserLetters, id} = user
+
+  async function loader() {
+    const response = await Queries.getCurrentUserLetters(id)
+    return response
+  }
+
     const data = [
     { id: 1, name: 'AWS cover letter', role: 'Admin' },
     { id: 2, name: 'Google cover letter', role: 'User' },
     { id: 3, name: 'Facebook cover letter', role: 'User' },
     { id: 4, name: 'X cover letter', role: 'User' },
   ];
+
+    useEffect(() => {
+    const storeState = localStorage.getItem('store')
+      if (storeState) {
+        setUser(JSON.parse(storeState))
+    }
+    const fetchData = async () => {
+      try {
+        const response = await loader()
+        setUser((prevState) => ({ ...prevState, currentUserLetters: response.letters  }));
+        console.log(response)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+      fetchData
+  }, [])
 
   const openJobModal = () => {
     setCreateCoverLetter(true);
@@ -39,7 +73,7 @@ export default function Resumes() {
 
   const closeDeleteModal = () => {
     setDeleteCoverLetter(false);
-  };
+  }
         
   return (
     <div className='mb-4'>
@@ -90,10 +124,10 @@ export default function Resumes() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {data.map((item) => (
+              {currentUserLetters.map((item) => (
                 <tr key={item.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.letter_title}</td>
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
                 key={'edit'}
