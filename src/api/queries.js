@@ -62,6 +62,11 @@ const getCurrentUserJobs = async (id) => {
   return response
 }
 
+const getCurrentUserLetters = async (id) => {
+  const response = await api.letters.lettersUser(id)
+  return response
+}
+
 const forgotPassword = async (email) => {
   const response = await api.user.forgotPassword(email)
   return response
@@ -115,7 +120,8 @@ const Queries = {
   createVerifyEmail,
   sendVerifyEmail,
   getAllJobs,
-  getAllUsers
+  getAllUsers,
+  getCurrentUserLetters
 }
 
 export default Queries

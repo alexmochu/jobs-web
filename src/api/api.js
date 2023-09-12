@@ -22,6 +22,9 @@ export default {
     jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data),
     allJobs: () => client.get('/admin/jobs').then((res) => res.data)
   },
+  letters: {
+    lettersUser: (id) => client.get(`/api/letters/${id}`, { id }).then((res) => res.data),
+  },
   email: {
     createVerifyEmail: (email) =>
       client.post('/api/create-verify-email', {email}).then((res) => res.data),
