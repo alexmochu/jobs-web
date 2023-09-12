@@ -107,6 +107,7 @@ export default function Resumes() {
             </div>
           </div>
       </div>
+      {currentUserLetters > 0 ? 
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
         <div className="flex justify-between pb-6">
           <table className="min-w-full divide-y divide-gray-200">
@@ -165,7 +166,7 @@ export default function Resumes() {
             </tbody>
           </table>
           </div>
-      </div> 
+      </div> : <h1>You have not created any cover letters</h1> }
         {createCoverLetter && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>
           <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
