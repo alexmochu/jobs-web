@@ -1,56 +1,27 @@
 import { useState } from 'react'
-// import Queries from '../../../api/queries'
+import Queries from '../../api/queries'
 import { userState } from '../../main'
-
-const jobDetails = {
-  jobUrl: '',
-  jobDescription: '',
-  jobTitle: '',
-  jobCompany: '',
-  jobLocation: '',
-  jobType: '',
-  applicationState: '',
-}
 
 function DeleteCoverLetter({closeJobModal, applicationState}) {
   const { user, setUser } = userState()
-  const [jobData, setJobData] = useState(jobDetails)
-
-  const [error, setError] = useState(jobDetails)
 
   const [loading, setLoading] = useState(false)
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     const { jobTitle, jobCompany } = jobData
-//     if (jobTitle.trim() === '') {
-//       setError({ ...error, jobTitle: 'Job title can\'t be blank' })
-//     } else if (jobCompany.trim() === '') {
-//       setError({ ...error, jobCompany: 'Job company can\'t be blank' })
-//     } else {
-//       // Handle form submission here
-//       setLoading(true)
-//       const response = await Queries.createJob({...jobData, applicationState: applicationState})
-//       await setUser({
-//         ...user,
-//         showToast: true,
-//         toastMessage: 'Your job has been added successfully.',
-//         currentUserJobs: [
-//           response.job,
-//           ...user.currentUserJobs]
-//       })
-//       closeJobModal()
-//       setLoading(false)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+      // Handle form submission here
+      setLoading(true)
+      const response = await Queries.deleteLetter(applicationState.id)
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your cover letter has been deleted successfully.',
+        currentUserLetters: user.currentUserLetters.filter(letter => letter.letter_id !== response.letter.letter_id)
+      })
+      closeJobModal()
+      setLoading(false)
 
-//       // Reset form
-//       setJobData(jobDetails)
-//       setError(jobDetails)
-//     }    
-//   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
+      // Reset form 
   };
 
   return (
@@ -64,14 +35,14 @@ function DeleteCoverLetter({closeJobModal, applicationState}) {
                 </div>
               ) : (
       <form 
-    //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <div className='flex flex-col items-center'>
           <h1
             name="jobSummary"
             className={`block w-full px-3 bg-white text-red-600 text-center`}
           >
-          {'Are you sure you want to delete this cover letter: '} <span className='text-black'>{'Google cover letter'}</span>{'.'}</h1>
+          {'Are you sure you want to delete this cover letter: '} <span className='text-black'>{applicationState.title}</span>{'.'}</h1>
         <h1
             name="jobSummary"
             className={`mb-9 block w-full px-3 bg-white text-red-600 text-center`}
