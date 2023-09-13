@@ -32,6 +32,11 @@ const createJob = async (job) => {
   return response
 }
 
+const createLetter = async (job) => {
+  const response = await api.letters.letterCreate(job)
+  return response
+}
+
 const updateJob = async (user) => {
   const response = await api.jobs.jobUpdate(user)
   return response
@@ -121,7 +126,8 @@ const Queries = {
   sendVerifyEmail,
   getAllJobs,
   getAllUsers,
-  getCurrentUserLetters
+  getCurrentUserLetters,
+  createLetter
 }
 
 export default Queries

@@ -24,6 +24,7 @@ export default {
   },
   letters: {
     lettersUser: (id) => client.get(`/api/letters/${id}`, { id }).then((res) => res.data),
+    letterCreate: (letter) => client.post(`/api/letters`, { letter }).then((res) => res.data),
   },
   email: {
     createVerifyEmail: (email) =>
