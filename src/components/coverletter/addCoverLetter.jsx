@@ -1,56 +1,50 @@
 import { useState } from 'react'
-// import Queries from '../../../api/queries'
+import Queries from '../../api/queries'
 import { userState } from '../../main'
 
-const jobDetails = {
-  jobUrl: '',
-  jobDescription: '',
-  jobTitle: '',
-  jobCompany: '',
-  jobLocation: '',
-  jobType: '',
-  applicationState: '',
+const letterDetails = {
+  letterTitle: '',
+  letterDescription: ''
 }
 
-function CreateResume({closeJobModal, applicationState}) {
+function CreateResume({closeJobModal}) {
   const { user, setUser } = userState()
-  const [jobData, setJobData] = useState(jobDetails)
+  const [letterData, setLetterData] = useState(letterDetails)
 
-  const [error, setError] = useState(jobDetails)
+  const [error, setError] = useState(letterDetails)
 
   const [loading, setLoading] = useState(false)
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     const { jobTitle, jobCompany } = jobData
-//     if (jobTitle.trim() === '') {
-//       setError({ ...error, jobTitle: 'Job title can\'t be blank' })
-//     } else if (jobCompany.trim() === '') {
-//       setError({ ...error, jobCompany: 'Job company can\'t be blank' })
-//     } else {
-//       // Handle form submission here
-//       setLoading(true)
-//       const response = await Queries.createJob({...jobData, applicationState: applicationState})
-//       await setUser({
-//         ...user,
-//         showToast: true,
-//         toastMessage: 'Your job has been added successfully.',
-//         currentUserJobs: [
-//           response.job,
-//           ...user.currentUserJobs]
-//       })
-//       closeJobModal()
-//       setLoading(false)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { letterTitle } = letterData
+    if (letterTitle.trim() === '') {
+      setError({ ...error, coverTitle: 'Cover letter name can\'t be blank' })
+    } else {
+      // Handle form submission here
+      setLoading(true)
+      console.log('this shit')
+      const response = await Queries.createLetter({...letterData})
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your letter has been added successfully.',
+        currentUserLetters: [
+          response.letter,
+          ...user.currentUserLetters]
+      })
+      closeJobModal()
+      setLoading(false)
 
-//       // Reset form
-//       setJobData(jobDetails)
-//       setError(jobDetails)
-//     }    
-//   };
+      // Reset form
+      setLetterData(letterDetails)
+      setError(letterDetails)
+    }    
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
+    setLetterData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return (
@@ -64,14 +58,14 @@ function CreateResume({closeJobModal, applicationState}) {
                 </div>
               ) : (
       <form 
-    //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <h4>Cover Letter Name</h4>
         <div className="grid grid-cols-4 gap-4 mb-4">
           <input
             type="text"
-            name="jobUrl"
-            value={jobData.jobUrl}
+            name="letterTitle"
+            value={letterData.letterTitle}
             onChange={handleChange}
             placeholder="Enter cover leter name"
             className={`col-span-4 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
