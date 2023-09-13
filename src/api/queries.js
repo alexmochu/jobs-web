@@ -47,6 +47,11 @@ const deleteJob = async (id) => {
   return response
 }
 
+const deleteLetter = async (id) => {
+  const response = await api.letters.letterDelete(id)
+  return response
+}
+
 const login = async (credentials) => {
   const response = await api.user.login(credentials)
   const token = response.header_access_token
@@ -117,6 +122,7 @@ const Queries = {
   createJob,
   updateJob,
   deleteJob,
+  deleteLetter,
   forgotPassword,
   changePassword,
   sendForgotPasswordEmail,
