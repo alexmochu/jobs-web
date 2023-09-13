@@ -10,7 +10,7 @@ export default function Resumes() {
   const [createCoverLetter, setCreateCoverLetter] = useState(false)
   const [viewCoverLetter, setViewCoverLetter] = useState(false)
   const [deleteCoverLetter, setDeleteCoverLetter] = useState(false)
-  const [applicationState, setApplicationState] = useState('')
+  const [applicationState, setApplicationState] = useState({'title': '', 'id': ''})
 
   const [loading, setLoading] = useState(true)
   const [loadingList, setLoadingList] = useState(false)
@@ -24,13 +24,6 @@ export default function Resumes() {
     const response = await Queries.getCurrentUserLetters(id)
     return response
   }
-
-    const data = [
-    { id: 1, name: 'AWS cover letter', role: 'Admin' },
-    { id: 2, name: 'Google cover letter', role: 'User' },
-    { id: 3, name: 'Facebook cover letter', role: 'User' },
-    { id: 4, name: 'X cover letter', role: 'User' },
-  ];
 
     useEffect(() => {
     const storeState = localStorage.getItem('store')
@@ -48,7 +41,10 @@ export default function Resumes() {
         setLoading(false)
       }
     }
-      fetchData
+
+    setTimeout(() => {
+      fetchData()
+    }, 3000)
   }, [])
 
   const openJobModal = () => {
@@ -67,14 +63,15 @@ export default function Resumes() {
     setViewCoverLetter(false);
   };
 
-  const openDeleteModal = () => {
+  const openDeleteModal = (title, id) => {
+  setApplicationState({...applicationState, title: title, id: id})
     setDeleteCoverLetter(true);
   };
 
   const closeDeleteModal = () => {
     setDeleteCoverLetter(false);
   }
-        
+    
   return (
     <div className='mb-4'>
       <div className='pl-5 pr-5 h-fit dark:bg-gray-800'>
@@ -107,7 +104,7 @@ export default function Resumes() {
             </div>
           </div>
       </div>
-      {currentUserLetters > 0 ? 
+      {currentUserLetters.length > 0 ? 
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
         <div className="flex justify-between pb-6">
           <table className="min-w-full divide-y divide-gray-200">
@@ -125,9 +122,9 @@ export default function Resumes() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {currentUserLetters.map((item) => (
-                <tr key={item.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
+              {currentUserLetters.map((item, index) => (
+                <tr key={item.letter_id}>
+                  <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.letter_title}</td>
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
@@ -150,16 +147,16 @@ export default function Resumes() {
                       <span>View</span>
                     </button>
                     </Link>
-              <Link
+              <div
                 key={'qa'}
                 to="#"
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
               >
-                    <button onClick={openDeleteModal} className='flex bg-red-600 border rounded-md text-white px-6 py-2'>
+                    <button onClick={() => openDeleteModal(item.letter_title, item.letter_id)} className='flex bg-red-600 border rounded-md text-white px-6 py-2'>
                       <span>Delete</span>
                     </button>
-                    </Link>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -177,8 +174,7 @@ export default function Resumes() {
                 <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            {/* Add your modal content here */}
-            <CreateCoverLetter closeJobModal={closeJobModal} applicationState={applicationState}/>
+            <CreateCoverLetter closeJobModal={closeJobModal} />
           </div>
         </div>
       )}
@@ -207,7 +203,6 @@ export default function Resumes() {
                 <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            {/* Add your modal content here */}
             <DeleteCoverLetter closeJobModal={closeDeleteModal} applicationState={applicationState}/>
           </div>
         </div>
