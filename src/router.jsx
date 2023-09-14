@@ -173,7 +173,7 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: 'resume-builder',
+            path: 'resume-builder/:id',
             element: (
               <ProtectedRoute>
                 <ResumeBuilder />{' '}
