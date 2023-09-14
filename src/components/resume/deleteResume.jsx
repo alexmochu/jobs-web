@@ -1,8 +1,8 @@
 import { useState } from 'react'
-// import Queries from '../../../api/queries'
+import Queries from '../../api/queries'
 import { userState } from '../../main'
 
-const jobDetails = {
+const resumeDetails = {
   jobUrl: '',
   jobDescription: '',
   jobTitle: '',
@@ -14,43 +14,27 @@ const jobDetails = {
 
 function DeleteResume({closeJobModal, applicationState}) {
   const { user, setUser } = userState()
-  const [jobData, setJobData] = useState(jobDetails)
+  const [resumeData, setResumeData] = useState(resumeDetails)
 
-  const [error, setError] = useState(jobDetails)
+  const [error, setError] = useState(resumeDetails)
 
   const [loading, setLoading] = useState(false)
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     const { jobTitle, jobCompany } = jobData
-//     if (jobTitle.trim() === '') {
-//       setError({ ...error, jobTitle: 'Job title can\'t be blank' })
-//     } else if (jobCompany.trim() === '') {
-//       setError({ ...error, jobCompany: 'Job company can\'t be blank' })
-//     } else {
-//       // Handle form submission here
-//       setLoading(true)
-//       const response = await Queries.createJob({...jobData, applicationState: applicationState})
-//       await setUser({
-//         ...user,
-//         showToast: true,
-//         toastMessage: 'Your job has been added successfully.',
-//         currentUserJobs: [
-//           response.job,
-//           ...user.currentUserJobs]
-//       })
-//       closeJobModal()
-//       setLoading(false)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+      // Handle form submission here
+      setLoading(true)
+      const response = await Queries.deleteResume(applicationState.resume_id)
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been deleted successfully.',
+        currentUserResumes: user.currentUserResumes.filter(resume => resume.resume_id !== response.resume.resume_id)
+      })
+      closeJobModal()
+      setLoading(false)
 
-//       // Reset form
-//       setJobData(jobDetails)
-//       setError(jobDetails)
-//     }    
-//   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
+      // Reset form 
   };
 
   return (
@@ -59,19 +43,19 @@ function DeleteResume({closeJobModal, applicationState}) {
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Delete Resume</h1>
     </div>
         {loading ? (
-                <div className='flex justify-center items-center pt-[200px]'>
+                <div className='flex justify-center items-center pt-[80px]'>
        <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
                 </div>
               ) : (
       <form 
-    //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <div className='flex flex-col items-center'>
           <h1
             name="jobSummary"
             className={`block w-full px-3 bg-white text-red-600 text-center`}
           >
-          {'Are you sure you want to delete this resume: '} <span className='text-black'>{'Google resume'}</span>{'.'}</h1>
+          {'Are you sure you want to delete this resume: '} <span className='text-black'>{applicationState.resume_title}</span>{'.'}</h1>
         <h1
             name="jobSummary"
             className={`mb-9 block w-full px-3 bg-white text-red-600 text-center`}
