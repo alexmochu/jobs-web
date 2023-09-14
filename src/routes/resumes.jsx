@@ -11,7 +11,7 @@ export default function Resumes() {
   const [createResume, setCreateResume] = useState(false)
   const [viewResume, setViewResume] = useState(false)
   const [deleteResume, setDeleteResume] = useState(false)
-  const [applicationState, setApplicationState] = useState('')
+  const [applicationState, setApplicationState] = useState({ 'resume_template': 0, 'resume_details': [],'resume_title': '', 'resume_id': ''})
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -61,7 +61,8 @@ export default function Resumes() {
     setViewResume(false);
   };
 
-  const openDeleteModal = () => {
+  const openDeleteModal = (title, id) => {
+    setApplicationState({...applicationState, resume_title: title, resume_id: id})
     setDeleteResume(true);
   };
 
@@ -149,7 +150,7 @@ export default function Resumes() {
                 aria-current={'page'}
                 className='flex items-center p-2 text-red-900 rounded-lg dark:text-white'
               >
-                <button onClick={openDeleteModal} className='flex bg-red-600 border rounded-md text-white px-6 py-2'>
+                <button onClick={() => openDeleteModal(item.resume_title, item.resume_id)} className='flex bg-red-600 border rounded-md text-white px-6 py-2'>
                       <span>Delete</span>
                     </button>
                     </Link>
