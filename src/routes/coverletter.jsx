@@ -10,7 +10,7 @@ export default function Resumes() {
   const [createCoverLetter, setCreateCoverLetter] = useState(false)
   const [viewCoverLetter, setViewCoverLetter] = useState(false)
   const [deleteCoverLetter, setDeleteCoverLetter] = useState(false)
-  const [applicationState, setApplicationState] = useState({'title': '', 'id': ''})
+  const [applicationState, setApplicationState] = useState({'letter_description': '','title': '', 'id': ''})
 
   const [loading, setLoading] = useState(true)
   const [loadingList, setLoadingList] = useState(false)
@@ -55,7 +55,8 @@ export default function Resumes() {
     setCreateCoverLetter(false);
   };
 
-  const openViewModal = () => {
+  const openViewModal = (description, title, id) => {
+    setApplicationState({...applicationState, letter_description: description, title: title, id: id})
     setViewCoverLetter(true);
   };
 
@@ -129,7 +130,7 @@ export default function Resumes() {
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
                 key={'edit'}
-                to={'/dashboard/cover-letter-builder'}
+                to={`/dashboard/cover-letter-builder/${item.letter_id}`}
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
               >
@@ -143,7 +144,7 @@ export default function Resumes() {
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
               >
-                    <button onClick={openViewModal} className='flex bg-gray-900 border rounded-md text-white px-6 py-2'>
+                    <button onClick={() => openViewModal(item.letter_description, item.letter_title, item.letter_id)} className='flex bg-gray-900 border rounded-md text-white px-6 py-2'>
                       <span>View</span>
                     </button>
                     </Link>
@@ -180,14 +181,14 @@ export default function Resumes() {
       )}
       {viewCoverLetter && (
         <div className='fixed inset-0 flex justify-center z-50'>
-          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
-          <div className='relative mt-10 bg-white w-[760px]'>
-            <button className='absolute top-2 right-2 text-gray-500' onClick={closeViewModal}>
+          <div className='absolute inset-0 bg-gray-500 opacity-75' onClick={closeViewModal}></div>
+          <div className='relative mt-10  w-[760px]'>
+            {/* <button className='absolute top-2 right-2 text-gray-500' onClick={closeViewModal}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="none" d="M0 0h24v24H0z"/>
                 <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </button>
+            </button> */}
             {/* Add your modal content here */}
             <ViewCoverLetter closeJobModal={closeViewModal} applicationState={applicationState}/>
           </div>
