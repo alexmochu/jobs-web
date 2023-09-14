@@ -118,9 +118,9 @@ export default function Resumes() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {currentUserResumes.map((item) => (
+              {currentUserResumes.map((item, index) => (
                 <tr key={item.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.resume_title}</td>
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
