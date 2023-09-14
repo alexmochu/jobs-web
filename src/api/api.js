@@ -30,7 +30,8 @@ export default {
   },
   resumes: {
     resumesUser: (id) => client.get(`/api/resumes/${id}`, { id }).then((res) => res.data),
-    resumeCreate: (resume) => client.post(`/api/resumes`, { resume }).then((res) => res.data)
+    resumeCreate: (resume) => client.post(`/api/resumes`, { resume }).then((res) => res.data),
+    resumeDelete: (id) => client.delete(`/api/resume/${id}`, { id }).then((res) => res.data),
   },
   email: {
     createVerifyEmail: (email) =>

@@ -62,6 +62,11 @@ const deleteLetter = async (id) => {
   return response
 }
 
+const deleteResume = async (id) => {
+  const response = await api.resumes.resumeDelete(id)
+  return response
+}
+
 const login = async (credentials) => {
   const response = await api.user.login(credentials)
   const token = response.header_access_token
@@ -151,7 +156,8 @@ const Queries = {
   createLetter,
   updateLetter,
   getCurrentUserResumes,
-  createResume
+  createResume,
+  deleteResume
 }
 
 export default Queries
