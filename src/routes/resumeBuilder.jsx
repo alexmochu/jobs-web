@@ -255,7 +255,6 @@ export default function ResumeBuilder() {
         // Toggle the checkbox state
         const newIsChecked = !prevIsChecked;
         input = newIsChecked; // Set the input value
-        console.log('changes', newIsChecked); // Log the updated state
         return newIsChecked;
       });
     }
