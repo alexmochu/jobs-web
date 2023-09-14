@@ -28,6 +28,9 @@ export default {
     letterDelete: (id) => client.delete(`/api/letter/${id}`, { id }).then((res) => res.data),
     letterUpdate: (letter) => client.put(`/api/letter/${letter.letter_id}`, { letter }).then((res) => res.data),
   },
+  resumes: {
+    resumesUser: (id) => client.get(`/api/resumes/${id}`, { id }).then((res) => res.data)
+  },
   email: {
     createVerifyEmail: (email) =>
       client.post('/api/create-verify-email', {email}).then((res) => res.data),
