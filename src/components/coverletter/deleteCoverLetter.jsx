@@ -30,7 +30,7 @@ function DeleteCoverLetter({closeJobModal, applicationState}) {
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Delete Cover Letter</h1>
     </div>
         {loading ? (
-                <div className='flex justify-center items-center pt-[200px]'>
+                <div className='flex justify-center items-center pt-[80px]'>
        <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
                 </div>
               ) : (
