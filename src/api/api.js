@@ -26,6 +26,7 @@ export default {
     lettersUser: (id) => client.get(`/api/letters/${id}`, { id }).then((res) => res.data),
     letterCreate: (letter) => client.post(`/api/letters`, { letter }).then((res) => res.data),
     letterDelete: (id) => client.delete(`/api/letter/${id}`, { id }).then((res) => res.data),
+    letterUpdate: (letter) => client.put(`/api/letter/${letter.letter_id}`, { letter }).then((res) => res.data),
   },
   email: {
     createVerifyEmail: (email) =>
