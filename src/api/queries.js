@@ -37,6 +37,11 @@ const createLetter = async (job) => {
   return response
 }
 
+const createResume = async (job) => {
+  const response = await api.resumes.resumeCreate(job)
+  return response
+}
+
 const updateJob = async (user) => {
   const response = await api.jobs.jobUpdate(user)
   return response
@@ -145,7 +150,8 @@ const Queries = {
   getCurrentUserLetters,
   createLetter,
   updateLetter,
-  getCurrentUserResumes
+  getCurrentUserResumes,
+  createResume
 }
 
 export default Queries
