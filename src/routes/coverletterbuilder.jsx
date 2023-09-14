@@ -1,21 +1,32 @@
 import { useState } from 'react'
+import Queries from '../api/queries'
 import Cover from '../coverletter/coverletter'
+import { useParams } from 'react-router-dom'
+import { userState } from '../main'
 
-const initialState = {
-  fullName: '',
-  title: '',
-  email: '',
-  company: '',
-  hiringManager: '',
-  letterDetails: '',
-}
 export default function CoverLetter() {
-  const [state, setState] = useState(initialState)
+  const { id } = useParams();
+  const { user, setUser } = userState()
+  const { currentUserLetters } = user 
+  let letter = currentUserLetters.filter((item) => item.letter_id === id)
+  let letterIndex = currentUserLetters.findIndex((item) => item.letter_id === id);
+
+  const [state, setState] = useState(currentUserLetters[letterIndex])
   const [coverLetter, setCoverLetterState] = useState(state)
   const onChange = (e) => setState({ ...state, [e.target.name]: e.target.value })
 
-  const saveState = () => {
+  const saveState = async () => {
+    await Queries.updateLetter({...state})
     setCoverLetterState(state)
+    const updatedCurrentUserLetters = [...currentUserLetters];
+    updatedCurrentUserLetters[letterIndex] = state;
+
+    await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your letter has been updated successfully.',
+        currentUserLetters: updatedCurrentUserLetters
+      })
   }
 
   const copyData = () => {
@@ -45,7 +56,7 @@ export default function CoverLetter() {
     <div className='grid grid-cols-2 gap-4 mb-4'>
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-4xl py-5 dark:text-white">Google cover letter</h2>
+            <h2 className="font-bold text-4xl py-5 dark:text-white">{`${letter[0].letter_title} cover letter`}</h2>
             <button onClick={() => copyData()} className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2">
               <span>Copy</span>
               <span>
@@ -78,8 +89,8 @@ export default function CoverLetter() {
           <div>
             <textarea
               className='border-2 border-black rounded-lg w-full h-[750px] p-2'
-              name='letterDetails'
-              value={state.letterDetails}
+              name='letter_description'
+              value={state.letter_description}
               onChange={onChange}
               placeholder='Letter Details'
             ></textarea>
