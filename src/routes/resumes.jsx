@@ -3,6 +3,7 @@ import { Link, } from 'react-router-dom'
 import CreateResume from '../components/resume/addResume';
 import ViewResume from '../components/resume/viewResume';
 import DeleteResume from '../components/resume/deleteResume';
+import { userState } from '../main'
 
 export default function Resumes() {
 
@@ -10,12 +11,15 @@ export default function Resumes() {
   const [viewResume, setViewResume] = useState(false)
   const [deleteResume, setDeleteResume] = useState(false)
   const [applicationState, setApplicationState] = useState('')
+  const { user, setUser } = userState()
+  const {currentUserResumes} = user
+  console.log('curre', currentUserResumes)
 
     const data = [
-    { id: 1, name: 'AWS Resume', role: 'Admin' },
-    { id: 2, name: 'Google Resume', role: 'User' },
-    { id: 3, name: 'Facebook Resume', role: 'User' },
-    { id: 4, name: 'X Resume', role: 'User' },
+    // { id: 1, name: 'AWS Resume', role: 'Admin' },
+    // { id: 2, name: 'Google Resume', role: 'User' },
+    // { id: 3, name: 'Facebook Resume', role: 'User' },
+    // { id: 4, name: 'X Resume', role: 'User' },
   ];
 
   const openJobModal = () => {
@@ -74,7 +78,7 @@ export default function Resumes() {
             </div>
           </div>
       </div>
-      <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
+      {currentUserResumes.length > 0 ? <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
         <div className="flex justify-between pb-6">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -91,10 +95,10 @@ export default function Resumes() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {data.map((item) => (
+              {currentUserResumes.map((item) => (
                 <tr key={item.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.resume_title}</td>
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
                 key={'qa'}
@@ -132,7 +136,7 @@ export default function Resumes() {
             </tbody>
           </table>
           </div>
-      </div>
+      </div> : <h1>You have not created any resumes/CVs</h1>}
         {createResume && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>
           <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
