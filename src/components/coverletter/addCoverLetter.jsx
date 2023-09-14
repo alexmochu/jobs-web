@@ -23,7 +23,6 @@ function CreateResume({closeJobModal}) {
     } else {
       // Handle form submission here
       setLoading(true)
-      console.log('this shit')
       const response = await Queries.createLetter({...letterData})
       await setUser({
         ...user,
