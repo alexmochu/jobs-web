@@ -1,31 +1,53 @@
 import { useState } from 'react'
-// import Queries from '../../../api/queries'
+import Queries from '../../api/queries'
 import { userState } from '../../main'
 import ResumeTemplate from './resumeTemplate'
 
-const jobDetails = {
-  jobUrl: '',
-  jobDescription: '',
-  jobTitle: '',
-  jobCompany: '',
-  jobLocation: '',
-  jobType: '',
-  applicationState: '',
+const resumeDetails = {
+  resumeTitle: '',
+  resumeDetails: {},
+  resumeTemplate: 0
 }
 
 function CreateResume({closeJobModal, applicationState}) {
   const { user, setUser } = userState()
-  const [jobData, setJobData] = useState(jobDetails)
+  const [resumeData, setResumeData] = useState(resumeDetails)
   const [viewTemplate, setViewTemplate] = useState(false)
   const [template, setTemplate] = useState(0)
 
-  const [error, setError] = useState(jobDetails)
+  const [error, setError] = useState(resumeDetails)
 
   const [loading, setLoading] = useState(false)
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { resumeTitle } = resumeData
+    if (resumeTitle.trim() === '') {
+      setError({ ...error, resumeTitle: 'Resume name can\'t be blank' })
+    } else {
+      // Handle form submission here
+      setLoading(true)
+      const response = await Queries.createResume({...resumeData})
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been created successfully.',
+        currentUserResumes: [
+          response.resume,
+          ...user.currentUserResumes]
+      })
+      closeJobModal()
+      setLoading(false)
+
+      // Reset form
+      setResumeData(resumeDetails)
+      setError(resumeDetails)
+    }    
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
+    setResumeData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const openViewTemplate = (e) => {
@@ -44,6 +66,7 @@ function CreateResume({closeJobModal, applicationState}) {
     e.preventDefault()
     e.stopPropagation()
     setTemplate(no)
+    setResumeData({...resumeData, resumeTemplate: no})
   }
 
   return (
@@ -57,14 +80,14 @@ function CreateResume({closeJobModal, applicationState}) {
                 </div>
               ) : (
       <form 
-    //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <h4>Resume Name</h4>
         <div className="grid grid-cols-4 gap-4 mb-4">
           <input
             type="text"
-            // name="jobUrl"
-            // value={jobData.jobUrl}
+            name="resumeTitle"
+            value={resumeData.resumeTitle}
             onChange={handleChange}
             placeholder="Enter resume name"
             className={`col-span-4 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
