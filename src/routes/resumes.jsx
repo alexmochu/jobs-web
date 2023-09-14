@@ -120,13 +120,13 @@ export default function Resumes() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {currentUserResumes.map((item, index) => (
-                <tr key={item.id}>
+                <tr key={item.resume_id}>
                   <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.resume_title}</td>
                   <td className="flex justify-end px-6 py-4 whitespace-nowrap">
               <Link
                 key={'qa'}
-                to={'/dashboard/resume-builder'}
+                to={`/dashboard/resume-builder/${item.resume_id}`}
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
               >
@@ -178,14 +178,8 @@ export default function Resumes() {
       )}
       {viewResume && (
         <div className='fixed inset-0 flex justify-center z-50'>
-          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
-          <div className='relative mt-10 bg-white w-[760px]'>
-            <button className='absolute top-2 right-2 text-gray-500' onClick={closeViewModal}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="none" d="M0 0h24v24H0z"/>
-                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+          <div onClick={closeViewModal}  className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative mt-10 w-[760px]'>
             {/* Add your modal content here */}
             <ViewResume closeJobModal={closeViewModal} applicationState={applicationState}/>
           </div>
