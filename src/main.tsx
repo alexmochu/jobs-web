@@ -18,6 +18,7 @@ const initialState = {
   toastMessage: '',
   currentUserJobs: [],
   currentUserLetters: [],
+  currentUserResumes: [],
   resetToken: '',
   role: '',
   allJobs: [],

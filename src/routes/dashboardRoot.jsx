@@ -27,6 +27,7 @@ export default function Dashboard() {
       isAuthenticated: false,
       currentUserJobs: [],
       currentUserLetters: [],
+      currentUserResumes: [],
       resetToken: '',
       showToast: true,
       role: '',
