@@ -164,7 +164,7 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: 'cover-letter-builder',
+            path: 'cover-letter-builder/:id',
             element: (
               <ProtectedRoute>
                 <CoverLetterBuilder />{' '}
