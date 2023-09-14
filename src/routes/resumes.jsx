@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, } from 'react-router-dom'
 import CreateResume from '../components/resume/addResume';
 import ViewResume from '../components/resume/viewResume';
 import DeleteResume from '../components/resume/deleteResume';
 import { userState } from '../main'
+import Queries from '../api/queries';
 
 export default function Resumes() {
 
@@ -11,16 +12,38 @@ export default function Resumes() {
   const [viewResume, setViewResume] = useState(false)
   const [deleteResume, setDeleteResume] = useState(false)
   const [applicationState, setApplicationState] = useState('')
-  const { user, setUser } = userState()
-  const {currentUserResumes} = user
-  console.log('curre', currentUserResumes)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-    const data = [
-    // { id: 1, name: 'AWS Resume', role: 'Admin' },
-    // { id: 2, name: 'Google Resume', role: 'User' },
-    // { id: 3, name: 'Facebook Resume', role: 'User' },
-    // { id: 4, name: 'X Resume', role: 'User' },
-  ];
+  const { user, setUser } = userState()
+  const {currentUserResumes, id} = user
+
+  async function loader() {
+    const response = await Queries.getCurrentUserResumes(id)
+    return response
+  }
+
+  useEffect(() => {
+    const storeState = localStorage.getItem('store')
+      if (storeState) {
+        setUser(JSON.parse(storeState))
+    }
+    const fetchData = async () => {
+      try {
+        const response = await loader()
+        setUser((prevState) => ({ ...prevState, currentUserResumes: response.resumes  }));
+        console.log(response)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    setTimeout(() => {
+      fetchData()
+    }, 2000)
+  }, [])
 
   const openJobModal = () => {
     setCreateResume(true);
