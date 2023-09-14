@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
 })
 
 export const Summary = ({ state }) => {
-  const { letterDetails } = state
+  const { letter_description } = state
 
   return (
     <>
-      {letterDetails ? (
+      {letter_description ? (
         <>
           <View>
-            <Text style={styles.summaryText}>{letterDetails}</Text>
+            <Text style={styles.summaryText}>{letter_description}</Text>
           </View>
         </>
       ) : null}
