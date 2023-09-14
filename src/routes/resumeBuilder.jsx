@@ -6,6 +6,8 @@ import { format } from 'date-fns';
 import Resume from '../resume/resume'
 import { locations } from '../locations';
 import { countries } from '../countries'
+import { useParams } from 'react-router-dom'
+import { userState } from '../main'
 
 const personalInfo = {
   title: '',
@@ -68,6 +70,12 @@ export default function ResumeBuilder() {
     'links': links,
     'skills': skills
   })
+
+  const { id } = useParams();
+  const { user, setUser } = userState()
+  const { currentUserResumes } = user 
+  let resume = currentUserResumes.filter((item) => item.resume_id === id)
+  let resumeIndex = currentUserResumes.findIndex((item) => item.resume_id === id);
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -752,7 +760,7 @@ export default function ResumeBuilder() {
     <div className='grid grid-cols-2 gap-4 mb-4'>
       <div className='rounded border border-gray-200 pl-5 pr-5 h-fit dark:bg-gray-800'>
           <div className="flex justify-between items-center">
-            <h2 className="font-bold text-4xl py-5 dark:text-white">Google Resume</h2>
+            <h2 className="font-bold text-4xl py-5 dark:text-white">{`${resume[0].resume_title} resume`}</h2>
             <button className="flex text-white bg-gray-900 items-center space-x-2 border rounded-md px-5 py-2" onClick={() => copyResumeData()}>
               <span>Copy</span>
               <span>
