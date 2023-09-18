@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Queries from '../api/queries'
 import AppHeader from '../landingpage/AppHeader'
 import Toast from '../landingpage/Toast'
+import { useQuery } from 'react-query'; // Import useQuery from react-query
 import Spinner from '../components/spinner'
 
 export async function loader() {
@@ -11,25 +12,7 @@ export async function loader() {
 }
 
 export default function Root() {
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await loader()
-        setData(response)
-        console.log(response)
-      } catch (error) {
-        setError(error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [])
+  const { data, isLoading, isError, error } = useQuery('landingPage', loader);
 
   const location = useLocation()
   const home = location.pathname === '/'
@@ -47,9 +30,9 @@ export default function Root() {
     <body className='bg-white dark:bg-gray-900'>
       <Toast />
       {home | faqs | login | signup | forgot | terms | privacy | contact | forgotPassword | verifyEmail ? <AppHeader /> : null}
-      {loading ? (
+      {isLoading ? (
         <Spinner />
-      ) : error ? (
+      ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (
         <main>
