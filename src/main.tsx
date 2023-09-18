@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 const queryClient = new QueryClient()
 
 import { RouterProvider } from 'react-router-dom'
@@ -61,6 +62,7 @@ const App = () => {
     >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </CurrentUserState.Provider>
   )
