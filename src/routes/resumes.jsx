@@ -53,7 +53,8 @@ export default function Resumes() {
     setCreateResume(false);
   };
 
-  const openViewModal = () => {
+  const openViewModal = (details) => {
+    setApplicationState({...applicationState, resume_details: details})
     setViewResume(true);
   };
 
@@ -140,7 +141,7 @@ export default function Resumes() {
                 aria-current={'page'}
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white'
               >
-                    <button onClick={openViewModal} className='flex bg-gray-900 border rounded-md text-white px-6 py-2'>
+                    <button onClick={() => openViewModal(item.resume_details)} className='flex bg-gray-900 border rounded-md text-white px-6 py-2'>
                       <span>View</span>
                     </button>
                     </Link>
