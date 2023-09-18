@@ -8,6 +8,7 @@ import { locations } from '../locations';
 import { countries } from '../countries'
 import { useParams } from 'react-router-dom'
 import { userState } from '../main'
+import Queries from '../api/queries';
 
 const personalInfo = {
   title: '',
@@ -56,13 +57,16 @@ const linksInfo = [
 const skillsInfo = []
 
 export default function ResumeBuilder() {
-  const [personalState, setPersonalState] = useState(personalInfo)
+  const { id } = useParams();
+  const { user, setUser } = userState()
+  const { currentUserResumes } = user 
+  const [personalState, setPersonalState] = useState(currentUserResumes[0].resume_details[0].personalState)
   const [skillValue, setSkillValue] = useState('')
   const [currentStep, setCurrentStep] = useState(1);
-  const [workExperiences, setWorkExperiences] = useState(workInfo)
-  const [educations, setEducations] = useState(educationInfo)
-  const [links, setLinks] = useState(linksInfo)
-  const [skills, setSkills] = useState(skillsInfo)
+  const [workExperiences, setWorkExperiences] = useState(currentUserResumes[0].resume_details[0].workExperiences)
+  const [educations, setEducations] = useState(currentUserResumes[0].resume_details[0].educations)
+  const [links, setLinks] = useState(currentUserResumes[0].resume_details[0].links)
+  const [skills, setSkills] = useState(currentUserResumes[0].resume_details[0].skills)
   const [resumeState, setResumeState] = useState({
     'personalState': personalState,
     'workExperiences': workExperiences,
@@ -71,9 +75,6 @@ export default function ResumeBuilder() {
     'skills': skills
   })
 
-  const { id } = useParams();
-  const { user, setUser } = userState()
-  const { currentUserResumes } = user 
   let resume = currentUserResumes.filter((item) => item.resume_id === id)
   let resumeIndex = currentUserResumes.findIndex((item) => item.resume_id === id);
 
@@ -380,8 +381,17 @@ export default function ResumeBuilder() {
         });
   };
 
-  const saveState = (currentStep) => {
+  const saveState = async (currentStep) => {
     if(currentStep === 1){
+      await Queries.updateResume({ 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      })
       setResumeState((prevState) => {
         let updatedPersonalState = { ...prevState.personalState };
         updatedPersonalState = { ...personalState }
@@ -389,6 +399,23 @@ export default function ResumeBuilder() {
           ...prevState,
           personalState: updatedPersonalState,
         };
+      })
+      const updatedCurrentUserResumes = [...currentUserResumes];
+      updatedCurrentUserResumes[resumeIndex] = { 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      }
+
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been updated successfully.',
+        currentUserResumes: updatedCurrentUserResumes
       })
     } else if(currentStep === 2){
       setResumeState((prevState) => {
@@ -398,20 +425,81 @@ export default function ResumeBuilder() {
         };
       })
     } else if(currentStep === 3){
+      await Queries.updateResume({ 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      })
       setResumeState((prevState) => {
         return {
           ...prevState,
           workExperiences: [...workExperiences]
         };
       })
+      const updatedCurrentUserResumes = [...currentUserResumes];
+      updatedCurrentUserResumes[resumeIndex] = { 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      }
+
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been updated successfully.',
+        currentUserResumes: updatedCurrentUserResumes
+      })
     } else if(currentStep === 4){
+      await Queries.updateResume({ 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      })
       setResumeState((prevState) => {
         return {
           ...prevState,
           educations: [...educations]
         };
       })
+      const updatedCurrentUserResumes = [...currentUserResumes];
+      updatedCurrentUserResumes[resumeIndex] = { 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      }
+
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been updated successfully.',
+        currentUserResumes: updatedCurrentUserResumes
+      })
     } else if(currentStep === 5){
+      await Queries.updateResume({ 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      })
       setResumeState((prevState) => {
         let updatedSkills = [...prevState.skills];
         updatedSkills = [...skills]
@@ -419,6 +507,23 @@ export default function ResumeBuilder() {
           ...prevState,
           skills: updatedSkills
         }
+      })
+      const updatedCurrentUserResumes = [...currentUserResumes];
+      updatedCurrentUserResumes[resumeIndex] = { 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      }
+
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been updated successfully.',
+        currentUserResumes: updatedCurrentUserResumes
       })
     }
   }
@@ -540,7 +645,7 @@ export default function ResumeBuilder() {
               <div >
                 <p className='font-bold text-lg text-gray-600'>Start Date</p>
                 <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClick(index)}>
-                  {workExperiences[index].startDate === null ? "Click to select a date" : format(workExperiences[index].startDate, 'MMM, yyyy')}
+                  {workExperiences[index].startDate === null ? "Click to select a date" : format(Date.parse(workExperiences[index].startDate), 'MMM, yyyy')}
                 </button>
                 {datePickerOpen[index] && (
                   <DatePicker selected={workExperiences[index].startDate} onChange={(e) => updateWorkInfo('startDate', e, index, 3)} inline />
@@ -550,7 +655,7 @@ export default function ResumeBuilder() {
               <div>
                 <p className='font-bold text-lg text-gray-600'>End Date</p>
                 <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickEndDate(index)}>
-                  {workExperiences[index].endDate === null ? "Click to select a date" : format(workExperiences[index].endDate, "MMM, yyyy")}
+                  {workExperiences[index].endDate === null ? "Click to select a date" : format(Date.parse(workExperiences[index].endDate), "MMM, yyyy")}
                 </button>
                 {datePickerEnd[index] && (
                   <DatePicker selected={workExperiences[index].endDate} onChange={(e) => updateWorkInfo('endDate', e, index, 4)} inline />
@@ -634,7 +739,7 @@ export default function ResumeBuilder() {
                 placeholder='Start Date'
               /> */}
               <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickW(index)}>
-                  {educations[index].startDate === null ? "Click to select a date" : format(educations[index].startDate, 'MMM, yyyy')}
+                  {educations[index].startDate === null ? "Click to select a date" : format(Date.parse(educations[index].startDate), 'MMM, yyyy')}
                 </button>
                 {datePickerOpenW[index] && (
                   <DatePicker selected={educations[index].startDate} onChange={(e) => updateEducationInfo('startDate', e, index, 3)} inline />
@@ -650,7 +755,7 @@ export default function ResumeBuilder() {
                 placeholder='End Date'
               /> */}
                 <button className="border pl-2 border-black rounded-lg w-full mb-2 h-12 text-left" onClick={() => handleClickEndDateW(index)}>
-                  {educations[index].endDate === null ? "Click to select a date" : format(educations[index].endDate, "MMM, yyyy")}
+                  {educations[index].endDate === null ? "Click to select a date" : format(Date.parse(educations[index].endDate), "MMM, yyyy")}
                 </button>
                 {datePickerEndW[index] && (
                   <DatePicker selected={educations[index].endDate} onChange={(e) => updateEducationInfo('endDate', e, index, 4)} inline />
@@ -662,7 +767,7 @@ export default function ResumeBuilder() {
               <p className='font-bold text-lg text-gray-600'>Country</p>
                 <Select 
                   options={countries.map(country => ({ value: country.alpha_2_code, label: country.en_short_name }))}
-                  value={countries.find((item) => item.label === workExperiences[index].city)}
+                  value={countries.find((item) => item.label === educations[index].city)}
                   onChange={(selectedOption, action) => {
                     updateEducationInfo('city', selectedOption.label, index, 5)}}
                   placeholder="Select a location"
@@ -876,11 +981,11 @@ export default function ResumeBuilder() {
       </div>
       <div className='flex items-center justify-center rounded border border-gray-200 h-fit dark:bg-gray-800'>
         <Resume
-          personal={resumeState.personalState}
-          work={resumeState.workExperiences}
-          education={resumeState.educations}
-          links={resumeState.links}
-          skills={resumeState.skills}
+          personal={currentUserResumes[0].resume_details[0].personalState}
+          work={currentUserResumes[0].resume_details[0].workExperiences}
+          education={currentUserResumes[0].resume_details[0].educations}
+          links={currentUserResumes[0].resume_details[0].links}
+          skills={currentUserResumes[0].resume_details[0].skills}
         />
       </div>
     </div>
