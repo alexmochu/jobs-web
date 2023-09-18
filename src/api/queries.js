@@ -52,6 +52,11 @@ const updateLetter = async (letter) => {
   return response
 }
 
+const updateResume = async (resume) => {
+  const response = await api.resumes.resumeUpdate(resume)
+  return response
+}
+
 const deleteJob = async (id) => {
   const response = await api.jobs.jobDelete(id)
   return response
@@ -157,7 +162,8 @@ const Queries = {
   updateLetter,
   getCurrentUserResumes,
   createResume,
-  deleteResume
+  deleteResume,
+  updateResume
 }
 
 export default Queries
