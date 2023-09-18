@@ -418,11 +418,37 @@ export default function ResumeBuilder() {
         currentUserResumes: updatedCurrentUserResumes
       })
     } else if(currentStep === 2){
+      await Queries.updateResume({ 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      })
       setResumeState((prevState) => {
         return {
           ...prevState,
           links: [...links]
         };
+      })
+      const updatedCurrentUserResumes = [...currentUserResumes];
+      updatedCurrentUserResumes[resumeIndex] = { 
+        ...currentUserResumes[resumeIndex], 
+        resume_details: [{
+          'personalState': personalState,
+          'workExperiences': workExperiences,
+          'educations': educations,
+          'links': links,
+          'skills': skills }]
+      }
+
+      await setUser({
+        ...user,
+        showToast: true,
+        toastMessage: 'Your resume has been updated successfully.',
+        currentUserResumes: updatedCurrentUserResumes
       })
     } else if(currentStep === 3){
       await Queries.updateResume({ 
