@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   viewLinks: {
+    marginTop: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  email: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -33,7 +38,6 @@ const styles = StyleSheet.create({
 
 export const ContactInfo = ({ personal, links }) => {
   const { title, firstName, lastName, email } = personal
-
   const cleanLink = useCallback((link: string) => {
     return link.replace(/^https?:\/\//, '').replace(/^www\./, '')
   }, [])
@@ -42,18 +46,20 @@ export const ContactInfo = ({ personal, links }) => {
     <>
       <Text style={styles.name}>{firstName + ' ' + lastName}</Text>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.viewLinks}>
+      <View style={styles.email}>
         <Link style={styles.link} src={`mailto:${email}`}>
           {email}
         </Link>
-        {/* {links.map((item) => (
+      </View>
+      <View style={styles.viewLinks}>
+        {links.map((item) => (
           <Fragment key={item}>
-            <Text style={{ paddingLeft: 10, paddingRight: 10 }}>•</Text>
             <Link style={styles.link} src={item.link}>
               {cleanLink(item.label)}
             </Link>
+            <Text style={{ paddingLeft: 5, paddingRight: 5 }}>|</Text>
           </Fragment>
-        ))} */}
+        ))}
       </View>
     </>
   )
