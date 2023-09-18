@@ -62,6 +62,18 @@ const styles = StyleSheet.create({
   }
 })
 
+const formatDateString = (dateString) => {
+  if (!dateString) {
+    return ''; // Return an empty string for null or undefined dates
+  }
+
+  const date = new Date(dateString);
+  const month = date.toLocaleString('en-US', { month: 'short' });
+  const year = date.getFullYear();
+
+  return `${month}, ${year}`;
+};
+
 export const WorkExperience = ({ work }) => {
   return (
     <>
@@ -87,12 +99,18 @@ export const WorkExperience = ({ work }) => {
             {item.startDate !== null || item.endDate !== null ? 
             <>
               <Text style={styles.oneLine}>|</Text>
-              <Text style={styles.date}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")} 
-                {item.current ? ' - Current' :
-                <>{item.endDate !== null ? <>
-                {' '}- {item.endDate === null ? item.endDate : format(item.endDate, "MMM, yyyy")}
-                </> : null}</>
-                }
+              {/* <Text style={styles.date}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")}  */}
+              <Text style={styles.date}>
+                      {formatDateString(item.startDate)}
+                      {item.current ? ' - Current' : (
+                        <>
+                          {item.endDate !== null ? (
+                            <>
+                              {' '} - {formatDateString(item.endDate)}
+                            </>
+                          ) : null}
+                        </>
+                      )}
               </Text>
             </>
             : null}
