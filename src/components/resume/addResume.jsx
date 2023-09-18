@@ -3,9 +3,61 @@ import Queries from '../../api/queries'
 import { userState } from '../../main'
 import ResumeTemplate from './resumeTemplate'
 
+const personalState= {
+  title: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
+  country: '',
+  city: '',
+  summary: ''
+}
+
+const workExperiences = [
+  {
+    id: 0,
+    title: '',
+    employer: '',
+    startDate: null,
+    endDate: null,
+    city: '',
+    current: false,
+    description: ''
+  }
+]
+
+const educations = [
+  {
+    id: 0,
+    school: '',
+    degree: '',
+    startDate: null,
+    endDate: null,
+    city: '',
+    description: '',
+  },
+]
+
+const links = [
+  {
+    id: 0,
+    label: '',
+    link: '',
+  },
+]
+
+const skills = []
+
 const resumeDetails = {
   resumeTitle: '',
-  resumeDetails: {},
+  resumeDetails: {
+    personalState: personalState,
+    workExperiences: workExperiences,
+    educations: educations,
+    links: links,
+    skills: skills
+  },
   resumeTemplate: 0
 }
 
