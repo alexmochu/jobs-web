@@ -59,6 +59,18 @@ const styles = StyleSheet.create({
   }
 })
 
+const formatDateString = (dateString) => {
+  if (!dateString) {
+    return ''; // Return an empty string for null or undefined dates
+  }
+
+  const date = new Date(dateString);
+  const month = date.toLocaleString('en-US', { month: 'short' });
+  const year = date.getFullYear();
+
+  return `${month}, ${year}`;
+};
+
 export const Education = ({ education }) => {
   return (
     <>
@@ -83,9 +95,9 @@ export const Education = ({ education }) => {
             <Text style={styles.degree}>{item.degree}</Text>
             {item.startDate !== null || item.endDate !== null ? <>
               <Text style={styles.oneLine}>|</Text>
-              <Text style={styles.data}>{item.startDate === null ? item.startDate : format(item.startDate, "MMM, yyyy")}
+              <Text style={styles.data}>{item.startDate === null ? item.startDate : formatDateString(item.startDate)}
               {item.endDate !== null ? <>
-                {' '} - {item.endDate === null ? item.endDate : format(item.endDate, "MMM, yyyy")}
+                {' '} - {item.endDate === null ? item.endDate : formatDateString(item.endDate)}
               </> : null}
               </Text>
             </> : null}
