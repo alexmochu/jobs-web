@@ -69,39 +69,6 @@ function ViewResume({closeJobModal, applicationState}) {
   const [linksState, setLinksState] = useState(linksInfo)
   const [skillsState, setSkillsState] = useState(skillsInfo)
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     const { jobTitle, jobCompany } = jobData
-//     if (jobTitle.trim() === '') {
-//       setError({ ...error, jobTitle: 'Job title can\'t be blank' })
-//     } else if (jobCompany.trim() === '') {
-//       setError({ ...error, jobCompany: 'Job company can\'t be blank' })
-//     } else {
-//       // Handle form submission here
-//       setLoading(true)
-//       const response = await Queries.createJob({...jobData, applicationState: applicationState})
-//       await setUser({
-//         ...user,
-//         showToast: true,
-//         toastMessage: 'Your job has been added successfully.',
-//         currentUserJobs: [
-//           response.job,
-//           ...user.currentUserJobs]
-//       })
-//       closeJobModal()
-//       setLoading(false)
-
-//       // Reset form
-//       setJobData(jobDetails)
-//       setError(jobDetails)
-//     }    
-//   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
   return (
     <div className='w-[720px]'>
         {loading ? (
@@ -111,11 +78,11 @@ function ViewResume({closeJobModal, applicationState}) {
               ) : (
       <div className='flex'>
         <Resume
-          personal={personalState}
-          work={workState}
-          education={educationState}
-          links={linksState}
-          skills={skillsState}
+          personal={applicationState.resume_details[0].personalState}
+          work={applicationState.resume_details[0].workExperiences}
+          education={applicationState.resume_details[0].educations}
+          links={applicationState.resume_details[0].links}
+          skills={applicationState.resume_details[0].skills}
         />
       </div>)}
     </div>
