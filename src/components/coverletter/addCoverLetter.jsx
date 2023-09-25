@@ -79,10 +79,16 @@ function CreateResume({closeJobModal}) {
           <div className="grid grid-cols-4 gap-4">
           <button 
             type="submit"
-            className='col-span-2 bg-indigo-500 text-gray-100 pt-2 pb-2 w-[100px] rounded-full tracking-wide
+            className='col-span-2 bg-indigo-500 text-gray-100 pt-2 pb-2 w-fill rounded-full tracking-wide
                                         font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                         shadow-lg'          
           >Create</button>
+          <button 
+            type="submit"
+            className='col-span-2 bg-gray-900 text-white pt-2 pb-2 w-fill rounded-full tracking-wide
+                                        font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                        shadow-lg'          
+          >Generate with AI</button>
           </div>
       </form>}
     </div>
