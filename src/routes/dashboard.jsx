@@ -79,7 +79,7 @@ export default function Dashboard() {
       </div>
       <div className='bg-gray-50 dark:bg-gray-900 h-fit rounded-3xl border-2 px-10 py-10'>
         <div className='flex dark:text-white items-center justify-center mb-5 text-3xl font-bold'>
-          Question & Answer AI Assistant
+          Question & Answer Rooms
         </div>
         <p className='text-lg dark:text-white'>
           Our suite of Q&A AI-powered career tools offers comprehensive support for job seekers. 
