@@ -40,6 +40,8 @@ import JobSearch from './routes/jobsSearch'
 import JobTracker from './routes/jobsTracker'
 import ChangePassword from './routes/changePassword'
 import ConfirmEmail from './routes/confrimEmail'
+import Assistant from './routes/assistant'
+import Optimizer from './routes/optimizer'
 
 const router = createBrowserRouter([
   {
@@ -150,6 +152,24 @@ const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <QA />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'qa/assistant',
+            element: (
+              <ProtectedRoute>
+                <Assistant />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'qa/optimizer',
+            element: (
+              <ProtectedRoute>
+                <Optimizer />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
