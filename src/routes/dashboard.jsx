@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { featureFlag } from '../../config'
 
 export default function Dashboard() {
+  const { qa } = featureFlag
   return (
     <div className='relative dark:bg-gray-900 min-h-screen'>
     <div className='grid grid-cols-1  sm:grid-cols-2 gap-3 mb-4 rounded'>
@@ -59,11 +61,7 @@ export default function Dashboard() {
           Cover Letter Builder
         </div>
         <p className='text-lg dark:text-white'>
-          Leave behind the frustration of writer's block and let our AI technology (OpenAI(gpt) and
-          Claude) generate compelling cover letters for you. Simply provide some basic information,
-          and our AI tools will create personalized, attention-grabbing cover letters that captivate
-          employers. Showcase your unique qualities and experiences effortlessly, giving you a
-          competitive edge in the job application process.
+          Say goodbye to writer's block and welcome the ease of crafting compelling cover letters with our AI technology powered by OpenAI. Just share essential details like your desired role, job description, and resume/CV, and watch as our AI tools generate personalized, attention-grabbing cover letters. These letters effortlessly highlight your unique qualities and experiences, leaving a lasting impression on potential employers. Gain a competitive edge in the job application process with cover letters that captivate and showcase your best self.
         </p>
         <div className='flex items-center justify-center'>
           <Link
@@ -84,11 +82,12 @@ export default function Dashboard() {
           Question & Answer AI Assistant
         </div>
         <p className='text-lg dark:text-white'>
-          Prepare to ace your interviews and land your dream job with our AI-powered interview
-          tools. Our OpenAI(gpt) and Claude AI assistants offer interactive question and answer
-          sessions, simulating real interview scenarios. Gain confidence, refine your responses, and
-          enhance your interview skills. Be fully prepared to impress employers and secure the job
-          you desire with our powerful AI interview tools.
+          Our suite of Q&A AI-powered career tools offers comprehensive support for job seekers. 
+          Tool 1 utilizes OpenAI assistants to simulate real interview scenarios, refine responses, 
+          and enhance interview skills, ensuring users are well-prepared to impress employers and secure their dream jobs. 
+          Complementing this, Tool 2 harnesses OpenAI GPT to provide tailored responses to job application questions, saving 
+          time and enhancing communication skills. Together, these tools empower individuals to excel in interviews and applications, 
+          standing out in today's competitive job market
         </p>
         <div className='flex items-center justify-center'>
           <Link
@@ -98,10 +97,10 @@ export default function Dashboard() {
             className='flex flex-shrink-0 items-center text-gray-800 px-2'
           >
             <button
-              disabled
+              disabled={!qa}
               className='bg-indigo-500 rounded-3xl px-10 py-3 mt-5 text-white text-lg'
             >
-              Coming Soon
+              {qa ? 'View' : 'Coming Soon'}
             </button>
           </Link>
         </div>
