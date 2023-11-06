@@ -15,6 +15,11 @@ const AppFooter = () => (
 
               {/* <li><Link to='/jobs' className="transition hover:text-primary">Jobs</Link></li> */}
               <li>
+                <Link to='/about' className='transition hover:text-primary dark:text-white'>
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link to='/FAQs' className='transition hover:text-primary dark:text-white'>
                   FAQs
                 </Link>
@@ -100,7 +105,7 @@ const AppFooter = () => (
               </Link>
             </span>
 
-            <span className='block text-gray-500 dark:text-gray-400'>
+            <span className='flex justify-between text-gray-500 dark:text-gray-400'>
               <Link
                 key={'contacts'}
                 to={'/contact-us'}
@@ -108,6 +113,14 @@ const AppFooter = () => (
                 className='flex flex-shrink-0 items-center dark:bg-gray-900 dark:text-white bg-white text-gray-800 px-2'
               >
                 Contact Us
+              </Link>
+              <Link
+                key={'cookie'}
+                to={'/cookie-policy'}
+                aria-current={'page'}
+                className='flex flex-shrink-0 items-center bg-white dark:bg-gray-900 text-gray-800 px-2 dark:text-white'
+              >
+                Cookie Policy
               </Link>
             </span>
           </div>
