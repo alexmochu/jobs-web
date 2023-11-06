@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import Root from './routes/root'
 import ErrorPage from './error-page'
-// import Contact, { loader as contactLoader, action as contactAction } from './routes/contact'
+import About from './routes/about'
 // import EditContact, { action as editAction } from './routes/edit'
 
 import App from './routes/App'
@@ -23,7 +23,8 @@ import ResumeBuilder from './routes/resumeBuilder.jsx'
 import Resumes from './routes/resumes.jsx'
 import Login from './routes/login.jsx'
 import SignUp from './routes/signup.jsx'
-// import Pricing from './routes/pricing'
+import Pricing from './routes/pricing'
+import Cookie from './routes/cookypolicy.jsx'
 import FaqS from './routes/faqs.jsx'
 import PrivacyPolicy from './routes/privacyPolicy.jsx'
 import ContactUs from './routes/contactUs.jsx'
@@ -69,11 +70,16 @@ const router = createBrowserRouter([
       //   element: <Employers />,
       //   errorElement: <ErrorPage />,
       // },
-      // {
-      //   path: 'pricing',
-      //   element: <Pricing />,
-      //   errorElement: <ErrorPage />,
-      // },
+      {
+        path: 'pricing',
+        element: <Pricing />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'cookie-policy',
+        element: <Cookie />,
+        errorElement: <ErrorPage />,
+      },
       {
         path: 'faqs',
         element: <FaqS />,
@@ -245,7 +251,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         // action: signupAction
       },
-
+      {
+        path: 'about',
+        element: <About />,
+        errorElement: <ErrorPage />,
+      },
       {
         path: 'forgot-password',
         element: <ForgotPassword />,
