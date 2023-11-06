@@ -100,7 +100,6 @@ export const pricing = [
     package: 'Free',
     fee: 0,
     list: [
-      'Job Search Engine (9Searches/M)',
       'Job Tracker(9Jobs/M)',
       'Resume Builder',
       'Cover Letter Builder',
@@ -115,7 +114,6 @@ export const pricing = [
     package: 'Standard',
     fee: 24,
     list: [
-      'Job Search Engine (49Searches/M)',
       'Job Tracker(49Jobs/M)',
       'AI powered Resume Builder',
       'AI powered Cover Letter Builder',
@@ -131,7 +129,6 @@ export const pricing = [
     package: 'Pro',
     fee: 48,
     list: [
-      'Job Search Engine(Unlimited)',
       'Job Tracker(Unlimited)',
       'AI powered Resume Builder',
       'AI powered Cover Letter Builder',
