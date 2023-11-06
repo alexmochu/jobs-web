@@ -17,7 +17,7 @@ export default function FaqS() {
                 </h1>
               </label>
 
-              <div className='py-4 px-2 mx-auto max-w-screen-xl sm:py-7 lg:px-6'>
+              <div className='py-4 px-2 mx-auto max-w-screen-xl sm:py-7 lg:px-6 text-xl'>
                 <div className='grid pt-8 text-left md:gap-16 dark:border-gray-700 md:grid-cols-2'>
                   <div>
                     <div className='mb-10'>
@@ -34,12 +34,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        What do you mean by "Figma assets"?
+                        What is KG Jobs?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        You will have access to download the full Figma project including all of the
-                        pages, the components, responsive pages, and also the icons, illustrations,
-                        and images included in the screens.
+                        KG Jobs is a groundbreaking platform that leverages AI technology to streamline the job searching and interview process. We offer a range of AI-powered tools to make your job search more efficient and successful.
                       </p>
                     </div>
                     <div className='mb-10'>
@@ -56,12 +54,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        What does "lifetime access" exactly mean?
+                        How does KG Jobs work?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        Once you have purchased either the design, code, or both packages, you will
-                        have access to all of the future updates based on the roadmap, free of
-                        charge.
+                        KG Jobs utilizes AI tools powered by OpenAI (GPT-3) to enhance various aspects of your job search, including resume optimization, job searching, cover letter generation, and interview preparation.
                       </p>
                     </div>
                     <div className='mb-10'>
@@ -78,24 +74,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        How does support work?
+                        What is the benefit of using AI in the job search process?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        We're aware of the importance of well qualified support, that is why we
-                        decided that support will only be provided by the authors that actually
-                        worked on this project.
-                      </p>
-                      <p className='text-gray-500 dark:text-gray-400'>
-                        Feel free to{' '}
-                        <a
-                          href='#'
-                          className='font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          contact us
-                        </a>{' '}
-                        and we'll help you out as soon as we can.
+                        AI technology can help you stand out in a competitive job market by providing expert guidance on resumes, generating personalized cover letters, and offering interview preparation assistance.
                       </p>
                     </div>
                     <div className='mb-10'>
@@ -112,23 +94,70 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        I want to build more than one project. Is that allowed?
+                        Are the AI-powered tools easy to use?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        You can use Windster for an unlimited amount of projects, whether it's a
-                        personal website, a SaaS app, or a website for a client. As long as you
-                        don't build a product that will directly compete with Windster either as a
-                        UI kit, theme, or template, it's fine.
+                        Yes, our platform is designed to be user-friendly. You don't need to be tech-savvy to make the most of our AI-powered solutions.
                       </p>
-                      <p className='text-gray-500 dark:text-gray-400'>
-                        Find out more information by{' '}
-                        <a
-                          href='#'
-                          className='font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline'
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
                         >
-                          reading the license
-                        </a>
-                        .
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        Is my personal information safe with KG Jobs?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        We take data privacy seriously. Your personal information is securely stored and used only for the purpose of providing our services. Please review our privacy policy for more details.
+                      </p>
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        Is KG Jobs suitable for both job seekers and employers?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        KG Jobs primarily focuses on providing assistance to job seekers. However, we may offer services and features for employers in the future.
+                      </p>
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        How can I contact KG Jobs if I have questions or need support?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        You can reach out to our customer support team through the "Contact Us" section on our website for assistance with any questions or issues you may have.
                       </p>
                     </div>
                   </div>
@@ -147,18 +176,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        What does "free updates" include?
+                        What is Langchain, and how does it relate to KG Jobs?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        The free updates that will be provided is based on the{' '}
-                        <a
-                          href='#'
-                          className='font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline'
-                        >
-                          roadmap
-                        </a>{' '}
-                        that we have laid out for this project. It is also possible that we will
-                        provide extra updates outside of the roadmap as well.
+                        Langchain is an OpenAI Agent, and it is integrated into KG Jobs to power some of our AI tools, enhancing their capabilities and effectiveness.
                       </p>
                     </div>
                     <div className='mb-10'>
@@ -175,18 +196,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        What does the free version include?
+                        Can I access KG Jobs from anywhere?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        The{' '}
-                        <a
-                          href='#'
-                          className='font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline'
-                        >
-                          free version
-                        </a>{' '}
-                        of Windster includes a minimal style guidelines, component variants, and a
-                        dashboard page with the mobile version alongside it.
+                        Yes, KG Jobs is accessible online, making it available to users from any location with an internet connection.
                       </p>
                       <p className='text-gray-500 dark:text-gray-400'>
                         You can use this version for any purposes, because it is open-source under
@@ -207,12 +220,10 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        What is the difference between Windster and Tailwind UI?
+                        Is KG Jobs a free service?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        Although both Windster and Tailwind UI are built for integration with
-                        Tailwind CSS, the main difference is in the design, the pages, the extra
-                        components and UI elements that Windster includes.
+                        KG Jobs offers a combination of free and premium services. Some features may require a subscription or payment.
                       </p>
                       <p className='text-gray-500 dark:text-gray-400'>
                         Additionally, Windster is a project that is still in development, and later
@@ -234,26 +245,70 @@ export default function FaqS() {
                             clipRule='evenodd'
                           ></path>
                         </svg>
-                        Can I use Windster in open-source projects?
+                        How do I get started with KG Jobs?
                       </h3>
                       <p className='text-gray-500 dark:text-gray-400'>
-                        Generally, it is accepted to use Windster in open-source projects, as long
-                        as it is not a UI library, a theme, a template, a page-builder that would be
-                        considered as an alternative to Windster itself.
+                        To get started, simply create an account on our platform, and you'll have access to our suite of AI-powered job search tools.
                       </p>
-                      <p className='text-gray-500 dark:text-gray-400'>
-                        With that being said, feel free to use this design kit for your open-source
-                        projects.
-                      </p>
-                      <p className='text-gray-500 dark:text-gray-400'>
-                        Find out more information by{' '}
-                        <a
-                          href='#'
-                          className='font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline'
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
                         >
-                          reading the license
-                        </a>
-                        .
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        Does KG Jobs offer career counseling or job placement services?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        KG Jobs primarily offers AI-powered tools for job seekers. We do not provide one-on-one career counseling or job placement services.
+                      </p>
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        How often are the AI tools updated and improved?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        We are committed to continuous improvement. Our AI tools are regularly updated to provide the best possible user experience and results.
+                      </p>
+                    </div>
+                    <div className='mb-10'>
+                      <h3 className='flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white'>
+                        <svg
+                          className='flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z'
+                            clipRule='evenodd'
+                          ></path>
+                        </svg>
+                        Can I cancel my subscription at any time?
+                      </h3>
+                      <p className='text-gray-500 dark:text-gray-400'>
+                        Yes, you can cancel your subscription at any time, and our customer support team can assist you with the process.
                       </p>
                     </div>
                   </div>
