@@ -1,6 +1,6 @@
 // Feature Flags
 export const featureFlag = {
-    pricing: false,
+    pricing: true,
     resume: true,
     qa: false,
     publicJobs: false,
