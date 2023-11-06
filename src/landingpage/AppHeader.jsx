@@ -61,6 +61,16 @@ const AppHeader = () => {
                       <span>FAQs</span>
                     </Link>
                   </li>
+                  <li>
+                    <Link to='/about' className='block dark:text-white md:px-4 transition hover:text-primary'>
+                      <span>About</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/contact-us' className='block dark:text-white md:px-4 transition hover:text-primary'>
+                      <span>Contact</span>
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className='mt-12 lg:mt-0 bg-indigo-500 rounded-3xl border'>
